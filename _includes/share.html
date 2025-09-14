@@ -1,6 +1,12 @@
 {% assign post_url = site.url | append: page.url | url_encode %}
 <div class="post-share">
-  <a href="https://www.facebook.com/sharer/sharer.php?u={{ post_url }}" target="_blank" rel="noopener">Facebook</a>
-  <a href="https://wa.me/?text={{ post_url }}" target="_blank" rel="noopener">WhatsApp</a>
-  <a href="https://twitter.com/intent/tweet?url={{ post_url }}" target="_blank" rel="noopener">Twitter</a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u={{ post_url }}" target="_blank" rel="noopener" aria-label="Share on Facebook">
+    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+  </a>
+  <a href="https://wa.me/?text={{ post_url }}" target="_blank" rel="noopener" aria-label="Share on WhatsApp">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+  </a>
+  <a href="https://twitter.com/intent/tweet?url={{ post_url }}" target="_blank" rel="noopener" aria-label="Share on Twitter">
+    <i class="fab fa-twitter" aria-hidden="true"></i>
+  </a>
 </div>
