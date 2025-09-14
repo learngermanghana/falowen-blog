@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "German Cases Made Simple: The Family Method with Falowen"
-date: 2025-09-14
+date: 2025-09-15
 tags: [falowen, german, grammar, cases, a1, a2, b1, tips]
 categories: [Grammar]
 excerpt: "Every verb and preposition has a family—nominative, accusative, dative, or genitive. Falowen helps you spot the family, choose the right article, and check your writing with instant feedback."
