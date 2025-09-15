@@ -9,6 +9,35 @@ image: https://i.imgur.com/LglIZit.jpeg
 ---
 
 <style>
+/* Mobile hero image fix (works with most Jekyll themes) */
+@media (max-width: 640px){
+  /* If your theme uses an <img> for the hero */
+  .page__hero img,
+  .post-header img,
+  .post-hero img,
+  .entry-header img,
+  header img {
+    width: 100%;
+    height: 220px;         /* adjust 200–260px if needed */
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+  }
+
+  /* If your theme uses a background-image hero */
+  .page__hero,
+  .page__hero--overlay,
+  .page-banner,
+  .hero,
+  .post-hero {
+    min-height: 220px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+  }
+}
+
+/* Small badges used in the “What lives where” section */
 .badges{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
 .badge{border:1px solid #e2e8f0;border-radius:999px;padding:4px 10px;background:#f8fafc;color:#0f172a}
 </style>
