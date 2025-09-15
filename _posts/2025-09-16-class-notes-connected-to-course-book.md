@@ -9,12 +9,9 @@ image: https://i.imgur.com/LglIZit.jpeg
 ---
 
 <style>
-.post-img{max-width:560px;width:100%;height:auto;display:block;margin:0 auto 12px;border-radius:12px}
 .badges{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
 .badge{border:1px solid #e2e8f0;border-radius:999px;padding:4px 10px;background:#f8fafc;color:#0f172a}
 </style>
-
-<img src="https://i.imgur.com/LglIZit.jpeg" alt="Falowen — My Course with Classroom, Course Book, and Learn Notes" class="post-img">
 
 ## The idea in one line
 
