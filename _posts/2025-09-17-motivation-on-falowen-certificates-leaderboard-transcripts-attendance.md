@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How Falowen Motivates Consistent Progress: Certificates, Personal Leaderboards, Transcripts & Attendance"
+title: "How Falowen Motivates Consistent Progress: Certificates, Personal Leaderboards, Transcripts and Attendance"
 date: 2025-09-17
 tags: [falowen, motivation, certificates, leaderboard, transcript, attendance, rewrite, assessment, a1, a2, b1, b2]
 categories: [Features]
