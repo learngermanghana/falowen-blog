@@ -1,143 +1,127 @@
 ---
-title: "A1 German Speaking Exam (Teil 1–3): Simple, Complete Guide + Free Checklist"
+title: "A1 German Speaking Exam (Teil 1–3): Simple Guide + Free Checklist"
 date: 2025-09-27
 layout: post
 tags: [A1, Sprechen, Goethe, Exam, German, Falowen, Ghana]
-description: "A clear, practical guide for A1 Sprechen—Teil 1, 2, and 3—with mini-drills, 10-second speaking discipline, and a printable checklist."
+description: "Very simple A1 guide for Teil 1, Teil 2, and Teil 3. Short examples, 10-second rule, and a clear checklist."
 permalink: /blog/a1-speaking-exam-guide/
-# Official post image (hero + social preview). Not a link.
+# Official post image (hero/social). This is NOT a link and NOT repeated in the body.
 image: https://i.imgur.com/GJyCJFY.jpeg
 featured_image: https://i.imgur.com/GJyCJFY.jpeg
 og_image: https://i.imgur.com/GJyCJFY.jpeg
 social_image: https://i.imgur.com/GJyCJFY.jpeg
 thumbnail: https://i.imgur.com/GJyCJFY.jpeg
-image_alt: "Falowen — A1 German Speaking Exam Guide"
+image_alt: "Falowen — A1 Speaking Exam Guide"
 ---
 
-![Falowen — A1 German Speaking Exam Guide](https://i.imgur.com/GJyCJFY.jpeg)
+> **From the Falowen builders:** Most students don’t fail because of “fear”. It’s usually **low preparation** and **wrong priorities**. Falowen gives you built-in **recorders**, **trained AI**, and **tutor support** so you can practice every day.
 
-> **From the Falowen builders:** We don’t call it “fear”—we call it *lack of preparation* and *placing priorities wrongly*. With **Falowen**, learners use **built-in recorders**, **trained AI**, and **tutor support** to prepare consistently and confidently.
-
-## What the exam looks like (quick)
-- **Parts:** Teil 1 (Introduction), Teil 2 (Questions & Answers), Teil 3 (Requests/Planning)  
-- **Time:** ~15 minutes total (varies by center)  
-- **Goal:** Clear, simple communication—**not** perfection  
-- **Our practice scoring:** Teil 1 **5 pts**, Teil 2 **10 pts**, Teil 3 **10 pts**
+**Exam overview (very short)**
+- **3 parts:** Teil 1 (Introduction), Teil 2 (Questions & Answers), Teil 3 (Requests/Planning)  
+- **Goal:** Be **clear** and **simple**.  
+- **Tip:** Speak **≤ 10 seconds** per answer.
 
 ---
 
-## Teil 1 — Introduction (Vorstellen)
-Introduce yourself with short, correct sentences. Use these **required points**:
+## Teil 1 — Introduction (Introduce yourself)
+Say **short sentences**. Use these points:
 
-**Name · Alter · Land · Wohnort · Sprachen · Beruf · Hobby**
+**Name · Age · Country · City · Languages · Job/Study · Hobby**
 
-**Template you can copy**
-- *Ich heiße* **{{IHR NAME}}**.  
-- *Ich bin* **{{IHR ALTER}}** *Jahre alt*.  
-- *Ich komme aus* **{{IHR LAND}}** *und wohne in* **{{IHR WOHNORT}}**.  
-- *Ich spreche* **{{SPRACHEN}}**.  
-- *Ich bin* **{{BERUF}}** *.* / *Ich studiere…*  
-- *Mein Hobby ist* **{{HOBBY}}**.
+**Example (you can copy and change):**
+- *Ich heiße …*  
+- *Ich bin … Jahre alt.*  
+- *Ich komme aus … und wohne in …*  
+- *Ich spreche …*  
+- *Ich bin …* / *Ich studiere …*  
+- *Mein Hobby ist …*
 
-**3 häufige Nachfragen**
-1. *Wie buchstabiert man Ihren Namen?*  
-2. *Was machen Sie beruflich / Was studieren Sie?*  
-3. *Was machen Sie in Ihrer Freizeit?*
+**Follow-up (common)**
+- *Wie buchstabiert man Ihren Namen?* → Spell it: **F-E-L-I-X**  
+- *Was machen Sie beruflich / Was studieren Sie?*  
+- *Was machen Sie in der Freizeit?*
 
-**Mini-Drill (laut sprechen)**
-- *Buchstabieren Sie Ihren Vornamen:* **F-E-L-I-X**  
-- *Ich wohne in Accra, in der Südseite, 3. Stock.*  
-- *Ich spreche Englisch und Deutsch.*
-
-> **Team tip:** **≤ 10 Sekunden pro Antwort.** Kurz + klar schlägt lang + unsicher.
+**Remember:** short and calm. **≤ 10 seconds**.
 
 ---
 
-## Teil 2 — Fragen & Antworten
-Sie sehen eine **Themenkarte** mit **Stichwort**. Stellen **Sie** eine Frage **oder** antworten Sie.  
-**Regel:** Beginnen Sie mit einem **W-Wort** (wer/was/wo/woher/wann/wie/wie viel/warum) **oder** mit einem **Verb** für Ja/Nein-Fragen.
+## Teil 2 — Fragen & Antworten (Ask/Answer)
+You get a **topic** + **keyword**.  
+Make **one simple question** or give **one simple answer**.
 
-**Kartenbeispiele (Fragen & Antworten üben):**
-1) **Thema: Geschäft – Stichwort: schließen**  
-- Frage: *Wann schließt das Geschäft?*  
-- Ja/Nein: *Schließt das Geschäft um 18 Uhr?*  
-- Antwort-Idee: *Es schließt um 18 Uhr.*
+**Rule for questions**
+- Start with a **W-word**: *wer, was, wo, wann, wie, warum*  
+  **or**
+- Start with a **verb** for yes/no: *Ist …? Hat …? Fährt …?*
 
-2) **Thema: Uhr – Stichwort: Uhrzeit**  
-- Frage: *Wie spät ist es?* / *Wann beginnt der Kurs?*  
-- Ja/Nein: *Beginnt der Kurs um 9 Uhr?*  
-- Antwort-Idee: *Er beginnt um 9 Uhr 30.*
+**Practice cards**
+1) **Geschäft – schließen (shop – closing time)**  
+   - Ask: *Wann schließt das Geschäft?*  
+   - Yes/No: *Schließt das Geschäft um 18 Uhr?*  
+   - Answer: *Es schließt um 18 Uhr.*
 
-3) **Thema: Verkehr – Stichwort: Buslinie**  
-- Frage: *Welche Buslinie fährt zum Zentrum?*  
-- Ja/Nein: *Fährt die Buslinie 10 zum Zentrum?*  
-- Antwort-Idee: *Die Linie 10 fährt direkt.*
+2) **Uhr – Uhrzeit (time)**  
+   - Ask: *Wie spät ist es?* / *Wann beginnt der Kurs?*  
+   - Yes/No: *Beginnt der Kurs um 9 Uhr?*  
+   - Answer: *Er beginnt um 9 Uhr 30.*
 
-4) **Thema: Wohnung – Stichwort: Heizung**  
-- Frage: *Hat die Wohnung eine Heizung?*  
-- Ja/Nein: *Funktioniert die Heizung?*  
-- Antwort-Idee: *Ja, sie funktioniert gut.*
+3) **Verkehr – Buslinie (transport – bus line)**  
+   - Ask: *Welche Buslinie fährt zum Zentrum?*  
+   - Yes/No: *Fährt die Buslinie 10 zum Zentrum?*  
+   - Answer: *Die Linie 10 fährt direkt.*
 
-5) **Thema: Freizeit – Stichwort: Hobby**  
-- Frage: *Was ist Ihr Hobby?*  
-- Ja/Nein: *Spielen Sie gern Fußball?*  
-- Antwort-Idee: *Ich lese und mache Musik.*
+4) **Wohnung – Heizung (flat – heating)**  
+   - Ask: *Hat die Wohnung eine Heizung?*  
+   - Yes/No: *Funktioniert die Heizung?*  
+   - Answer: *Ja, sie funktioniert gut.*
 
-**Schnell-Check (ist Ihre Frage A1-korrekt?)**
-- W-Wort zuerst? ✅  
-- Oder Verb zuerst (Ja/Nein)? ✅  
-- Nomen groß? (z. B. **Uhrzeit**, **Buslinie**) ✅  
-- **≤ 10 Sekunden** zum Sprechen? ✅
+5) **Freizeit – Hobby (free time – hobby)**  
+   - Ask: *Was ist Ihr Hobby?*  
+   - Yes/No: *Spielen Sie gern Fußball?*  
+   - Answer: *Ich lese und mache Musik.*
 
-> **Häufige Fehler, die wir sehen:**  
-> • Zu lange, bis ein Satz kommt → Trainieren Sie 10-Sekunden-Antworten.  
-> • Unsichere Satzanfänge → W-Wort/Verb zuerst, dann Punkt.
+**10-second rule:** Do not wait too long. Say **something simple** quickly.
 
 ---
 
 ## Teil 3 — Bitten & Planen (Requests / Planning)
-Machen Sie **kurze, höfliche** Bitten oder planen Sie etwas zusammen. Nutzen Sie **bitte**, **Modalverben** (*können, möchten*), und **trennbare Verben** korrekt.
+Make a **polite** request or plan something. Keep it short.
 
-**Höfliche Starter (formell zuerst)**
-- *Können **Sie** bitte…* / *Kannst **du** bitte…*  
-- *Machen **Sie** bitte…* / *Mach bitte…*  
-- *Sollen wir…?* (Planung)
+**Useful starts**
+- *Können **Sie** bitte …?* / *Kannst **du** bitte …?*  
+- *Machen **Sie** bitte …* / *Mach bitte …*  
+- *Sollen wir …?* (planning)
 
-**Typische A1-Bitten (formell + informell)**
-- *Radio anmachen* → *Können Sie bitte das Radio **anmachen**?* / *Mach bitte das Radio **an**.*  
+**Examples**
+- *Radio anmachen* → *Können Sie bitte das Radio **anmachen**?*  
 - *Fenster zumachen* → *Können Sie bitte das Fenster **zumachen**?*  
 - *Licht anschalten* → *Schalten Sie bitte das Licht **an**.*  
-- *Termin planen* → *Sollen wir morgen um 10 Uhr **treffen**?*
+- *Treffen planen* → *Sollen wir morgen um 10 Uhr **treffen**?*
 
-**Trennbare Verben**
-- *an|machen, zu|machen, an|schalten* → **Präfix ans Satzende** in Hauptsätzen: *Machen Sie das Radio **an***.
-
-**Grün vs. Rot**
-- ✅ *Können Sie bitte das Fenster **zumachen**?*  
-- ❌ *Können Sie bitte zumachen das Fenster?* (Wortstellung)
+**Separable verbs (very important)**
+- **an|machen, zu|machen, an|schalten** → the small part goes to the **end**:  
+  *Machen Sie das Radio **an**.*
 
 ---
 
-## Community insight from the Falowen team
-Um zu bestehen, seien Sie **konsequent** und **erledigen Sie Ihre Aufgaben**. In manchen Kontexten sind wir im Alltag eher gemächlich—**im Test müssen Sie schnell reagieren**: kurze, klare Sätze, **≤ 10 Sekunden** pro Beitrag.
+## Ghana tip from the Falowen team
+To pass: be **consistent** and **do your assignments**. In daily life we may be slow; in the exam you must be **fast**: speak clearly, **≤ 10 seconds**, keep it simple.
 
 ---
 
-## 1-Seiten-Checkliste (zum Ausdrucken)
-- [ ] Teil 1: **Name, Alter, Land, Wohnort, Sprachen, Beruf, Hobby**  
-- [ ] Namen **buchstabieren** geübt  
-- [ ] 2–3 **kurze** Sätze pro Punkt  
-- [ ] Teil 2: **W-Wort** oder **Verb** zuerst  
-- [ ] 5 Karten geübt (z. B. Geschäft–schließen, Uhr–Uhrzeit, Buslinie…)  
-- [ ] Teil 3: **bitte** + **Modalverb** (*können/möchten*)  
-- [ ] **Trennbare Verben** richtig (… **an**, **zu**)  
-- [ ] Langsam & deutlich sprechen  
-- [ ] Zeitangaben: *heute, morgen, um 9 Uhr 30*  
-- [ ] **≤ 10 Sekunden** pro Antwort
-
-**👉 Download:** [A1 Speaking Checklist (PDF)](sandbox:/mnt/data/A1_Speaking_Checklist_Falowen.pdf)
+## A1 Speaking — Checklist (print or save)
+- [ ] Teil 1: **Name, Age, Country, City, Languages, Job/Study, Hobby**  
+- [ ] Spell your name  
+- [ ] 2–3 **short** sentences per point  
+- [ ] Teil 2: Start with **W-word** or **verb**  
+- [ ] Practice 5 cards (shop–closing, time, bus line, heating, hobby)  
+- [ ] Teil 3: **please** + **modal** (*können/möchten*)  
+- [ ] **Separable verbs** correct (… **an**, **zu**)  
+- [ ] Speak slow and clear  
+- [ ] Time phrases ready: *heute, morgen, um 9 Uhr 30*  
+- [ ] **≤ 10 seconds** per answer
 
 ---
 
 ## Practice with Falowen
-Mit **Falowen** können Sie **so viel üben, wie Sie möchten**—kurze Karten, 10-Sekunden-Antworten, **Sofort-Feedback**, **eingebaute Recorder**, **trainierte KI** und **Tutor-Support**. **Prioritäten richtig setzen + konsequent üben = bestehen.**
+In **Falowen** you can practice **anytime**: short cards, the **10-second** habit, **instant feedback**, **recorders**, **trained AI**, and **tutor support**.
