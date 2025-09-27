@@ -18,6 +18,7 @@ future: true
 github_username: falowen
 
 giscus:
+  enabled: false
   repo: "owner/repo"
   repo_id: "YOUR_REPO_ID"
   category: "General"

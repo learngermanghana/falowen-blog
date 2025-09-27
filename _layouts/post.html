@@ -41,20 +41,21 @@ layout: default
     {% endif %}
   </nav>
 
-  {% if site.giscus and site.giscus.repo %}
+  {% assign giscus = site.giscus %}
+  {% if giscus and giscus.enabled and giscus.repo and giscus.repo_id and giscus.category_id %}
     <section id="comments">
       <div id="giscus_thread"></div>
       <script src="https://giscus.app/client.js"
-              data-repo="{{ site.giscus.repo }}"
-              data-repo-id="{{ site.giscus.repo_id }}"
-              data-category="{{ site.giscus.category }}"
-              data-category-id="{{ site.giscus.category_id }}"
+              data-repo="{{ giscus.repo }}"
+              data-repo-id="{{ giscus.repo_id }}"
+              data-category="{{ giscus.category }}"
+              data-category-id="{{ giscus.category_id }}"
               data-mapping="pathname"
               data-reactions-enabled="1"
               data-emit-metadata="0"
               data-input-position="bottom"
-              data-theme="{{ site.giscus.theme | default: 'light' }}"
-              data-lang="{{ site.giscus.lang | default: 'en' }}"
+              data-theme="{{ giscus.theme | default: 'light' }}"
+              data-lang="{{ giscus.lang | default: 'en' }}"
               crossorigin="anonymous"
               async>
       </script>
