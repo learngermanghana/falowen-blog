@@ -1,0 +1,123 @@
+---
+layout: post
+title: "New in Falowen: Connector Trainer (Write Clearer German, Faster)"
+date: 2025-10-05 
+tags: [falowen, german, grammar, connectors, writing, exams]
+categories: ["Product Update"]
+excerpt: "Meet Connector Trainer—our new, friendly practice space for linking ideas with und, aber, denn, weil, deshalb & co. Level-aware AI suggestions, English explanations with German examples, and instant tips. No scores—just learning."
+image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-artempodrez-5726810.jpg
+image_alt: "Student practicing German grammar on a laptop"
+description: "Connector Trainer helps learners practice German connectors with level-aware AI suggestions, English explanations, German examples, and instant feedback. Available now to all Falowen users."
+published: true
+---
+
+## TL;DR
+**Connector Trainer** is live for everyone in Falowen. It helps you link ideas with the right German connectors—**und, aber, denn, weil, deshalb, obwohl, dass, wenn** and more—using **English explanations + German examples** and **instant tips**. No scoring, only **learning mode** so you can focus on clarity and word order.
+
+<div class="post-hero">
+  <img 
+    src="https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-artempodrez-5726810.jpg" 
+    alt="Student practicing German grammar on a laptop"
+    width="1600" height="900" loading="eager" decoding="async">
+</div>
+
+<style>
+.post-hero {
+  max-width: 1200px;
+  margin: 1rem auto 2rem;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+.post-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+</style>
+
+---
+
+## Where to Find It
+**Path:** Chat → **Grammar** → *Connector Trainer*  
+(Inside **Grammar**, look for the new **Connector Trainer** sub tab.)
+
+---
+
+## Why This Matters
+Good writing (and speaking) in German depends on clear links between ideas. Using connectors well:
+- boosts **exam essays** (Goethe tasks that score coherence),
+- makes **speaking** smoother,
+- and prevents classic **word-order slips** after *weil/dass* or inversion after *deshalb*.
+
+---
+
+## What You Get
+- **Level-aware suggestions:** Type your own connector—or let Falowen **suggest connectors automatically** based on your saved student level.
+- **English explanations, German examples:** Friendly, simple notes for quick understanding, with examples you can reuse.
+- **Instant checks & tips:** The trainer **checks your sentence** and gives suggestions (e.g., verb-to-the-end after *weil/dass*, inversion after *deshalb*).
+- **Ask follow-ups:** Not sure why an answer is better? **Ask a question** right there and get a clear explanation.
+- **Learning mode, no pressure:** No scores or timers—just focused practice until it “clicks”.
+
+---
+
+## How a Round Works
+1. Combine two ideas (we show or you write them).  
+2. **Choose a connector** (or let AI suggest one for your level).  
+3. **Type the full sentence.**  
+4. Get **instant feedback** with a gentle fix and a short explanation.  
+5. Optional: **ask a follow-up** to understand the rule deeply.
+
+---
+
+## Quick Examples
+
+**A2: Ursache → Folge (weil / deshalb)**  
+**Prompt:** *Ich bin krank. Ich bleibe zu Hause.*  
+**Good answer (weil):** *Ich bleibe zu Hause, **weil** ich krank **bin**.*  
+**Tip:** After **weil**, the **verb goes to the end**.
+
+**A2 Alternative (deshalb):**  
+*Ich bin krank, **deshalb** bleibe ich zu Hause.*  
+**Tip:** After **deshalb**, use **inversion**: *deshalb* + **verb** + subject.
+
+---
+
+**B1: Gegensatz (obwohl) + Nebensatz (dass)**  
+**Prompt:** *Es regnet. Wir gehen spazieren.*  
+**Good answer (obwohl):** *Wir gehen spazieren, **obwohl** es regnet.*  
+**Tip:** After **obwohl**, keep Nebensatz order: **verb at the end**.
+
+**B1 (dass) for reporting:**  
+**Prompt:** *Er sagt: „Ich komme später.“*  
+**Good answer:** *Er sagt, **dass** er später **kommt**.*  
+**Tip:** After **dass**, the **conjugated verb goes to the end** of the clause.
+
+---
+
+## Who It’s For
+- Learners from **A1–B2** who want clean, correct linking.  
+- Students preparing for **Goethe writing/speaking** tasks.  
+- Anyone who prefers **friendly, English explanations** with clear **German examples**.
+
+---
+
+## Availability
+**Live now** for all Falowen users. No extra fees—just open the app and start practicing.
+
+---
+
+## Start Here (2–Step Routine)
+1. Open **Chat → Grammar → Connector Trainer**.  
+2. Do 10 minutes: mix *weil/deshalb*, *obwohl/aber*, *dass/wenn*. Ask at least **one follow-up question** to lock the rule.
+
+---
+
+## Final Thoughts
+You don’t need a score to improve—just clean feedback and quick repetition. Connector Trainer removes the stress, fixes the word order, and helps you write essays that **flow**.
+
+👉 Try it now in the app: **Chat → Grammar → Connector Trainer**.  
+Or jump in from: [falowen.app](https://falowen.app)
