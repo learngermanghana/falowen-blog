@@ -5,7 +5,7 @@ date: 2025-10-10
 tags: [falowen, german, learning, exams, a2, b1]
 categories: [Guides]
 excerpt: "The jump from A2 to B1 is where your German starts sounding real. Learn what changes, how to practice daily, and how Falowen helps you make the transition smoothly."
-image: https://github.com/learngermanghana/falowen-blog/blob/main/photos/pexels-ulfet-680828476-31703180.jpg
+image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-ulfet-680828476-31703180.jpg
 image_alt: "German learner studying with Falowen app on laptop and notebook"
 permalink: /how-to-move-from-a2-to-b1/
 seo:
@@ -57,7 +57,7 @@ At B1, you write structured texts: describing advantages and disadvantages, shar
 > **Schluss:** Meiner Meinung nach sind soziale Medien gut, wenn man sie richtig benutzt.
 
 **Falowen Tip:**  
-You can use Falowen’s grammar correction feature before submitting your assignments to polish your writing and improve clarity.
+Use Falowen’s grammar correction feature before submitting your assignments to polish your writing and improve clarity.
 
 ## 4. Listening and Reading: From Understanding to Interpreting
 
