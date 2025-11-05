@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How to Use German Modal Verbs (können, müssen, dürfen, sollen, wollen)"
-date: 2025-11-05
+date: 2025-11-04
 tags: [falowen, german, grammar, a2, modal verbs, sentence structure]
 categories: [Guides]
 excerpt: "Modal verbs make your German sound natural and flexible. Learn how to use 'können', 'müssen', 'dürfen', 'sollen' and 'wollen' with clear rules, examples, and practice ideas using Falowen’s Sentence Trainer."
