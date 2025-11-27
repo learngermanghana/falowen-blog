@@ -11,7 +11,7 @@ Stay ahead with our next enrollment. Join the A1 Hybrid Class and choose the for
 ## Why Learn German with Us?
 
 - Small group hybrid classes (in-person & online)
-- Structured curriculum with clear weekly goals
+- Structured A1 curriculum with clear weekly goals
 - Free Goethe exam preparation support
 - Practice anytime with the **Falowen App**
 - Friendly Ghana-based support team for questions and guidance
@@ -20,7 +20,7 @@ Stay ahead with our next enrollment. Join the A1 Hybrid Class and choose the for
 
 <!-- A1 Hybrid Class – December 2025 -->
 <img 
-  src="{{ '/photos/2nd december 2025.png' | relative_url }}" 
+  src="/photos/2nd%20december%202025.png" 
   alt="A1 Hybrid Class 2025" 
   class="post-img"
   style="max-width: 500px; width: 100%; height: auto; display: block; margin: 0 auto 2rem;"
@@ -42,7 +42,7 @@ Stay ahead with our next enrollment. Join the A1 Hybrid Class and choose the for
 
 <!-- A1 Hybrid Class – January Start -->
 <img 
-  src="{{ '/photos/A1 November(1).png' | relative_url }}" 
+  src="/photos/A1%20November(1).png" 
   alt="A1 Hybrid Class – Updated Schedule" 
   class="post-img"
   style="max-width: 500px; width: 100%; height: auto; display: block; margin: 2rem auto;"
