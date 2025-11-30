@@ -48,7 +48,7 @@
         <div class="actions">
           <a class="pill" href="{{ post.url | relative_url }}">Read</a>
           {% if post.categories and post.categories.size > 0 %}
-            <a class="pill" href="{{ '/categories/#' | append: post.categories[0] | slugify | relative_url }}">{{ post.categories[0] }}</a>
+            <span class="pill">{{ post.categories[0] }}</span>
           {% endif %}
         </div>
       </article>
