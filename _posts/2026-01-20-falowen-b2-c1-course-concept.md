@@ -13,8 +13,6 @@ seo:
   description: "Learn how Falowen’s B2 and C1 courses work: daily speaking recordings, Goethe-aligned writing prompts, random vocabulary practice, curated reading/listening, and mastery-focused scoring."
 ---
 
-![Falowen B2 and C1 course promo image](https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/b2c1_ad_final.jpg)
-
 ## Why Falowen’s B2 and C1 feel different from “random practice”
 Many learners reach B2 or C1 and feel stuck—not because they don’t study, but because they study without a system.
 
