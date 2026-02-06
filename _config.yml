@@ -1,5 +1,7 @@
 title: "Falowen Blog"
 description: "Insights and resources from Learn Language Education Academy"
+lang: en
+locale: en_US
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://blog.falowen.app" # your custom domain
 theme: minima
@@ -14,6 +16,14 @@ plugins:
 future: true
 # twitter_username: falowen
 github_username: falowen
+
+alternates:
+  - lang: en
+    locale: en_US
+    url: "https://blog.falowen.app/"
+  - lang: fr
+    locale: fr_FR
+    url: "https://blog.falowen.app/fr/"
 
 giscus:
   enabled: false
