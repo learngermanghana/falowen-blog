@@ -1,0 +1,46 @@
+name: Weekly Blog Auto-Publish
+
+on:
+  schedule:
+    # Ghana is UTC, so this is Monday 09:00 Ghana time
+    - cron: "0 9 * * 1"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weekly-blog
+  cancel-in-progress: false
+
+jobs:
+  generate-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate post
+        run: python scripts/generate_post.py
+
+      - name: Commit & push if changed
+        run: |
+          git status --porcelain
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git config user.name "falowen-bot"
+          git config user.email "falowen-bot@users.noreply.github.com"
+
+          git add _posts
+          git commit -m "chore(blog): weekly post [skip ci]"
+          git push
