@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 from datetime import datetime, date
 from pathlib import Path
 import re
@@ -13,15 +14,22 @@ def slugify(text: str) -> str:
     text = re.sub(r"-+", "-", text)
     return (text[:80].strip("-") or "post")
 
-def build_post(title: str, excerpt: str, category: str, tags: list[str], image_url: str, body: str) -> str:
-    today = datetime.utcnow().strftime("%Y-%m-%d")
+def build_post(
+    title: str,
+    excerpt: str,
+    category: str,
+    tags: list[str],
+    image_url: str,
+    body: str,
+    publish_date: str,
+) -> str:
     tag_string = ", ".join(tags)
 
     fm = [
         "---",
         "layout: post",
         f'title: "{title}"',
-        f"date: {today}",
+        f"date: {publish_date}",
         f"tags: [{tag_string}]",
         f"categories: [{category}]",
         f'excerpt: "{excerpt}"',
@@ -154,7 +162,7 @@ def week_index_utc() -> int:
     # ISO week number (1..53) – stable weekly rotation
     return date.today().isocalendar().week
 
-def get_topic_for_week() -> dict:
+def get_topic_for_week(week_index: int) -> dict:
     topics = [
         {
             "title": "A1: Alltag – 8 wichtige Wörter mit Beispielen",
@@ -189,22 +197,76 @@ def get_topic_for_week() -> dict:
             "body": b2_discussion_body(),
         },
     ]
-    idx = (week_index_utc() - 1) % len(topics)
+    idx = (week_index - 1) % len(topics)
     return topics[idx]
 
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Generate one weekly blog post in _posts/.")
+    parser.add_argument(
+        "--date",
+        help="Publishing date in YYYY-MM-DD format (default: current UTC date).",
+    )
+    parser.add_argument(
+        "--week-index",
+        type=int,
+        help="ISO week index override for topic rotation (default: current ISO week).",
+    )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Create a file even if one with the same name already exists.",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Print planned filename/topic and exit without writing files.",
+    )
+    return parser.parse_args()
+
+
+def resolve_publish_date(raw_date: str | None) -> str:
+    if raw_date is None:
+        return datetime.utcnow().strftime("%Y-%m-%d")
+
+    # Validate strict YYYY-MM-DD input.
+    datetime.strptime(raw_date, "%Y-%m-%d")
+    return raw_date
+
+
+def post_already_contains_title(title: str) -> bool:
+    escaped_title = re.escape(f'title: "{title}"')
+    title_pattern = re.compile(rf"^{escaped_title}$", re.MULTILINE)
+    for post_file in POSTS_DIR.glob("*.md"):
+        if title_pattern.search(post_file.read_text(encoding="utf-8")):
+            return True
+    return False
+
 def main() -> int:
+    args = parse_args()
     POSTS_DIR.mkdir(parents=True, exist_ok=True)
 
-    topic = get_topic_for_week()
+    selected_week_index = args.week_index or week_index_utc()
+    topic = get_topic_for_week(selected_week_index)
 
-    today = datetime.utcnow().strftime("%Y-%m-%d")
+    publish_date = resolve_publish_date(args.date)
     slug = slugify(topic["title"])
-    filename = f"{today}-{slug}.md"
+    filename = f"{publish_date}-{slug}.md"
     path = POSTS_DIR / filename
 
-    # If rerun same day, do nothing
-    if path.exists():
+    if args.dry_run:
+        print(f"[dry-run] Week index: {selected_week_index}")
+        print(f"[dry-run] Topic: {topic['title']}")
+        print(f"[dry-run] Target file: {path}")
+        return 0
+
+    # If rerun same day (or same topic), do nothing.
+    if path.exists() and not args.force:
         print(f"Post already exists: {path}")
+        return 0
+
+    if post_already_contains_title(topic["title"]) and not args.force:
+        print(f"Post with this title already exists: {topic['title']}")
         return 0
 
     md = build_post(
@@ -214,6 +276,7 @@ def main() -> int:
         tags=topic["tags"],
         image_url=topic["image"],
         body=topic["body"],
+        publish_date=publish_date,
     )
 
     path.write_text(md, encoding="utf-8")
