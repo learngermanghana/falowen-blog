@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import argparse
-from datetime import date, datetime
+from datetime import datetime, date
 from pathlib import Path
 import re
 
@@ -25,13 +25,21 @@ def slugify(text: str) -> str:
     return (text[:90].strip("-") or "post")
 
 
-def build_post(topic: dict, publish_date: str) -> str:
-    tag_string = ", ".join(topic["tags"])
+def build_post(
+    title: str,
+    excerpt: str,
+    category: str,
+    tags: list[str],
+    image_url: str,
+    body: str,
+    publish_date: str,
+) -> str:
+    tag_string = ", ".join(tags)
 
     fm = [
         "---",
         "layout: post",
-        f'title: "{topic["title"]}"',
+        f'title: "{title}"',
         f"date: {publish_date}",
         f"tags: [{tag_string}]",
         f"categories: [{topic['category']}]",
@@ -312,7 +320,6 @@ def b2_discussion_body() -> str:
 def week_index_utc() -> int:
     return date.today().isocalendar().week
 
-
 def get_topic_for_week(week_index: int) -> dict:
     topics = [
         {
@@ -364,21 +371,39 @@ def get_topic_for_week(week_index: int) -> dict:
             "body": b2_discussion_body(),
         },
     ]
-    return topics[(week_index - 1) % len(topics)]
+    idx = (week_index - 1) % len(topics)
+    return topics[idx]
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Generate one weekly blog post in _posts/.")
-    parser.add_argument("--date", help="Publishing date in YYYY-MM-DD format (default: current UTC date).")
-    parser.add_argument("--week-index", type=int, help="ISO week index override for topic rotation.")
-    parser.add_argument("--force", action="store_true", help="Create a file even if one exists.")
-    parser.add_argument("--dry-run", action="store_true", help="Print planned filename/topic and exit.")
+    parser.add_argument(
+        "--date",
+        help="Publishing date in YYYY-MM-DD format (default: current UTC date).",
+    )
+    parser.add_argument(
+        "--week-index",
+        type=int,
+        help="ISO week index override for topic rotation (default: current ISO week).",
+    )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Create a file even if one with the same name already exists.",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Print planned filename/topic and exit without writing files.",
+    )
     return parser.parse_args()
 
 
 def resolve_publish_date(raw_date: str | None) -> str:
     if raw_date is None:
         return datetime.utcnow().strftime("%Y-%m-%d")
+
+    # Validate strict YYYY-MM-DD input.
     datetime.strptime(raw_date, "%Y-%m-%d")
     return raw_date
 
@@ -391,7 +416,6 @@ def post_already_contains_title(title: str) -> bool:
             return True
     return False
 
-
 def main() -> int:
     args = parse_args()
     POSTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -400,16 +424,17 @@ def main() -> int:
     topic = get_topic_for_week(selected_week_index)
 
     publish_date = resolve_publish_date(args.date)
-    filename = f"{publish_date}-{topic['permalink_slug']}.md"
+    slug = slugify(topic["title"])
+    filename = f"{publish_date}-{slug}.md"
     path = POSTS_DIR / filename
 
     if args.dry_run:
         print(f"[dry-run] Week index: {selected_week_index}")
         print(f"[dry-run] Topic: {topic['title']}")
         print(f"[dry-run] Target file: {path}")
-        print(f"[dry-run] Permalink: /{topic['permalink_slug']}/")
         return 0
 
+    # If rerun same day (or same topic), do nothing.
     if path.exists() and not args.force:
         print(f"Post already exists: {path}")
         return 0
@@ -417,6 +442,16 @@ def main() -> int:
     if post_already_contains_title(topic["title"]) and not args.force:
         print(f"Post with this title already exists: {topic['title']}")
         return 0
+
+    md = build_post(
+        title=topic["title"],
+        excerpt=topic["excerpt"],
+        category=topic["category"],
+        tags=topic["tags"],
+        image_url=topic["image"],
+        body=topic["body"],
+        publish_date=publish_date,
+    )
 
     md = build_post(topic=topic, publish_date=publish_date)
     path.write_text(md, encoding="utf-8")

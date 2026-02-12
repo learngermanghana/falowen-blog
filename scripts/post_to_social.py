@@ -19,7 +19,7 @@ def parse_front_matter(markdown_text: str) -> dict[str, str]:
 
     data: dict[str, str] = {}
     for line in fm_block.splitlines():
-        if not line or line.startswith(" ") or ":" not in line:
+        if ":" not in line:
             continue
         key, value = line.split(":", 1)
         data[key.strip()] = value.strip().strip('"')
