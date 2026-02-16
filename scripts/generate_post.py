@@ -31,6 +31,10 @@ def build_post(
     category: str,
     tags: list[str],
     image_url: str,
+    image_alt: str,
+    permalink_slug: str,
+    seo_title: str,
+    seo_description: str,
     body: str,
     publish_date: str,
 ) -> str:
@@ -42,18 +46,18 @@ def build_post(
         f'title: "{title}"',
         f"date: {publish_date}",
         f"tags: [{tag_string}]",
-        f"categories: [{topic['category']}]",
-        f'excerpt: "{topic["excerpt"]}"',
-        f"image: {topic['image']}",
-        f'image_alt: "{topic["image_alt"]}"',
-        f"permalink: /{topic['permalink_slug']}/",
+        f"categories: [{category}]",
+        f'excerpt: "{excerpt}"',
+        f"image: {image_url}",
+        f'image_alt: "{image_alt}"',
+        f"permalink: /{permalink_slug}/",
         "seo:",
-        f'  title: "{topic["seo_title"]}"',
-        f'  description: "{topic["seo_description"]}"',
+        f'  title: "{seo_title}"',
+        f'  description: "{seo_description}"',
         "---",
         "",
     ]
-    return "\n".join(fm) + topic["body"].strip() + "\n"
+    return "\n".join(fm) + body.strip() + "\n"
 
 
 def build_structured_body(
@@ -449,11 +453,14 @@ def main() -> int:
         category=topic["category"],
         tags=topic["tags"],
         image_url=topic["image"],
+        image_alt=topic["image_alt"],
+        permalink_slug=topic["permalink_slug"],
+        seo_title=topic["seo_title"],
+        seo_description=topic["seo_description"],
         body=topic["body"],
         publish_date=publish_date,
     )
 
-    md = build_post(topic=topic, publish_date=publish_date)
     path.write_text(md, encoding="utf-8")
     print(f"Created: {path}")
     return 0
