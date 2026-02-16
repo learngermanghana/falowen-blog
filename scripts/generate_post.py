@@ -158,7 +158,7 @@ def a1_vocab_body() -> str:
         practice_items=[
             "Topic Coach: Describe your day in 6 lines using at least 5 routine verbs.",
             "Sentence Trainer: Alternate present tense subjects (ich / wir / sie).",
-            "Schreiben Trainer: Write a mini diary entry for one weekday.",
+            "Writing Trainer: Write a mini diary entry for one weekday.",
         ],
         final_lines=[
             "Small A1 words become powerful when you reuse them in meaningful routines.",
@@ -210,7 +210,7 @@ def a2_connectors_body() -> str:
         practice_items=[
             "Topic Coach: Explain one problem and one solution using weil/deshalb/trotzdem.",
             "Sentence Trainer: Combine two short lines into one logical sentence.",
-            "Schreiben Trainer: Write an A2 letter with at least six connectors.",
+            "Writing Trainer: Write an A2 letter with at least six connectors.",
         ],
         final_lines=[
             "Connectors are the bridge between grammar knowledge and natural communication.",
@@ -260,7 +260,7 @@ def b1_opinion_body() -> str:
         practice_items=[
             "Topic Coach: Defend and challenge one idea in the same response.",
             "Sentence Trainer: Rewrite direct opinions into nuanced opinions.",
-            "Schreiben Trainer: Write 120–150 words with intro, contrast, and conclusion.",
+            "Writing Trainer: Write 120–150 words with intro, contrast, and conclusion.",
         ],
         final_lines=[
             "Strong B1 writing is a combination of opinion + support + structure.",
@@ -310,7 +310,7 @@ def b2_discussion_body() -> str:
         practice_items=[
             "Topic Coach: Defend one policy and challenge it with one risk.",
             "Sentence Trainer: Turn simple opinions into formal B2 structures.",
-            "Schreiben Trainer: Write 180–220 words with at least four advanced connectors.",
+            "Writing Trainer: Write 180–220 words with at least four advanced connectors.",
         ],
         final_lines=[
             "Excellent B2 texts show control of language and control of argument logic.",
@@ -327,19 +327,19 @@ def week_index_utc() -> int:
 def get_topic_for_week(week_index: int) -> dict:
     topics = [
         {
-            "title": "A1: Alltag-Wortschatz mit Beispielen und Mini-Routinen",
+            "title": "A1: Daily Vocabulary with Examples and Mini Routines",
             "excerpt": "A1 vocabulary with context, common mistakes, and practical routines for daily speaking.",
             "category": "Guides",
             "tags": ["falowen", "german", "a1", "vocabulary", "daily routines"],
             "image": "https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-polina-kovaleva-8362564.jpg",
             "image_alt": "Student writing a German daily routine plan at a study desk",
-            "seo_title": "A1 German Daily Vocabulary Guide – Alltag Words with Examples",
+            "seo_title": "A1 German Daily Vocabulary Guide – Examples and Mini Routines",
             "seo_description": "Learn useful A1 German vocabulary for daily routines with examples, mistakes to avoid, and Falowen practice tasks.",
-            "permalink_slug": "a1-alltag-vocabulary-guide",
+            "permalink_slug": "a1-daily-vocabulary-guide",
             "body": a1_vocab_body(),
         },
         {
-            "title": "A2: Konnektoren richtig nutzen – klarer schreiben mit Logik",
+            "title": "A2: Use Connectors Correctly to Write with Better Logic",
             "excerpt": "Learn A2 connectors with deeper examples, common errors, and practical writing drills.",
             "category": "Guides",
             "tags": ["falowen", "german", "a2", "writing", "connectors"],
@@ -351,7 +351,7 @@ def get_topic_for_week(week_index: int) -> dict:
             "body": a2_connectors_body(),
         },
         {
-            "title": "B1: Meinung äußern mit Struktur – Redemittel, Beispiele, Fehler",
+            "title": "B1: Express Opinions with Structure – Phrases, Examples, Mistakes",
             "excerpt": "B1 opinion-writing guide with phrases, argument structure, and exam-focused practice.",
             "category": "Guides",
             "tags": ["falowen", "german", "b1", "writing", "opinion"],
@@ -363,7 +363,7 @@ def get_topic_for_week(week_index: int) -> dict:
             "body": b1_opinion_body(),
         },
         {
-            "title": "B2: Diskussion schreiben über KI – präzise argumentieren",
+            "title": "B2: Write Discussions About AI with Precise Arguments",
             "excerpt": "B2 discussion-writing blueprint with advanced structures, balanced arguments, and exam practice.",
             "category": "Guides",
             "tags": ["falowen", "german", "b2", "discussion", "exam writing"],
