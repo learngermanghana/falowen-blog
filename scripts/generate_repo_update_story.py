@@ -104,48 +104,44 @@ def normalize_commit(commit_item: dict[str, Any], max_files: int) -> dict[str, A
     }
 
 
-def clean_commit_message(message: str) -> str:
-    lowered = message.lower()
-    prefixes = ["feat:", "fix:", "chore:", "refactor:", "docs:", "test:"]
-    for prefix in prefixes:
-        if lowered.startswith(prefix):
-            return message[len(prefix):].strip().capitalize()
-    return message
-
-
 def build_story_body(commits: list[dict[str, Any]]) -> str:
     lines = [
-        "## Latest product updates in simple words",
+        "## Latest updates shipped in Falowen Exam Trainer",
         "",
-        "Here is a quick summary of what changed recently in Falowen Exam Trainer.",
+        "This story is automatically generated from the latest GitHub commits and changed files.",
         "",
-        f"Source: https://github.com/{TARGET_REPO}",
+        f"Source repository: https://github.com/{TARGET_REPO}",
         "",
         "---",
         "",
-        "## What is new",
+        "## Commit highlights",
         "",
     ]
 
     for item in commits:
         date_fragment = item["date"][:10] if item["date"] else "unknown date"
-        short_message = clean_commit_message(item["message"])
-        lines.append(f"- **{short_message}**")
-        lines.append(f"  By {item['author']} on {date_fragment} ([view update]({item['url']}))")
+        lines.append(f"- **{item['message']}**")
+        lines.append(
+            f"  Commit: [`{item['short_sha']}`]({item['url']}) · Author: {item['author']} · Date: {date_fragment}"
+        )
         if item["changed_files"]:
-            lines.append("  Main areas updated:")
+            lines.append("  Files touched:")
             for changed in item["changed_files"]:
-                lines.append(f"  - `{changed['filename']}`")
+                lines.append(
+                    "  - "
+                    f"`{changed['filename']}` "
+                    f"({changed['status']}, +{changed['additions']}/-{changed['deletions']})"
+                )
 
     lines.extend(
         [
             "",
             "---",
             "",
-            "## Why this helps learners",
+            "## Why this matters for learners",
             "",
-            "These updates improve how learners study, practice, and track progress. "
-            "You can quickly see what is getting better each week.",
+            "These updates show what parts of the product are actively improving, "
+            "from content to platform behavior. This helps learners and teachers follow real progress.",
         ]
     )
     return "\n".join(lines) + "\n"
@@ -187,14 +183,14 @@ def main() -> int:
 
     markdown = build_post(
         title=title,
-        excerpt="Simple weekly summary of the latest Falowen Exam Trainer updates.",
+        excerpt="Auto-generated summary of the latest Falowen Exam Trainer GitHub updates.",
         category="Product Updates",
         tags=["falowen", "examtrainer", "github", "updates", "automation"],
         image_url=UNSPLASH_IMAGE_URL,
         image_alt="Unsplash photo symbolizing software updates and learning technology",
         permalink_slug=permalink_slug,
         seo_title=title,
-        seo_description="Read a simple weekly summary of the latest Falowen Exam Trainer improvements.",
+        seo_description="Track latest Falowen Exam Trainer improvements from GitHub in an automated blog story.",
         body=build_story_body(commits),
         publish_date=publish_date,
     )

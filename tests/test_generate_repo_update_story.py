@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
 
-from scripts.generate_repo_update_story import build_story_body, clean_commit_message, normalize_commit
+from scripts.generate_repo_update_story import build_story_body, normalize_commit
 
 
 class GenerateRepoUpdateStoryTests(unittest.TestCase):
@@ -41,11 +41,7 @@ class GenerateRepoUpdateStoryTests(unittest.TestCase):
         self.assertEqual(len(normalized["changed_files"]), 1)
         self.assertEqual(normalized["changed_files"][0]["filename"], "src/trainer/session.py")
 
-    def test_clean_commit_message_removes_common_prefixes(self) -> None:
-        self.assertEqual(clean_commit_message("feat: improve writing trainer feedback"), "Improve writing trainer feedback")
-        self.assertEqual(clean_commit_message("fix: resolve audio player issue"), "Resolve audio player issue")
-
-    def test_build_story_body_uses_simple_language_sections(self) -> None:
+    def test_build_story_body_lists_commit_and_file_highlights(self) -> None:
         body = build_story_body(
             [
                 {
@@ -67,9 +63,9 @@ class GenerateRepoUpdateStoryTests(unittest.TestCase):
             ]
         )
 
-        self.assertIn("## Latest product updates in simple words", body)
-        self.assertIn("Improve writing trainer feedback", body)
-        self.assertIn("Main areas updated:", body)
+        self.assertIn("## Commit highlights", body)
+        self.assertIn("feat: improve writing trainer feedback", body)
+        self.assertIn("`1234567`", body)
         self.assertIn("`docs/guide.md`", body)
 
 
