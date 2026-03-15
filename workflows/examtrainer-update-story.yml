@@ -1,0 +1,47 @@
+name: Exam Trainer Update Story PR
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 8 * * *" # Daily at 08:30 UTC
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  create-update-story-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate blog story from latest exam trainer commits
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -m scripts.generate_repo_update_story --limit 6 --max-files-per-commit 4
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore(blog): add exam trainer update story"
+          branch: "bot/examtrainer-update-story"
+          delete-branch: true
+          title: "chore(blog): publish latest exam trainer update story"
+          body: |
+            ## Summary
+            - Generate a blog story from the latest commits in `learngermanghana/falowenexamtrainer`.
+            - Open a PR only when new commit activity produces fresh content.
+
+            ## Notes
+            - Triggered daily (`30 8 * * *`) or via manual dispatch.
+          labels: |
+            auto-update
+            blog
+            product-updates
