@@ -1,9 +1,15 @@
 import unittest
 
-from scripts.generate_post import build_post
+from scripts.generate_post import build_post, dated_permalink_slug
 
 
 class BuildPostTests(unittest.TestCase):
+    def test_dated_permalink_slug_appends_publish_date(self) -> None:
+        self.assertEqual(
+            dated_permalink_slug("a2-german-connectors-writing-guide", "2026-03-22"),
+            "a2-german-connectors-writing-guide-2026-03-22",
+        )
+
     def test_build_post_uses_category_argument(self) -> None:
         md = build_post(
             title="Test title",

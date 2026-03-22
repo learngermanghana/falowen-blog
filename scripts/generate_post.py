@@ -412,13 +412,8 @@ def resolve_publish_date(raw_date: str | None) -> str:
     return raw_date
 
 
-def post_already_contains_title(title: str) -> bool:
-    escaped_title = re.escape(f'title: "{title}"')
-    title_pattern = re.compile(rf"^{escaped_title}$", re.MULTILINE)
-    for post_file in POSTS_DIR.glob("*.md"):
-        if title_pattern.search(post_file.read_text(encoding="utf-8")):
-            return True
-    return False
+def dated_permalink_slug(base_slug: str, publish_date: str) -> str:
+    return f"{base_slug}-{publish_date}"
 
 def main() -> int:
     args = parse_args()
@@ -443,10 +438,6 @@ def main() -> int:
         print(f"Post already exists: {path}")
         return 0
 
-    if post_already_contains_title(topic["title"]) and not args.force:
-        print(f"Post with this title already exists: {topic['title']}")
-        return 0
-
     md = build_post(
         title=topic["title"],
         excerpt=topic["excerpt"],
@@ -454,7 +445,7 @@ def main() -> int:
         tags=topic["tags"],
         image_url=topic["image"],
         image_alt=topic["image_alt"],
-        permalink_slug=topic["permalink_slug"],
+        permalink_slug=dated_permalink_slug(topic["permalink_slug"], publish_date),
         seo_title=topic["seo_title"],
         seo_description=topic["seo_description"],
         body=topic["body"],
