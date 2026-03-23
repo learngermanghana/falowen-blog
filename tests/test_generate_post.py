@@ -1,6 +1,13 @@
 import unittest
+from pathlib import Path
+from tempfile import TemporaryDirectory
+from unittest.mock import patch
 
-from scripts.generate_post import build_post, dated_permalink_slug
+from scripts.generate_post import (
+    build_post,
+    dated_permalink_slug,
+    topic_already_published,
+)
 
 
 class BuildPostTests(unittest.TestCase):
@@ -49,6 +56,45 @@ class BuildPostTests(unittest.TestCase):
         self.assertIn('  title: "Custom SEO title"', md)
         self.assertIn('  description: "Custom SEO description"', md)
         self.assertTrue(md.endswith("Main body text\n"))
+
+    def test_topic_already_published_detects_dated_or_base_permalink(self) -> None:
+        with TemporaryDirectory() as tmp_dir:
+            posts_dir = Path(tmp_dir)
+            existing = posts_dir / "2026-02-23-a1-daily-vocabulary.md"
+            existing.write_text(
+                "---\n"
+                'title: "A1: Daily Vocabulary with Examples and Mini Routines"\n'
+                "permalink: /a1-daily-vocabulary-guide-2026-02-23/\n"
+                "---\n",
+                encoding="utf-8",
+            )
+
+            with patch("scripts.generate_post.POSTS_DIR", posts_dir):
+                found = topic_already_published(
+                    "a1-daily-vocabulary-guide",
+                    "A1: Daily Vocabulary with Examples and Mini Routines",
+                )
+
+            self.assertEqual(found, existing)
+
+    def test_topic_already_published_returns_none_for_new_topic(self) -> None:
+        with TemporaryDirectory() as tmp_dir:
+            posts_dir = Path(tmp_dir)
+            (posts_dir / "2026-02-23-a1-daily-vocabulary.md").write_text(
+                "---\n"
+                'title: "A1: Daily Vocabulary with Examples and Mini Routines"\n'
+                "permalink: /a1-daily-vocabulary-guide-2026-02-23/\n"
+                "---\n",
+                encoding="utf-8",
+            )
+
+            with patch("scripts.generate_post.POSTS_DIR", posts_dir):
+                found = topic_already_published(
+                    "b2-discussion-writing-ai-guide",
+                    "B2: Write Discussions About AI with Precise Arguments",
+                )
+
+            self.assertIsNone(found)
 
 
 if __name__ == "__main__":

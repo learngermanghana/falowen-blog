@@ -415,6 +415,20 @@ def resolve_publish_date(raw_date: str | None) -> str:
 def dated_permalink_slug(base_slug: str, publish_date: str) -> str:
     return f"{base_slug}-{publish_date}"
 
+
+def topic_already_published(permalink_base_slug: str, title: str) -> Path | None:
+    permalink_pattern = re.compile(
+        rf"^permalink:\s*/{re.escape(permalink_base_slug)}(?:-\d{{4}}-\d{{2}}-\d{{2}})?/\s*$",
+        re.MULTILINE,
+    )
+    title_pattern = re.compile(rf'^title:\s*"{re.escape(title)}"\s*$', re.MULTILINE)
+
+    for post_file in POSTS_DIR.glob("*.md"):
+        content = post_file.read_text(encoding="utf-8")
+        if permalink_pattern.search(content) or title_pattern.search(content):
+            return post_file
+    return None
+
 def main() -> int:
     args = parse_args()
     POSTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -436,6 +450,14 @@ def main() -> int:
     # If rerun same day (or same topic), do nothing.
     if path.exists() and not args.force:
         print(f"Post already exists: {path}")
+        return 0
+
+    existing_topic = topic_already_published(topic["permalink_slug"], topic["title"])
+    if existing_topic and not args.force:
+        print(
+            "Skipping duplicate topic. "
+            f"'{topic['title']}' already exists in: {existing_topic}"
+        )
         return 0
 
     md = build_post(
