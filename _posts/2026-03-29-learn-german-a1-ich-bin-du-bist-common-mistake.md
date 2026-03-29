@@ -22,13 +22,6 @@ This causes basic speaking errors in introductions and daily conversation.
 
 In this lesson, you will learn the correct pattern and practice it inside Falowen.
 
-## Watch the lesson on YouTube
-🎥 **Learn German A1 – ich bin, du bist (DON’T make this mistake)**  
-https://youtu.be/8kxNTglPKog
-
-If the video helps you, subscribe for more simple A1 lessons:
-👉 https://www.youtube.com/@learngermanghana?sub_confirmation=1
-
 ---
 
 ## The verb: **sein** (to be)
@@ -115,39 +108,9 @@ Before you finish, confirm:
 
 ---
 
-## Knowledge test (A1 quick check)
-Try this before you leave the page.
-
-1. Choose the correct sentence:  
-   a) Ich bist müde.  
-   b) Ich bin müde.
-
-2. Choose the correct sentence:  
-   a) Du bin neu hier.  
-   b) Du bist neu hier.
-
-3. Fill in the gap:  
-   *Ich ___ Student.*
-
-4. Fill in the gap:  
-   *Du ___ sehr freundlich.*
-
-5. Write one sentence about yourself with **ich bin**.
-
-### Answer key
-1. b  
-2. b  
-3. bin  
-4. bist
-
-If you scored 4/5 or 5/5, you are ready for the next A1 pattern.
-
----
-
 ## Final tip
 Do not rush to long grammar tables first.
 Master small patterns like **ich bin / du bist** until they are automatic.
 That is how A1 speaking becomes confident and correct.
 
-👉 Practice now on **falowen.app**  
-👉 Subscribe on YouTube for more lessons: https://www.youtube.com/@learngermanghana?sub_confirmation=1
+👉 Practice now on **falowen.app**
