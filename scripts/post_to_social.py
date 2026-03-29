@@ -58,13 +58,16 @@ def post_json(url: str, payload: dict, headers: dict[str, str]) -> tuple[int, st
 
 def publish_linkedin(text: str, article_url: str, dry_run: bool) -> None:
     token = os.getenv("LINKEDIN_ACCESS_TOKEN")
-    person_urn = os.getenv("LINKEDIN_PERSON_URN")
-    if not token or not person_urn:
-        print("[linkedin] Skipped: missing LINKEDIN_ACCESS_TOKEN or LINKEDIN_PERSON_URN")
+    author_urn = os.getenv("LINKEDIN_AUTHOR_URN") or os.getenv("LINKEDIN_PERSON_URN")
+    if not token or not author_urn:
+        print(
+            "[linkedin] Skipped: missing LINKEDIN_ACCESS_TOKEN or "
+            "(LINKEDIN_AUTHOR_URN or LINKEDIN_PERSON_URN)"
+        )
         return
 
     payload = {
-        "author": person_urn,
+        "author": author_urn,
         "lifecycleState": "PUBLISHED",
         "specificContent": {
             "com.linkedin.ugc.ShareContent": {
