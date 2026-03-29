@@ -5,8 +5,8 @@ date: 2026-03-29
 tags: [where to learn german in ghana, where to learn german in nigeria, german classes africa, falowen, online german course]
 categories: [Guides]
 excerpt: "Looking for where to learn German in Ghana, Nigeria, or anywhere in Africa? See what to look for in a program and how Falowen helps learners study with structure and confidence."
-image: https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80
-image_alt: "Group of learners in a collaborative study session"
+image: https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80
+image_alt: "African learners studying German online"
 permalink: /where-to-learn-german-in-ghana-nigeria-africa/
 seo:
   title: "Where to Learn German in Ghana and Nigeria: Start with Falowen"
