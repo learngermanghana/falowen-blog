@@ -78,3 +78,6 @@ footer{border-top:1px solid var(--line);padding:18px 0;color:var(--muted)}
 .search-results span{color:#334155;margin-left:6px}
 .cta{margin:24px 0;text-align:center}.cta-button{display:inline-block;padding:12px 24px;background:var(--brand);color:#fff;border-radius:8px;text-decoration:none;font-weight:600}.cta-button:hover{opacity:.9}.fx-tab-panel{opacity:0;transition:opacity .2s ease}[role=tabpanel]:not([hidden]){opacity:1}.post-share{margin-top:1rem}.post-share a{margin-right:.5rem}
 .post-img{max-width:100%;width:100%;height:auto}
+.youtube-subscribe-cta{max-width:1100px;margin:1rem auto 0;padding:0 18px}
+.youtube-subscribe-btn{display:inline-block;background:#ff0000;color:#ffffff;font-weight:700;text-decoration:none;padding:.65rem 1rem;border-radius:999px;border:1px solid #cc0000}
+.youtube-subscribe-btn:hover,.youtube-subscribe-btn:focus-visible{background:#cc0000;color:#ffffff}
