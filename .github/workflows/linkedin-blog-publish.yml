@@ -1,0 +1,71 @@
+name: Auto Post Blog Updates to LinkedIn
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "_posts/*.md"
+  workflow_dispatch:
+    inputs:
+      post_path:
+        description: "Optional post file path (e.g. _posts/2026-03-29-example.md)"
+        required: false
+        type: string
+      dry_run:
+        description: "Run without publishing"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  linkedin_publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Determine post path
+        id: resolve
+        shell: bash
+        run: |
+          if [ -n "${{ inputs.post_path }}" ]; then
+            target="${{ inputs.post_path }}"
+          else
+            target=$(git diff --name-only HEAD~1 HEAD | awk '/^_posts\/.*\.md$/ {print; exit}')
+          fi
+
+          if [ -z "$target" ]; then
+            echo "No changed post detected. Skipping LinkedIn publish."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "Using post: $target"
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+          echo "post_path=$target" >> "$GITHUB_OUTPUT"
+
+      - name: Publish to LinkedIn
+        if: steps.resolve.outputs.skip != 'true'
+        env:
+          # These values are expected to be configured as GitHub Actions repository secrets.
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_AUTHOR_URN: ${{ secrets.LINKEDIN_AUTHOR_URN }}
+          SITE_URL: ${{ vars.SITE_URL }}
+        run: |
+          DRY=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            DRY="--dry-run"
+          fi
+
+          python scripts/post_to_social.py --post "${{ steps.resolve.outputs.post_path }}" $DRY
