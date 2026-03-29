@@ -5,7 +5,7 @@ date: 2026-03-29
 tags: [falowen, goethe exam prep, goethe a1, goethe a2, goethe b1, ghana, nigeria, africa]
 categories: [Exam Tips]
 excerpt: "A practical Goethe exam roadmap for learners in Africa: what to study, how to practice, and how Falowen helps students in Ghana, Nigeria, and beyond pass with confidence."
-image: https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80
+image: https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1600&q=80
 image_alt: "Focused learners preparing for exams together"
 permalink: /how-africans-can-pass-goethe-exams-with-falowen/
 seo:
