@@ -4,13 +4,13 @@ title: "Learn German A1: ich bin, du bist (Don’t Make This Mistake)"
 date: 2026-03-29
 tags: [falowen, german, a1, sein, grammar, speaking]
 categories: [Guides]
-excerpt: "Master ich bin and du bist with clear examples, common mistakes, and an in-app practice assignment in Falowen."
+excerpt: "Master ich bin and du bist with clear examples, common mistakes, a video lesson, and objective practice with answers."
 image: https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=1600&q=80
 image_alt: "Open German study notes and a pen on a wooden desk"
 permalink: /learn-german-a1-ich-bin-du-bist-mistake-2026-03-29/
 seo:
   title: "Learn German A1: ich bin, du bist – Common Mistakes + Practice"
-  description: "A beginner-friendly German A1 guide to ich bin and du bist, with examples and a practical Falowen assignment."
+  description: "A beginner-friendly German A1 guide to ich bin and du bist, with examples, video support, and objective practice answers."
 ---
 If you are learning German A1, this is one of the first grammar points you need:
 
@@ -20,7 +20,23 @@ If you are learning German A1, this is one of the first grammar points you need:
 Many beginners mix them.
 This causes basic speaking errors in introductions and daily conversation.
 
-In this lesson, you will learn the correct pattern and practice it inside Falowen.
+In this lesson, you will learn the correct pattern and practice it with objective questions.
+
+---
+
+## Watch the video lesson while you read
+This lesson follows the same **ich bin / du bist** logic taught in this video:
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+  <iframe
+    src="https://www.youtube.com/embed/8kxNTglPKog"
+    title="Learn German A1: ich bin / du bist"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+  ></iframe>
+</div>
 
 ---
 
@@ -73,38 +89,48 @@ Use this model when introducing yourself.
 
 ---
 
-## In-app practice assignment (Falowen)
-Open **falowen.app** and complete this assignment:
+## Objective practice (with answers)
+Choose the best option for each question.
 
-### Task 1: Sentence Builder (10 points)
-Write 8 short sentences:
-- 4 with **ich bin**
-- 4 with **du bist**
+### 1) ____ Maria.
+- [ ] Ich bist  
+- [x] Ich bin  
+- [ ] Du bin  
+- [ ] Du bist  
 
-Example starters:
-- Ich bin ...
-- Du bist ...
+**Answer:** **Ich bin** Maria.
 
-### Task 2: Error Fix (10 points)
-Correct these sentences:
-1. Ich bist aus Ghana.
-2. Du bin sehr freundlich.
-3. Ich bist heute glücklich.
-4. Du bin Lehrer.
+### 2) ____ mein Freund.
+- [ ] Ich bist  
+- [ ] Ich bin  
+- [ ] Du bin  
+- [x] Du bist  
 
-### Task 3: Voice Practice (10 points)
-Record yourself saying:
-- “Ich bin [name].”
-- “Du bist mein Freund / meine Freundin.”
-- “Ich bin neu hier.”
+**Answer:** **Du bist** mein Freund.
 
-Focus on clear pronunciation of **bin** and **bist**.
+### 3) Which sentence is correct?
+- [ ] Ich bist neu hier.  
+- [ ] Du bin neu hier.  
+- [x] Ich bin neu hier.  
+- [ ] Du bist aus Ghana. *(Correct grammar, but not the intended “I am new here” sentence.)*
 
-### Success checklist
-Before you finish, confirm:
-- I never wrote **ich bist**.
-- I never wrote **du bin**.
-- I can say both forms naturally.
+**Answer:** **Ich bin neu hier.**
+
+### 4) Fix this mistake: *Du bin sehr freundlich.*
+- [ ] Ich bin sehr freundlich.  
+- [x] Du bist sehr freundlich.  
+- [ ] Du bin sehr freundlich.  
+- [ ] Ich bist sehr freundlich.  
+
+**Answer:** **Du bist sehr freundlich.**
+
+### 5) Which memory rule is correct?
+- [x] ich → bin, du → bist  
+- [ ] ich → bist, du → bin  
+- [ ] ich → sein, du → bin  
+- [ ] ich → du, du → ich  
+
+**Answer:** **ich → bin, du → bist**
 
 ---
 
@@ -113,4 +139,4 @@ Do not rush to long grammar tables first.
 Master small patterns like **ich bin / du bist** until they are automatic.
 That is how A1 speaking becomes confident and correct.
 
-👉 Practice now on **falowen.app**
+👉 Now replay the video and answer the 5 questions again without looking at the answers.
