@@ -447,6 +447,39 @@ BASE_FALOWEN_ANGLE = (
     "that has helped many students prepare for and pass their Goethe exams."
 )
 
+CONTENT_TYPE_BY_DAY = {
+    1: "promo_essay",
+    2: "grammar_notes",
+    3: "vocabulary_notes",
+    4: "how_to_guide",
+    5: "vocabulary_notes",
+    6: "promo_essay",
+    7: "vocabulary_notes",
+    8: "vocabulary_notes",
+    9: "grammar_notes",
+    10: "grammar_notes",
+    11: "promo_essay",
+    12: "grammar_notes",
+    13: "grammar_notes",
+    14: "how_to_guide",
+    15: "vocabulary_notes",
+    16: "grammar_notes",
+    17: "vocabulary_notes",
+    18: "promo_essay",
+    19: "grammar_notes",
+    20: "how_to_guide",
+    21: "list_post",
+    22: "promo_essay",
+    23: "vocabulary_notes",
+    24: "how_to_guide",
+    25: "promo_essay",
+    26: "promo_essay",
+    27: "grammar_notes",
+    28: "how_to_guide",
+    29: "promo_essay",
+    30: "promo_essay",
+}
+
 
 def slugify(text: str) -> str:
     text = text.strip().lower()
@@ -480,7 +513,10 @@ def compute_day_number(run_date: date, start_date: date) -> int:
 def pick_day_config(day_number: int) -> dict | None:
     if day_number < 1 or day_number > 30:
         return None
-    return falowen30DayBlogCalendar.get(f"day_{day_number}")
+    day_config = falowen30DayBlogCalendar.get(f"day_{day_number}")
+    if day_config is None:
+        return None
+    return {**day_config, "content_type": CONTENT_TYPE_BY_DAY.get(day_number, "promo_essay")}
 
 
 def normalize_unsplash_image_url(url: str) -> str:
@@ -492,67 +528,135 @@ def normalize_unsplash_image_url(url: str) -> str:
     return f"https://source.unsplash.com/featured/?{query}"
 
 
-def build_body(day_number: int, day_config: dict) -> str:
+def _build_promo_essay(day_number: int, day_config: dict) -> str:
     variation = DAILY_MESSAGE_VARIATIONS[day_number - 1]
-    reading_lines = [
+    paragraphs = [
         (
-            f"If you are working on **{day_config['keyword']}**, the main goal is to move from memorizing words "
-            "to using them naturally in short conversations."
+            f"{day_config['excerpt']} This topic, **{day_config['keyword']}**, is practical for learners who want "
+            "study, work, travel, and communication opportunities."
         ),
         (
-            f"This lesson focuses on **{day_config['focus']}** so you can build confidence with practical "
-            "German for daily life, school, work, or travel."
+            f"In this lesson we focus on **{day_config['focus']}**. When students apply this consistently, they build "
+            "confidence, communicate more clearly, and avoid the common beginner cycle of memorizing without using."
         ),
         (
-            "Try to study this post actively: read once, read again out loud, and then close the page and "
-            "recreate the core idea in your own words."
+            f"{BASE_FALOWEN_ANGLE} {day_config['promotion_angle']} Keep this daily reminder in mind: "
+            f"{variation}"
         ),
-    ]
-
-    mini_examples = [
-        "- Learning German now helps students build confidence before they arrive in Germany.",
-        "- German study also introduces students to new cultures and international communication.",
-        "- Strong German preparation can support students working toward visa and relocation requirements.",
-    ]
-
-    sections = [
-        "## Why this topic matters",
-        day_config["excerpt"],
-        "",
-        "## What you will learn",
-        f"- **Focus:** {day_config['focus']}",
-        f"- **Keyword to remember:** {day_config['keyword']}",
-        f"- **Category:** {day_config['category']}",
-        "",
-        "## Daily message",
-        f"Day {day_number}/30 reminder: {variation}",
-        "",
-        "## Reading lesson (short and practical)",
-        *reading_lines,
-        "",
-        "## Mini examples you can copy",
-        *mini_examples,
-        "",
-        "## Falowen angle",
-        BASE_FALOWEN_ANGLE,
-        "",
-        "## Quick practice task",
-        (
-            "Are you ready to start your German journey? Sign up on Falowen today, follow the syllabus step by "
-            "step, and begin building real progress toward your study, travel, and visa goals."
-        ),
-        "",
-        "## 5-minute revision plan",
-        "- Minute 1: Review the keyword and focus of today's lesson.",
-        "- Minute 2: Read the three mini examples and repeat each one twice.",
-        "- Minute 3: Create one personal sentence connected to your life.",
-        "- Minute 4: Say your sentence out loud slowly and clearly.",
-        "- Minute 5: Write one follow-up sentence to expand your idea.",
-        "",
-        "## Call to action",
         day_config["cta"],
     ]
-    return "\n".join(sections) + "\n"
+    return "\n\n".join(paragraphs) + "\n"
+
+
+def _build_grammar_notes(day_number: int, day_config: dict) -> str:
+    return "\n".join(
+        [
+            f"**Intro:** {day_config['excerpt']}",
+            "",
+            (
+                f"**Rule:** For this grammar topic on **{day_config['keyword']}**, keep your sentence pattern simple: "
+                "use one clear structure first, then add detail with time or place expressions."
+            ),
+            "",
+            "**Examples:**",
+            "- *Ich lerne Deutsch.*",
+            "- *Heute lerne ich Deutsch.*",
+            "- *Lernst du heute?*",
+            "",
+            (
+                "**Common mistake:** Mixing statement and question word order in one sentence, or placing the main "
+                "verb too late."
+            ),
+            "",
+            f"**Practice line:** Day {day_number}/30 — write 3 short sentences using this grammar rule and read them aloud.",
+        ]
+    ) + "\n"
+
+
+def _build_vocabulary_notes(day_number: int, day_config: dict) -> str:
+    return "\n".join(
+        [
+            f"**Intro:** {day_config['excerpt']}",
+            "",
+            "**Core words (topic set):**",
+            "- **lernen** — to learn. *Ich lerne jeden Tag.*",
+            "- **sprechen** — to speak. *Wir sprechen Deutsch im Kurs.*",
+            "- **fragen** — to ask. *Ich frage den Lehrer.*",
+            "",
+            "**Useful connectors and context words:**",
+            "- **heute** — today. *Heute üben wir Vokabeln.*",
+            "- **morgen** — tomorrow. *Morgen wiederholen wir alles.*",
+            "- **bitte** — please. *Bitte helfen Sie mir.*",
+            "",
+            (
+                f"**Practical usage line:** Day {day_number}/30 — pick 5 words from today's **{day_config['keyword']}** "
+                "topic and create your own mini dialogue."
+            ),
+        ]
+    ) + "\n"
+
+
+def _build_how_to_guide(day_number: int, day_config: dict) -> str:
+    return "\n".join(
+        [
+            f"{day_config['excerpt']} Follow these steps and keep your output short and clear.",
+            "",
+            "**Step 1:** Learn and repeat 5 key words linked to this topic.",
+            "",
+            (
+                "**Step 2:** Build 3 short sentences using one structure. Example: "
+                "*Ich lerne heute Deutsch.* / *Ich komme aus Ghana.*"
+            ),
+            "",
+            "**Step 3:** Say the sentences out loud twice, then write one extra personal sentence.",
+            "",
+            (
+                f"**Step 4:** Turn your lines into a mini paragraph connected to **{day_config['focus']}** and "
+                "share it for feedback."
+            ),
+            "",
+            f"**CTA:** {day_config['cta']}",
+        ]
+    ) + "\n"
+
+
+def _build_list_post(day_number: int, day_config: dict) -> str:
+    return "\n".join(
+        [
+            f"{day_config['excerpt']} Here are practical points you can apply immediately.",
+            "",
+            "1. **Start small and consistent**  ",
+            "   Study for 20–30 minutes daily instead of waiting for a perfect long session.",
+            "",
+            "2. **Use what you learn immediately**  ",
+            "   Turn each new word or rule into one sentence about your own life.",
+            "",
+            "3. **Review actively**  ",
+            "   Read aloud, write from memory, and compare with correct examples.",
+            "",
+            "4. **Track one improvement metric**  ",
+            "   For example: number of sentences spoken per day or vocabulary retained weekly.",
+            "",
+            "5. **Ask for feedback quickly**  ",
+            "   Short feedback loops prevent fossilized mistakes and speed up confidence.",
+            "",
+            f"Day {day_number}/30 CTA: {day_config['cta']}",
+        ]
+    ) + "\n"
+
+
+def build_body(day_number: int, day_config: dict) -> str:
+    content_type = day_config.get("content_type", "promo_essay")
+
+    if content_type == "grammar_notes":
+        return _build_grammar_notes(day_number, day_config)
+    if content_type == "vocabulary_notes":
+        return _build_vocabulary_notes(day_number, day_config)
+    if content_type == "how_to_guide":
+        return _build_how_to_guide(day_number, day_config)
+    if content_type == "list_post":
+        return _build_list_post(day_number, day_config)
+    return _build_promo_essay(day_number, day_config)
 
 
 def build_post(day_config: dict, body: str, publish_date: date) -> str:

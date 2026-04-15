@@ -14,25 +14,31 @@ class DailyCalendarPostTests(unittest.TestCase):
         self.assertEqual(compute_day_number(date(2026, 4, 16), date(2026, 4, 15)), 2)
 
     def test_pick_day_config_only_returns_in_30_day_range(self) -> None:
-        self.assertIsNotNone(pick_day_config(1))
+        day_1 = pick_day_config(1)
+        self.assertIsNotNone(day_1)
+        assert day_1 is not None
+        self.assertEqual(day_1["content_type"], "promo_essay")
         self.assertIsNotNone(pick_day_config(30))
         self.assertIsNone(pick_day_config(0))
         self.assertIsNone(pick_day_config(31))
 
-    def test_build_body_contains_unique_daily_message(self) -> None:
+    def test_build_body_uses_content_type_specific_template(self) -> None:
         day_1 = pick_day_config(1)
         day_2 = pick_day_config(2)
+        day_21 = pick_day_config(21)
         assert day_1 is not None
         assert day_2 is not None
+        assert day_21 is not None
 
         body_1 = build_body(1, day_1)
         body_2 = build_body(2, day_2)
+        body_21 = build_body(21, day_21)
 
-        self.assertIn("Day 1/30 reminder", body_1)
-        self.assertIn("Day 2/30 reminder", body_2)
-        self.assertIn("## Reading lesson (short and practical)", body_1)
-        self.assertIn("## Mini examples you can copy", body_1)
-        self.assertIn("## 5-minute revision plan", body_1)
+        self.assertIn("Register now at Learn Language Education Academy", body_1)
+        self.assertIn("**Rule:**", body_2)
+        self.assertIn("**Common mistake:**", body_2)
+        self.assertIn("1. **Start small and consistent**", body_21)
+        self.assertIn("Day 21/30 CTA:", body_21)
         self.assertNotEqual(body_1, body_2)
 
 
