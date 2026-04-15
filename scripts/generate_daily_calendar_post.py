@@ -441,6 +441,12 @@ DAILY_MESSAGE_VARIATIONS = [
     "Celebrate your consistency—small wins create fluent speakers.",
 ]
 
+BASE_FALOWEN_ANGLE = (
+    "Falowen is a German learning app built by Ghanaians to help students progress faster. "
+    "It combines AI learning tools, a built syllabus, structured assignments, and a progress tracker "
+    "that has helped many students prepare for and pass their Goethe exams."
+)
+
 
 def slugify(text: str) -> str:
     text = text.strip().lower()
@@ -477,6 +483,15 @@ def pick_day_config(day_number: int) -> dict | None:
     return falowen30DayBlogCalendar.get(f"day_{day_number}")
 
 
+def normalize_unsplash_image_url(url: str) -> str:
+    prefix = "https://unsplash.com/s/photos/"
+    if not url.startswith(prefix):
+        return url
+
+    query = url.removeprefix(prefix).strip().replace("-", ",")
+    return f"https://source.unsplash.com/featured/?{query}"
+
+
 def build_body(day_number: int, day_config: dict) -> str:
     variation = DAILY_MESSAGE_VARIATIONS[day_number - 1]
     reading_lines = [
@@ -495,9 +510,9 @@ def build_body(day_number: int, day_config: dict) -> str:
     ]
 
     mini_examples = [
-        f"- **Starter line:** Ich lerne heute etwas über *{day_config['keyword']}*.",
-        "- **Question line:** Kannst du mir ein einfaches Beispiel geben?",
-        "- **Confidence line:** Jeden Tag mache ich kleine Fortschritte auf Deutsch.",
+        "- Learning German now helps students build confidence before they arrive in Germany.",
+        "- German study also introduces students to new cultures and international communication.",
+        "- Strong German preparation can support students working toward visa and relocation requirements.",
     ]
 
     sections = [
@@ -519,12 +534,12 @@ def build_body(day_number: int, day_config: dict) -> str:
         *mini_examples,
         "",
         "## Falowen angle",
-        day_config["promotion_angle"],
+        BASE_FALOWEN_ANGLE,
         "",
         "## Quick practice task",
         (
-            f"Write 4-6 short German lines around **{day_config['keyword']}** and say them out loud twice. "
-            "If possible, send them to your tutor for feedback."
+            "Are you ready to start your German journey? Sign up on Falowen today, follow the syllabus step by "
+            "step, and begin building real progress toward your study, travel, and visa goals."
         ),
         "",
         "## 5-minute revision plan",
@@ -545,6 +560,8 @@ def build_post(day_config: dict, body: str, publish_date: date) -> str:
     tags = ["falowen", "german", "30-day-blog", slug]
     tag_string = ", ".join(tags)
 
+    image_url = normalize_unsplash_image_url(day_config["unsplash_link"])
+
     front_matter = [
         "---",
         "layout: post",
@@ -553,7 +570,7 @@ def build_post(day_config: dict, body: str, publish_date: date) -> str:
         f"tags: [{tag_string}]",
         f"categories: [{day_config['category']}]",
         f'excerpt: "{day_config["excerpt"]}"',
-        f"image: {day_config['unsplash_link']}",
+        f"image: {image_url}",
         f'image_alt: "{day_config["title"]}"',
         f"permalink: /{slug}/",
         "seo:",

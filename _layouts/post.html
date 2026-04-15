@@ -14,9 +14,15 @@ layout: default
       {%- endif -%}
     </p>
   </header>
-  {% if page.image %}
+  {% assign post_image = page.image %}
+  {% if post_image and post_image contains "https://unsplash.com/s/photos/" %}
+    {% assign unsplash_query = post_image | remove: "https://unsplash.com/s/photos/" | replace: "-", "," %}
+    {% assign post_image = "https://source.unsplash.com/featured/?" | append: unsplash_query %}
+  {% endif %}
+
+  {% if post_image %}
     <img
-      src="{{ page.image }}"
+      src="{{ post_image }}"
       alt="{{ page.image_alt | default: page.title }}"
       width="{{ page.image_width | default: 600 }}"
       height="{{ page.image_height | default: 400 }}"
@@ -75,8 +81,8 @@ layout: default
     "@id": "{{ page.url | absolute_url }}"
   },
   "headline": {{ page.title | jsonify }}{% if page.excerpt %},
-  "description": {{ page.excerpt | strip_html | strip_newlines | jsonify }}{% endif %}{% if page.image %},
-  "image": {{ page.image | absolute_url | jsonify }}{% endif %},
+  "description": {{ page.excerpt | strip_html | strip_newlines | jsonify }}{% endif %}{% if post_image %},
+  "image": {{ post_image | absolute_url | jsonify }}{% endif %},
   "datePublished": "{{ page.date | date_to_xmlschema }}",
   "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}"{% if page.author %},
   "author": {
