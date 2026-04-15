@@ -1,16 +1,16 @@
-name: Weekly Blog Auto-Publish
+name: 30-Day Daily Blog Auto-Publish
 
 on:
   schedule:
-    # Ghana is UTC, so this is Monday 09:00 Ghana time
-    - cron: "0 9 * * 1"
+    # Runs daily at 09:00 UTC (09:00 Ghana time)
+    - cron: "0 9 * * *"
   workflow_dispatch: {}
 
 permissions:
   contents: write
 
 concurrency:
-  group: weekly-blog
+  group: daily-30-day-blog
   cancel-in-progress: false
 
 jobs:
@@ -27,8 +27,9 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Generate post
-        run: python scripts/generate_post.py
+      - name: Generate today's calendar post
+        run: |
+          python scripts/generate_daily_calendar_post.py --start-date 2026-04-15
 
       - name: Commit & push if changed
         run: |
@@ -42,5 +43,5 @@ jobs:
           git config user.email "falowen-bot@users.noreply.github.com"
 
           git add _posts
-          git commit -m "chore(blog): weekly post [skip ci]"
+          git commit -m "chore(blog): daily calendar post [skip ci]"
           git push
