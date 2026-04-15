@@ -8,6 +8,17 @@ from pathlib import Path
 from urllib import parse, request
 
 
+def env_value(*names: str) -> str | None:
+    for name in names:
+        raw = os.getenv(name)
+        if raw is None:
+            continue
+        value = raw.strip()
+        if value and value != "***":
+            return value
+    return None
+
+
 def parse_front_matter(markdown_text: str) -> dict[str, str]:
     if not markdown_text.startswith("---\n"):
         raise ValueError("Post does not start with YAML front matter.")
@@ -57,8 +68,8 @@ def post_json(url: str, payload: dict, headers: dict[str, str]) -> tuple[int, st
 
 
 def publish_linkedin(text: str, article_url: str, dry_run: bool) -> None:
-    token = os.getenv("LINKEDIN_ACCESS_TOKEN")
-    author_urn = os.getenv("LINKEDIN_AUTHOR_URN") or os.getenv("LINKEDIN_PERSON_URN")
+    token = env_value("LINKEDIN_ACCESS_TOKEN")
+    author_urn = env_value("LINKEDIN_AUTHOR_URN", "LINKEDIN_PERSON_URN")
     if not token or not author_urn:
         print(
             "[linkedin] Skipped: missing LINKEDIN_ACCESS_TOKEN or "
@@ -90,8 +101,8 @@ def publish_linkedin(text: str, article_url: str, dry_run: bool) -> None:
 
 
 def publish_medium(title: str, content_markdown: str, article_url: str, dry_run: bool) -> None:
-    token = os.getenv("MEDIUM_TOKEN")
-    user_id = os.getenv("MEDIUM_USER_ID")
+    token = env_value("MEDIUM_TOKEN")
+    user_id = env_value("MEDIUM_USER_ID")
     if not token or not user_id:
         print("[medium] Skipped: missing MEDIUM_TOKEN or MEDIUM_USER_ID")
         return
@@ -116,8 +127,8 @@ def publish_medium(title: str, content_markdown: str, article_url: str, dry_run:
 
 
 def publish_instagram(caption: str, article_url: str, image_url: str | None, dry_run: bool) -> None:
-    token = os.getenv("INSTAGRAM_ACCESS_TOKEN")
-    account_id = os.getenv("INSTAGRAM_ACCOUNT_ID")
+    token = env_value("INSTAGRAM_ACCESS_TOKEN")
+    account_id = env_value("INSTAGRAM_ACCOUNT_ID")
     if not token or not account_id:
         print("[instagram] Skipped: missing INSTAGRAM_ACCESS_TOKEN or INSTAGRAM_ACCOUNT_ID")
         return
