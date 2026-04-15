@@ -14,7 +14,15 @@ def env_value(*names: str) -> str | None:
         if raw is None:
             continue
         value = raw.strip()
-        if value and value != "***":
+        if not value:
+            continue
+        # GitHub Actions commonly masks missing/misconfigured secrets as "***".
+        # Treat any all-asterisk value as absent to avoid invalid auth headers.
+        if set(value) == {"*"}:
+            continue
+        if value.startswith("${{") and value.endswith("}}"):
+            continue
+        if value:
             return value
     return None
 
