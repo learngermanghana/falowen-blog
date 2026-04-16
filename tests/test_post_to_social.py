@@ -3,7 +3,9 @@ import unittest
 from contextlib import redirect_stdout
 from unittest.mock import patch
 
-from scripts.post_to_social import publish_linkedin
+from pathlib import Path
+
+from scripts.post_to_social import post_url, publish_linkedin
 
 
 class PublishLinkedInTests(unittest.TestCase):
@@ -21,6 +23,25 @@ class PublishLinkedInTests(unittest.TestCase):
             publish_linkedin("Hello world", "https://example.com/post", dry_run=True)
 
         self.assertIn("[linkedin] Dry run: would publish post", output.getvalue())
+
+
+class PostUrlTests(unittest.TestCase):
+    def test_post_url_uses_front_matter_permalink_when_available(self) -> None:
+        url = post_url(
+            "https://falowen.com/",
+            Path("_posts/2026-04-16-german-alphabet-for-complete-beginners.md"),
+            {"permalink": "/german-alphabet-for-complete-beginners/"},
+        )
+
+        self.assertEqual("https://falowen.com/german-alphabet-for-complete-beginners/", url)
+
+    def test_post_url_falls_back_to_slug_from_filename(self) -> None:
+        url = post_url(
+            "https://falowen.com",
+            Path("_posts/2026-04-16-german-alphabet-for-complete-beginners.md"),
+        )
+
+        self.assertEqual("https://falowen.com/german-alphabet-for-complete-beginners/", url)
 
     @patch.dict(
         "os.environ",
