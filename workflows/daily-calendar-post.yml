@@ -1,0 +1,80 @@
+name: Daily Calendar Blog Post PR
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Publishing date in YYYY-MM-DD (optional)"
+        required: false
+        type: string
+      start_date:
+        description: "Calendar start date in YYYY-MM-DD (optional)"
+        required: false
+        type: string
+  schedule:
+    - cron: "5 5 * * *" # Daily at 05:05 UTC
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  create-daily-post-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Resolve run date
+        id: date
+        shell: bash
+        env:
+          BLOG_TIMEZONE: ${{ vars.BLOG_TIMEZONE }}
+          INPUT_DATE: ${{ github.event.inputs.date }}
+          INPUT_START_DATE: ${{ github.event.inputs.start_date }}
+        run: |
+          tz="${BLOG_TIMEZONE:-Africa/Accra}"
+
+          if [ -n "$INPUT_DATE" ]; then
+            run_date="$INPUT_DATE"
+          else
+            run_date=$(TZ="$tz" date +%F)
+          fi
+
+          echo "timezone=$tz" >> "$GITHUB_OUTPUT"
+          echo "run_date=$run_date" >> "$GITHUB_OUTPUT"
+          echo "start_date=$INPUT_START_DATE" >> "$GITHUB_OUTPUT"
+
+      - name: Generate daily calendar post
+        run: |
+          args=(--date "${{ steps.date.outputs.run_date }}")
+          if [ -n "${{ steps.date.outputs.start_date }}" ]; then
+            args+=(--start-date "${{ steps.date.outputs.start_date }}")
+          fi
+          python scripts/generate_daily_calendar_post.py "${args[@]}"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore(blog): generate daily calendar post"
+          branch: "bot/daily-calendar-post"
+          delete-branch: true
+          title: "chore(blog): daily calendar auto-generated post"
+          body: |
+            ## Summary
+            - Generate the daily calendar post via `scripts/generate_daily_calendar_post.py`.
+            - Use `BLOG_TIMEZONE` repo variable (fallback: `Africa/Accra`) to determine the run date for scheduled executions.
+            - Open a PR only when content changed.
+
+            ## Notes
+            - Triggered daily (`5 5 * * *`) or via manual dispatch.
+            - Manual dispatch can override `date` and `start_date`.
+          labels: |
+            auto-update
+            blog
