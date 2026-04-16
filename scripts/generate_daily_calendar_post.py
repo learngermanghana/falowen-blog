@@ -2,11 +2,27 @@ from __future__ import annotations
 
 import argparse
 from datetime import date, datetime, timezone
+import json
+import os
 from pathlib import Path
 import re
+from urllib import error, request
 
 POSTS_DIR = Path("_posts")
 DEFAULT_START_DATE = date(2026, 4, 15)
+OPENAI_API_URL = "https://api.openai.com/v1/chat/completions"
+DEFAULT_OPENAI_MODEL = "gpt-4.1-mini"
+
+REPO_IMAGE_POOL = [
+    "https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-polina-kovaleva-8362564.jpg",
+    "https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-joshuamckn-1139317.jpg",
+    "https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-rdne-8499492.jpg",
+    "https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-prince-beguin-81839921-10334158.jpg",
+    "https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-artempodrez-5726810.jpg",
+    "https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-ulfet-680828476-31703180.jpg",
+    "https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-saeed-chembea-1063286943-32719717.jpg",
+    "https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-eden-34297765.jpg",
+]
 
 GERMAN_CHAR_MAP = {
     "ä": "ae",
@@ -519,13 +535,82 @@ def pick_day_config(day_number: int) -> dict | None:
     return {**day_config, "content_type": CONTENT_TYPE_BY_DAY.get(day_number, "promo_essay")}
 
 
-def normalize_unsplash_image_url(url: str) -> str:
+def resolve_image_url(day_number: int, day_config: dict) -> str:
+    explicit_image_url = day_config.get("image_url")
+    if explicit_image_url:
+        return explicit_image_url
+
+    url = day_config["unsplash_link"]
     prefix = "https://unsplash.com/s/photos/"
     if not url.startswith(prefix):
         return url
 
-    query = url.removeprefix(prefix).strip().replace("-", ",")
-    return f"https://source.unsplash.com/featured/?{query}"
+    return REPO_IMAGE_POOL[(day_number - 1) % len(REPO_IMAGE_POOL)]
+
+
+def generate_ai_body(day_number: int, day_config: dict) -> str | None:
+    api_key = os.getenv("OPENAI_API_KEY", "").strip()
+    if not api_key or api_key == "***":
+        return None
+
+    model = os.getenv("OPENAI_MODEL", DEFAULT_OPENAI_MODEL).strip() or DEFAULT_OPENAI_MODEL
+    content_type = day_config.get("content_type", "promo_essay")
+    prompt = (
+        "Write a Jekyll blog post body in markdown only (no front matter).\n"
+        f"Day: {day_number}/30\n"
+        f"Title: {day_config['title']}\n"
+        f"Keyword: {day_config['keyword']}\n"
+        f"Focus: {day_config['focus']}\n"
+        f"Category: {day_config['category']}\n"
+        f"Content type: {content_type}\n"
+        f"CTA to include exactly once near the end: {day_config['cta']}\n"
+        "Requirements:\n"
+        "- Match the topic tightly; include at least 6 topic-specific examples.\n"
+        "- Use H2/H3 headings and bullet points for readability.\n"
+        "- Keep beginner-friendly tone and practical learner advice.\n"
+        "- Avoid generic filler text.\n"
+        "- Do not mention AI or model instructions.\n"
+    )
+
+    payload = {
+        "model": model,
+        "messages": [
+            {
+                "role": "system",
+                "content": (
+                    "You are a German-learning curriculum writer for Falowen. "
+                    "Produce clear, practical markdown lesson content."
+                ),
+            },
+            {"role": "user", "content": prompt},
+        ],
+        "temperature": 0.6,
+    }
+    req = request.Request(
+        OPENAI_API_URL,
+        data=json.dumps(payload).encode("utf-8"),
+        headers={
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+        },
+        method="POST",
+    )
+    try:
+        with request.urlopen(req, timeout=45) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+    except (error.URLError, error.HTTPError, TimeoutError, json.JSONDecodeError) as exc:
+        print(f"OpenAI generation failed, using template fallback: {exc}")
+        return None
+
+    ai_body = (
+        data.get("choices", [{}])[0]
+        .get("message", {})
+        .get("content", "")
+        .strip()
+    )
+    if not ai_body:
+        return None
+    return ai_body + "\n"
 
 
 def _build_promo_essay(day_number: int, day_config: dict) -> str:
@@ -659,12 +744,12 @@ def build_body(day_number: int, day_config: dict) -> str:
     return _build_promo_essay(day_number, day_config)
 
 
-def build_post(day_config: dict, body: str, publish_date: date) -> str:
+def build_post(day_number: int, day_config: dict, body: str, publish_date: date) -> str:
     slug = day_config.get("slug") or slugify(day_config["title"])
     tags = ["falowen", "german", "30-day-blog", slug]
     tag_string = ", ".join(tags)
 
-    image_url = normalize_unsplash_image_url(day_config["unsplash_link"])
+    image_url = resolve_image_url(day_number, day_config)
 
     front_matter = [
         "---",
@@ -713,8 +798,8 @@ def main() -> int:
         print(f"Post already exists: {post_path}")
         return 0
 
-    body = build_body(day_number, day_config)
-    post_md = build_post(day_config, body, run_date)
+    body = generate_ai_body(day_number, day_config) or build_body(day_number, day_config)
+    post_md = build_post(day_number, day_config, body, run_date)
     post_path.write_text(post_md, encoding="utf-8")
     print(f"Created day {day_number}: {post_path}")
     return 0

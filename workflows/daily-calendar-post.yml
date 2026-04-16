@@ -52,6 +52,9 @@ jobs:
           echo "start_date=$INPUT_START_DATE" >> "$GITHUB_OUTPUT"
 
       - name: Generate daily calendar post
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
         run: |
           args=(--date "${{ steps.date.outputs.run_date }}")
           if [ -n "${{ steps.date.outputs.start_date }}" ]; then

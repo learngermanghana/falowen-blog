@@ -5,6 +5,7 @@ from scripts.generate_daily_calendar_post import (
     build_body,
     compute_day_number,
     pick_day_config,
+    resolve_image_url,
 )
 
 
@@ -40,6 +41,12 @@ class DailyCalendarPostTests(unittest.TestCase):
         self.assertIn("1. **Start small and consistent**", body_21)
         self.assertIn("Day 21/30 CTA:", body_21)
         self.assertNotEqual(body_1, body_2)
+
+    def test_resolve_image_url_falls_back_to_repo_image_for_unsplash_search_pages(self) -> None:
+        day_2 = pick_day_config(2)
+        assert day_2 is not None
+        image_url = resolve_image_url(2, day_2)
+        self.assertIn("raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/", image_url)
 
 
 if __name__ == "__main__":
