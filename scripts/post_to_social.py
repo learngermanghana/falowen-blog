@@ -52,7 +52,13 @@ def slug_from_filename(path: Path) -> str:
     return re.sub(r"^\d{4}-\d{2}-\d{2}-", "", name)
 
 
-def post_url(site_url: str, post_path: Path) -> str:
+def post_url(site_url: str, post_path: Path, front_matter: dict[str, str] | None = None) -> str:
+    if front_matter:
+        permalink = front_matter.get("permalink", "").strip()
+        if permalink:
+            normalized = permalink if permalink.startswith("/") else f"/{permalink}"
+            return f"{site_url.rstrip('/')}{normalized}"
+
     return f"{site_url.rstrip('/')}/{slug_from_filename(post_path)}/"
 
 
@@ -187,7 +193,7 @@ def main() -> int:
     excerpt = fm.get("excerpt") or excerpt_from_body(body)
     image_url = fm.get("image")
 
-    url = post_url(args.site_url, post_path)
+    url = post_url(args.site_url, post_path, fm)
 
     publish_linkedin(f"{title}\n\n{excerpt}", url, args.dry_run)
     publish_instagram(f"{title}\n\n{excerpt}", url, image_url, args.dry_run)
