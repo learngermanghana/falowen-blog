@@ -28,7 +28,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -42,7 +42,14 @@ jobs:
           if [ -n "${{ github.event.inputs.post_path }}" ]; then
             target="${{ github.event.inputs.post_path }}"
           else
-            target=$(git diff --name-only HEAD~1 HEAD | awk '/^_posts\/.*\.md$/ {print; exit}')
+            before="${{ github.event.before }}"
+            if [ -z "$before" ] || [ "$before" = "0000000000000000000000000000000000000000" ]; then
+              before="HEAD~1"
+            fi
+
+            # Inspect the full push range so we don't miss post changes that
+            # happened earlier in a multi-commit push.
+            target=$(git diff --name-only "$before" "${{ github.sha }}" -- '_posts/*.md' | head -n 1)
           fi
 
           if [ -z "$target" ]; then
