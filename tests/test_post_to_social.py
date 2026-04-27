@@ -24,6 +24,41 @@ class PublishLinkedInTests(unittest.TestCase):
 
         self.assertIn("[linkedin] Dry run: would publish post", output.getvalue())
 
+    @patch.dict(
+        "os.environ",
+        {
+            "LINKEDIN_ACCESS_TOKEN": "token",
+            "LINKEDIN_AUTHOR_URN": "urn:li:person:author",
+        },
+        clear=True,
+    )
+    @patch("scripts.post_to_social.post_json")
+    def test_publish_linkedin_sends_publish_request(self, mock_post_json) -> None:
+        mock_post_json.return_value = (201, '{"id":"123"}')
+
+        publish_linkedin("New post", "https://example.com/post", dry_run=False)
+
+        mock_post_json.assert_called_once_with(
+            "https://api.linkedin.com/v2/ugcPosts",
+            {
+                "author": "urn:li:person:author",
+                "lifecycleState": "PUBLISHED",
+                "specificContent": {
+                    "com.linkedin.ugc.ShareContent": {
+                        "shareCommentary": {
+                            "text": "New post\n\nRead more: https://example.com/post"
+                        },
+                        "shareMediaCategory": "NONE",
+                    }
+                },
+                "visibility": {"com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC"},
+            },
+            {
+                "Authorization": "Bearer token",
+                "X-Restli-Protocol-Version": "2.0.0",
+            },
+        )
+
 
 class PostUrlTests(unittest.TestCase):
     def test_post_url_uses_front_matter_permalink_when_available(self) -> None:
