@@ -1,10 +1,9 @@
 name: Auto Post Blog Updates to LinkedIn
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "_posts/*.md"
+  workflow_run:
+    workflows: ["30-Day Daily Blog Auto-Publish"]
+    types: [completed]
   workflow_dispatch:
     inputs:
       post_path:
@@ -22,6 +21,10 @@ permissions:
 
 jobs:
   linkedin_publish:
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'workflow_run' &&
+       github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
 
     steps:
@@ -42,18 +45,11 @@ jobs:
           if [ -n "${{ github.event.inputs.post_path }}" ]; then
             target="${{ github.event.inputs.post_path }}"
           else
-            before="${{ github.event.before }}"
-            if [ -z "$before" ] || [ "$before" = "0000000000000000000000000000000000000000" ]; then
-              before="HEAD~1"
-            fi
-
-            # Inspect the full push range so we don't miss post changes that
-            # happened earlier in a multi-commit push.
-            target=$(git diff --name-only "$before" "${{ github.sha }}" -- '_posts/*.md' | head -n 1)
+            target=$(git ls-files -- "_posts/*.md" | sort | tail -n 1)
           fi
 
           if [ -z "$target" ]; then
-            echo "No changed post detected. Skipping publish."
+            echo "No post file detected. Skipping publish."
             echo "skip=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
