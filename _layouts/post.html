@@ -15,7 +15,12 @@ layout: default
     </p>
   </header>
   {% assign post_image = page.image %}
-  {% if post_image and post_image contains "https://unsplash.com/s/photos/" %}
+  {% assign refresh_hero_images = page.refresh_hero_images | default: true %}
+  {% if refresh_hero_images %}
+    {% assign unsplash_query = page.hero_query | default: page.title | slugify | replace: "-", "," %}
+    {% assign refresh_sig = site.time | date: "%s" %}
+    {% assign post_image = "https://source.unsplash.com/featured/?" | append: unsplash_query | append: "&sig=" | append: refresh_sig %}
+  {% elsif post_image and post_image contains "https://unsplash.com/s/photos/" %}
     {% assign unsplash_query = post_image | remove: "https://unsplash.com/s/photos/" | replace: "-", "," %}
     {% assign post_image = "https://source.unsplash.com/featured/?" | append: unsplash_query %}
   {% endif %}
