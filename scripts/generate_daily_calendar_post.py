@@ -545,24 +545,6 @@ def append_standard_closing(body: str) -> str:
     return f"{body}\n\n{closing}\n"
 
 
-def append_level_and_quiz(body: str, day_number: int) -> str:
-    level_cycle = ["A1", "A1", "A2", "A2", "B1", "B1"]
-    level = level_cycle[(day_number - 1) % len(level_cycle)]
-    quiz_block = "\n".join(
-        [
-            "## Level",
-            f"- Recommended level: **{level}**",
-            "",
-            "## Quick Test",
-            "1. Write one sentence from today’s topic in German.",
-            "2. Translate that sentence into English.",
-            "3. Add one follow-up sentence using a connector (und/aber/weil).",
-        ]
-    )
-    body = body.rstrip()
-    return f"{body}\n\n{quiz_block}\n"
-
-
 def resolve_image_url(day_number: int, day_config: dict) -> str:
     explicit_image_url = day_config.get("image_url")
     if explicit_image_url:
@@ -799,8 +781,7 @@ def build_post(day_number: int, day_config: dict, body: str, publish_date: date)
         "",
     ]
 
-    body_with_level_and_quiz = append_level_and_quiz(body, day_number)
-    body_with_closing = append_standard_closing(body_with_level_and_quiz)
+    body_with_closing = append_standard_closing(body)
     return "\n".join(front_matter) + body_with_closing
 
 
