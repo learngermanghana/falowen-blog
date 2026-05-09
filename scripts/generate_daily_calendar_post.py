@@ -578,6 +578,8 @@ def generate_ai_body(day_number: int, day_config: dict) -> str | None:
         "- Match the topic tightly; include at least 6 topic-specific examples.\n"
         "- Use H2/H3 headings and bullet points for readability.\n"
         "- Keep beginner-friendly tone and practical learner advice.\n"
+        "- Include a `## Level` section with one recommended level from A1/A2/B1.\n"
+        "- Include a `## Quick Test` section with 3 short learner questions.\n"
         "- Avoid generic filler text.\n"
         "- Do not mention AI or model instructions.\n"
     )
