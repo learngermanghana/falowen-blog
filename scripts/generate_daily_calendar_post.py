@@ -508,7 +508,7 @@ def slugify(text: str) -> str:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Generate one daily blog post from a fixed 30-day calendar.")
+    parser = argparse.ArgumentParser(description="Generate one daily blog post from a fixed 6-month calendar.")
     parser.add_argument("--date", help="Publishing date in YYYY-MM-DD format (default: current UTC date).")
     parser.add_argument("--start-date", help="Start date for day_1 in YYYY-MM-DD format (default: 2026-04-15).")
     parser.add_argument("--force", action="store_true", help="Overwrite existing file if present.")
@@ -527,12 +527,40 @@ def compute_day_number(run_date: date, start_date: date) -> int:
 
 
 def pick_day_config(day_number: int) -> dict | None:
-    if day_number < 1 or day_number > 30:
+    if day_number < 1 or day_number > 180:
         return None
-    day_config = falowen30DayBlogCalendar.get(f"day_{day_number}")
+    template_day = ((day_number - 1) % 30) + 1
+    day_config = falowen30DayBlogCalendar.get(f"day_{template_day}")
     if day_config is None:
         return None
-    return {**day_config, "content_type": CONTENT_TYPE_BY_DAY.get(day_number, "promo_essay")}
+    return {**day_config, "content_type": CONTENT_TYPE_BY_DAY.get(template_day, "promo_essay")}
+
+
+def append_standard_closing(body: str) -> str:
+    closing = (
+        "Are you interested learning german. "
+        "check our available classes here https://www.learngermanghana.com/classes"
+    )
+    body = body.rstrip()
+    return f"{body}\n\n{closing}\n"
+
+
+def append_level_and_quiz(body: str, day_number: int) -> str:
+    level_cycle = ["A1", "A1", "A2", "A2", "B1", "B1"]
+    level = level_cycle[(day_number - 1) % len(level_cycle)]
+    quiz_block = "\n".join(
+        [
+            "## Level",
+            f"- Recommended level: **{level}**",
+            "",
+            "## Quick Test",
+            "1. Write one sentence from today’s topic in German.",
+            "2. Translate that sentence into English.",
+            "3. Add one follow-up sentence using a connector (und/aber/weil).",
+        ]
+    )
+    body = body.rstrip()
+    return f"{body}\n\n{quiz_block}\n"
 
 
 def resolve_image_url(day_number: int, day_config: dict) -> str:
@@ -557,7 +585,7 @@ def generate_ai_body(day_number: int, day_config: dict) -> str | None:
     content_type = day_config.get("content_type", "promo_essay")
     prompt = (
         "Write a Jekyll blog post body in markdown only (no front matter).\n"
-        f"Day: {day_number}/30\n"
+        f"Day: {day_number}/180\n"
         f"Title: {day_config['title']}\n"
         f"Keyword: {day_config['keyword']}\n"
         f"Focus: {day_config['focus']}\n"
@@ -568,6 +596,8 @@ def generate_ai_body(day_number: int, day_config: dict) -> str | None:
         "- Match the topic tightly; include at least 6 topic-specific examples.\n"
         "- Use H2/H3 headings and bullet points for readability.\n"
         "- Keep beginner-friendly tone and practical learner advice.\n"
+        "- Include a `## Level` section with one recommended level from A1/A2/B1.\n"
+        "- Include a `## Quick Test` section with 3 short learner questions.\n"
         "- Avoid generic filler text.\n"
         "- Do not mention AI or model instructions.\n"
     )
@@ -653,7 +683,7 @@ def _build_grammar_notes(day_number: int, day_config: dict) -> str:
                 "verb too late."
             ),
             "",
-            f"**Practice line:** Day {day_number}/30 — write 3 short sentences using this grammar rule and read them aloud.",
+            f"**Practice line:** Day {day_number}/180 — write 3 short sentences using this grammar rule and read them aloud.",
         ]
     ) + "\n"
 
@@ -674,7 +704,7 @@ def _build_vocabulary_notes(day_number: int, day_config: dict) -> str:
             "- **bitte** — please. *Bitte helfen Sie mir.*",
             "",
             (
-                f"**Practical usage line:** Day {day_number}/30 — pick 5 words from today's **{day_config['keyword']}** "
+                f"**Practical usage line:** Day {day_number}/180 — pick 5 words from today's **{day_config['keyword']}** "
                 "topic and create your own mini dialogue."
             ),
         ]
@@ -725,7 +755,7 @@ def _build_list_post(day_number: int, day_config: dict) -> str:
             "5. **Ask for feedback quickly**  ",
             "   Short feedback loops prevent fossilized mistakes and speed up confidence.",
             "",
-            f"Day {day_number}/30 CTA: {day_config['cta']}",
+            f"Day {day_number}/180 CTA: {day_config['cta']}",
         ]
     ) + "\n"
 
@@ -769,7 +799,9 @@ def build_post(day_number: int, day_config: dict, body: str, publish_date: date)
         "",
     ]
 
-    return "\n".join(front_matter) + body
+    body_with_level_and_quiz = append_level_and_quiz(body, day_number)
+    body_with_closing = append_standard_closing(body_with_level_and_quiz)
+    return "\n".join(front_matter) + body_with_closing
 
 
 def main() -> int:
