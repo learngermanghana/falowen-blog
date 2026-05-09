@@ -14,14 +14,18 @@ class DailyCalendarPostTests(unittest.TestCase):
         self.assertEqual(compute_day_number(date(2026, 4, 15), date(2026, 4, 15)), 1)
         self.assertEqual(compute_day_number(date(2026, 4, 16), date(2026, 4, 15)), 2)
 
-    def test_pick_day_config_only_returns_in_30_day_range(self) -> None:
+    def test_pick_day_config_only_returns_in_180_day_range(self) -> None:
         day_1 = pick_day_config(1)
         self.assertIsNotNone(day_1)
         assert day_1 is not None
         self.assertEqual(day_1["content_type"], "promo_essay")
         self.assertIsNotNone(pick_day_config(30))
         self.assertIsNone(pick_day_config(0))
-        self.assertIsNone(pick_day_config(31))
+        day_31 = pick_day_config(31)
+        self.assertIsNotNone(day_31)
+        assert day_31 is not None
+        self.assertEqual(day_31["slug"], day_1["slug"])
+        self.assertIsNone(pick_day_config(181))
 
     def test_build_body_uses_content_type_specific_template(self) -> None:
         day_1 = pick_day_config(1)
@@ -39,7 +43,7 @@ class DailyCalendarPostTests(unittest.TestCase):
         self.assertIn("**Rule:**", body_2)
         self.assertIn("**Common mistake:**", body_2)
         self.assertIn("1. **Start small and consistent**", body_21)
-        self.assertIn("Day 21/30 CTA:", body_21)
+        self.assertIn("Day 21/180 CTA:", body_21)
         self.assertNotEqual(body_1, body_2)
 
     def test_resolve_image_url_falls_back_to_repo_image_for_unsplash_search_pages(self) -> None:
