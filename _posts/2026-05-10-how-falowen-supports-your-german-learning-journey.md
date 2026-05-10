@@ -5,7 +5,7 @@ date: 2026-05-10
 tags: [falowen, german, 30-day-blog, how-falowen-supports-your-german-learning-journey]
 categories: [Falowen]
 excerpt: "See how Falowen supports your progress with lessons, practice tools, and flexible learning."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-joshuamckn-1139317.jpg
+image: https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=1600&q=80
 image_alt: "How Falowen Supports Your German Learning Journey"
 permalink: /how-falowen-supports-your-german-learning-journey/
 seo:

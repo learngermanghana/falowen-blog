@@ -555,7 +555,8 @@ def resolve_image_url(day_number: int, day_config: dict) -> str:
     if not url.startswith(prefix):
         return url
 
-    return REPO_IMAGE_POOL[(day_number - 1) % len(REPO_IMAGE_POOL)]
+    query = url.removeprefix(prefix).replace("-", ",")
+    return f"https://source.unsplash.com/featured/?{query}&sig={day_number}"
 
 
 def generate_ai_body(day_number: int, day_config: dict) -> str | None:
