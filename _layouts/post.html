@@ -46,13 +46,17 @@ layout: default
         <p>Join our German classes and get structured support from A1 upward.</p>
         <a class="btn-primary" href="https://www.learngermanghana.com/classes" target="_blank" rel="noopener">View classes</a>
       </div>
+      {% include article-toc.html %}
     </aside>
 
     <div>
+      {% include article-toc.html %}
       <div class="post-content e-content" itemprop="articleBody">
         {{ content }}
       </div>
 
+      {% include lead-capture.html %}
+      {% include author-box.html %}
       {% include youtube-subscribe.html %}
       {% include cta.html %}
       {% include share.html %}
@@ -89,7 +93,16 @@ layout: default
   "image": {{ post_image | absolute_url | jsonify }}{% endif %},
   "datePublished": "{{ page.date | date_to_xmlschema }}",
   "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}"{% if page.author %},
-  "author": {"@type": "Person", "name": {{ page.author | jsonify }}}{% endif %},
-  "publisher": {"@type": "Organization", "name": {{ site.title | jsonify }}}
+  "author": {"@type": "Person", "name": {{ page.author | jsonify }}}{% else %},
+  "author": {"@type": "Organization", "name": "Learn Language Education Academy"}{% endif %},
+  "publisher": {"@type": "Organization", "name": {{ site.title | jsonify }}},
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Home","item":"{{ '/' | absolute_url }}"},
+      {"@type":"ListItem","position":2,"name":"Blog","item":"{{ '/blogs/' | absolute_url }}"},
+      {"@type":"ListItem","position":3,"name":{{ page.title | jsonify }},"item":"{{ page.url | absolute_url }}"}
+    ]
+  }
 }
 </script>
