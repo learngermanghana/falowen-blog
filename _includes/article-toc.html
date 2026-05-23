@@ -1,0 +1,16 @@
+{% assign headings = content | split: '<h2' %}
+{% if headings.size > 2 %}
+<nav class="article-toc" aria-label="In this article">
+  <span class="eyebrow">In this article</span>
+  <ol>
+    {% for heading in headings offset:1 limit:7 %}
+      {% assign title_part = heading | split: '</h2>' | first %}
+      {% assign clean_title = title_part | split: '>' | last | strip_html | strip %}
+      {% if clean_title != '' %}
+        {% assign anchor = clean_title | slugify %}
+        <li><a href="#{{ anchor }}">{{ clean_title }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ol>
+</nav>
+{% endif %}
