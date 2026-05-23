@@ -1,63 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ site.lang | default: 'en' }}" data-theme="light">
 <head>
   <meta charset="utf-8">
-  <title>Falowen Blog</title>
+  <title>{{ site.title | escape }} | German learning articles, exam tips and study guides</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   {%- include head.html -%}
   {%- include head-custom.html -%}
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 </head>
-<body>
+<body class="min-h-screen overflow-x-hidden antialiased">
+  <div class="site-bg" aria-hidden="true"></div>
   {% include header.html %}
-  {% include youtube-subscribe.html %}
 
-  <!-- Student reviews (moved to top) -->
-  <section id="testimonials" class="wrap section">
-    <h2>What students say</h2>
-    <div class="reviews-container">
-      <p>Loading testimonials...</p>
-    </div>
-    <noscript>Please enable JavaScript to view testimonials.</noscript>
-  </section>
+  {% assign featured_post = site.posts | first %}
 
-  <!-- Hero -->
-  <header class="hero">
-    <div class="wrap">
-    </div>
-  </header>
+  <main>
+    <section class="home-hero relative isolate overflow-hidden">
+      <div class="absolute inset-0 -z-10">
+        <div class="hero-orb hero-orb-one"></div>
+        <div class="hero-orb hero-orb-two"></div>
+        <div class="hero-grid"></div>
+      </div>
 
-  <!-- Latest posts grid -->
-  <section class="wrap section">
-    <h2>Latest articles</h2>
-    <div class="latest">
-      {% for post in site.posts limit: 3 %}
-      <article class="card">
-        <a href="{{ post.url | relative_url }}">
-          {% if post.image %}
-          <img class="post-card-img" src="{{ post.image }}" alt="{{ post.title }}" />
-          {% endif %}
-          <h3>{{ post.title }}</h3>
-          {% if post.excerpt %}
-          <p>{{ post.excerpt | strip_html | truncate: 120 }}</p>
-          {% endif %}
-        </a>
-        <div class="meta">
-          {{ post.date | date: "%b %d, %Y" }}
-          {% if post.tags %} · {{ post.tags | join: ", " }}{% endif %}
+      <div class="wrap grid items-center gap-10 py-14 md:grid-cols-[1.05fr_.95fr] md:py-20">
+        <div class="max-w-3xl">
+          <span class="eyebrow">Learn German in Ghana and online</span>
+          <h1 class="mt-5 max-w-4xl font-display text-4xl font-black tracking-tight text-slate-950 sm:text-5xl lg:text-7xl">German lessons that feel simple, practical and possible.</h1>
+          <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600">Read beginner-friendly German guides, A1–B2 exam tips, speaking practice ideas and study routines from Learn Language Education Academy.</p>
+
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a class="btn-primary" href="https://www.learngermanghana.com/classes" target="_blank" rel="noopener">See available classes</a>
+            <a class="btn-secondary" href="{{ '/search/' | relative_url }}">Search lessons</a>
+          </div>
+
+          <div class="mt-9 grid grid-cols-3 gap-3 text-center sm:max-w-xl">
+            <div class="stat-card"><strong>A1–C1</strong><span>Levels</span></div>
+            <div class="stat-card"><strong>Daily</strong><span>Guides</span></div>
+            <div class="stat-card"><strong>Exam</strong><span>Support</span></div>
+          </div>
         </div>
-        <div class="actions">
-          <a class="pill" href="{{ post.url | relative_url }}">Read</a>
-          {% if post.categories and post.categories.size > 0 %}
-            <span class="pill">{{ post.categories[0] }}</span>
+
+        <aside class="hero-feature-card">
+          <div class="flex items-center justify-between gap-4">
+            <span class="rounded-full bg-orange-100 px-3 py-1 text-xs font-black uppercase tracking-[.24em] text-orange-700">Featured</span>
+            {% if featured_post %}<time class="text-sm font-semibold text-slate-500" datetime="{{ featured_post.date | date_to_xmlschema }}">{{ featured_post.date | date: "%b %d, %Y" }}</time>{% endif %}
+          </div>
+
+          {% if featured_post %}
+            {% if featured_post.image %}
+              <img class="mt-5 aspect-[16/10] w-full rounded-3xl object-cover shadow-soft" src="{{ featured_post.image }}" alt="{{ featured_post.title | escape }}" loading="eager">
+            {% else %}
+              <div class="mt-5 flex aspect-[16/10] items-center justify-center rounded-3xl bg-gradient-to-br from-orange-100 via-white to-blue-100 text-6xl font-black text-orange-500 shadow-soft">DE</div>
+            {% endif %}
+            <h2 class="mt-6 font-display text-2xl font-black leading-tight text-slate-950">{{ featured_post.title }}</h2>
+            {% if featured_post.excerpt %}<p class="mt-3 text-slate-600">{{ featured_post.excerpt | strip_html | truncate: 150 }}</p>{% endif %}
+            <a class="mt-6 inline-flex items-center font-black text-orange-600" href="{{ featured_post.url | relative_url }}">Read featured article <span aria-hidden="true" class="ml-2">→</span></a>
           {% endif %}
+        </aside>
+      </div>
+    </section>
+
+    {% include youtube-subscribe.html %}
+
+    <section class="wrap section py-12 md:py-16">
+      <div class="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+        <div>
+          <span class="eyebrow">Study library</span>
+          <h2 class="mt-3 font-display text-3xl font-black tracking-tight text-slate-950 md:text-5xl">Latest German articles</h2>
+          <p class="mt-3 max-w-2xl text-slate-600">Quick lessons, examples and practical tips for students preparing for class, exams or relocation.</p>
         </div>
-      </article>
-      {% endfor %}
-    </div>
-  </section>
+        <a class="btn-secondary w-fit" href="{{ '/blogs/' | relative_url }}">View all posts</a>
+      </div>
+
+      <div class="latest grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {% for post in site.posts limit: 6 %}
+          <article class="post-card group">
+            <a class="post-card-link" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}">
+              {% if post.image %}
+                <img class="post-card-img" src="{{ post.image }}" alt="{{ post.title | escape }}" loading="lazy" />
+              {% else %}
+                <div class="post-card-placeholder">Deutsch</div>
+              {% endif %}
+              <div class="post-card-body">
+                <div class="post-card-meta">
+                  <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+                  {% if post.categories and post.categories.size > 0 %}<span>{{ post.categories[0] }}</span>{% endif %}
+                </div>
+                <h3 class="post-card-title">{{ post.title }}</h3>
+                {% if post.excerpt %}<p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 130 }}</p>{% endif %}
+                <span class="post-card-read">Read lesson →</span>
+              </div>
+            </a>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="wrap pb-12 md:pb-16">
+      <div class="learning-path">
+        <div>
+          <span class="eyebrow">Choose your path</span>
+          <h2 class="mt-3 font-display text-3xl font-black tracking-tight text-slate-950 md:text-4xl">From your first German words to exam confidence.</h2>
+        </div>
+        <div class="path-grid">
+          <a href="{{ '/search/?q=A1' | relative_url }}">A1 Basics</a>
+          <a href="{{ '/search/?q=A2' | relative_url }}">A2 Grammar</a>
+          <a href="{{ '/search/?q=speaking' | relative_url }}">Speaking</a>
+          <a href="{{ '/search/?q=writing' | relative_url }}">Writing</a>
+          <a href="{{ '/search/?q=exam' | relative_url }}">Exam Prep</a>
+          <a href="{{ '/search/?q=Germany' | relative_url }}">Germany Tips</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="wrap section pb-16">
+      <div class="review-shell">
+        <div class="mb-6 max-w-2xl">
+          <span class="eyebrow">Student proof</span>
+          <h2 class="mt-3 font-display text-3xl font-black tracking-tight text-slate-950 md:text-4xl">What students say</h2>
+          <p class="mt-3 text-slate-600">Real feedback from learners using Falowen and Learn Language Education Academy.</p>
+        </div>
+        <div class="reviews-container"><p>Loading testimonials...</p></div>
+        <noscript>Please enable JavaScript to view testimonials.</noscript>
+      </div>
+    </section>
+  </main>
 
   <script type="module" src="{{ '/assets/js/reviews.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/theme-toggle.js' | relative_url }}"></script>
   {% include footer.html %}
 </body>
 </html>
