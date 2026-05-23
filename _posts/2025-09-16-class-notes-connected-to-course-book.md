@@ -5,7 +5,7 @@ date: 2025-09-16
 tags: [falowen, my-course, classroom, course-book, learn-notes, qna, online, in-person, a1, a2, b1, b2]
 categories: [Features]
 excerpt: "In Falowen, My Course brings Classroom (Class Notes), Course Book, and Learn Notes together. All content lives in Course Book; Class Notes is for group discussion with clear links to the right tab."
-image: https://i.imgur.com/LglIZit.jpeg
+image: https://source.unsplash.com/featured/?how+class+notes+%26+q%26a+create+a+real+class+experience+%28a1%E2%80%93b2%29&sig=9
 ---
 
 <style>

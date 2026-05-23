@@ -5,7 +5,7 @@ date: 2026-05-08
 tags: [falowen, german, 30-day-blog, how-to-write-a-simple-email-in-german]
 categories: [Writing Skills]
 excerpt: "Learn how to write a simple email in German with beginner-friendly structure and examples."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-eden-34297765.jpg
+image: https://source.unsplash.com/featured/?how+to+write+a+simple+email+in+german&sig=54
 image_alt: "How to Write a Simple Email in German"
 permalink: /how-to-write-a-simple-email-in-german/
 seo:

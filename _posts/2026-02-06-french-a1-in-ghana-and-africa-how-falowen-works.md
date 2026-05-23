@@ -5,7 +5,7 @@ date: 2026-02-06
 tags: [falowen, french, a1, learn french in ghana, ghana, africa, beginners, live classes, cefr]
 categories: [Guides]
 excerpt: "Want to learn French A1 in Ghana or anywhere in Africa? Falowen’s beginner French course follows a structured 28-day plan with daily topics, grammar focus, mini mocks, and live tutor feedback."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-polina-kovaleva-8362564.jpg
+image: https://source.unsplash.com/featured/?french+a1+in+ghana+and+africa%3A+how+falowen%E2%80%99s+28-day+beginner+course+works&sig=25
 image_alt: "Beginner learning French with a notebook and laptop"
 permalink: /french-a1-in-ghana-and-africa-falowen/
 seo:

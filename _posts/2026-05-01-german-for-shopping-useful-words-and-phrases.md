@@ -5,7 +5,7 @@ date: 2026-05-01
 tags: [falowen, german, 30-day-blog, german-for-shopping-useful-words-and-phrases]
 categories: [German Vocabulary]
 excerpt: "Learn useful German shopping words and phrases for real-life situations."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-polina-kovaleva-8362564.jpg
+image: https://source.unsplash.com/featured/?german+for+shopping%3A+useful+words+and+phrases&sig=47
 image_alt: "German for Shopping: Useful Words and Phrases"
 permalink: /german-for-shopping-useful-words-and-phrases/
 seo:

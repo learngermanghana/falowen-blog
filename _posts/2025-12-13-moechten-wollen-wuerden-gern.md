@@ -5,7 +5,7 @@ date: 2025-12-13
 tags: [falowen, german, grammar, a1, a2, politeness, modal verbs]
 categories: [Guides]
 excerpt: "German learners often confuse 'möchten', 'wollen' and 'würden gern'. This guide explains the difference in meaning, politeness, and real-life usage—with clear examples and Falowen practice tips."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-joshuamckn-1139317.jpg
+image: https://source.unsplash.com/featured/?m%C3%B6chten%2C+wollen%2C+w%C3%BCrden+gern%3A+what%E2%80%99s+the+difference%3F&sig=20
 image_alt: "Student studying German and practicing polite expressions at a desk"
 permalink: /moechten-wollen-wuerden-gern-difference/
 seo:

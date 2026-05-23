@@ -5,7 +5,7 @@ date: YYYY-MM-DD
 categories: [Guides]
 tags: [german, a1]
 excerpt: "Short 1–2 sentence summary for cards and SEO."
-image: /assets/og-default.png
+image: https://source.unsplash.com/featured/?german,language-learning&sig=1
 canonical_url:
 ---
 

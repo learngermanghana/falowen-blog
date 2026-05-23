@@ -5,7 +5,7 @@ date: 2026-04-17
 tags: [falowen, german, 30-day-blog, 10-german-greetings-you-can-use-every-day]
 categories: [German Vocabulary]
 excerpt: "Learn 10 useful German greetings you can use daily in class, at work, and in conversations."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-rdne-8499492.jpg
+image: https://source.unsplash.com/featured/?10+german+greetings+you+can+use+every+day&sig=33
 image_alt: "10 German Greetings You Can Use Every Day"
 permalink: /10-german-greetings-you-can-use-every-day/
 seo:

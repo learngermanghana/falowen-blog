@@ -5,7 +5,7 @@ date: 2025-09-10
 tags: [falowen, german, vocabulary, tips, learning]
 categories: [Tips]
 excerpt: "Small, consistent steps are the secret to mastering German vocabulary. Learn how Falowen helps you build habits that last."
-image: https://i.imgur.com/2T6e8nX.jpeg
+image: https://source.unsplash.com/featured/?building+daily+german+vocabulary+habits+with+falowen&sig=4
 image_width: 560
 image_height: 315
 ---

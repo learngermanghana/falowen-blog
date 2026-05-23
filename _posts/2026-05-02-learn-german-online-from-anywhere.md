@@ -5,7 +5,7 @@ date: 2026-05-02
 tags: [falowen, german, 30-day-blog, learn-german-online-from-anywhere]
 categories: [Falowen]
 excerpt: "Study German online from anywhere with flexible lessons and guided support."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-joshuamckn-1139317.jpg
+image: https://source.unsplash.com/featured/?learn+german+online+from+anywhere&sig=48
 image_alt: "Learn German Online from Anywhere"
 permalink: /learn-german-online-from-anywhere/
 seo:

@@ -5,7 +5,7 @@ date: 2025-10-20
 tags: [falowen, german, grammar, connectors, a2, b1]
 categories: [Guides]
 excerpt: "Learn when to use weil, denn, and da, plus practical alternatives like wegen, aufgrund, and deshalb/deswegen. Clear rules, examples, and quick practice."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-saeed-chembea-1063286943-32719717.jpg
+image: https://source.unsplash.com/featured/?different+ways+to+say+%27because%27+in+german%3A+weil%2C+denn%2C+da+%28and+more%29&sig=16
 image_alt: "Student writing German sentences in a notebook with a laptop on a desk"
 permalink: /because-in-german-weil-denn-da/
 seo:

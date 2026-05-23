@@ -5,7 +5,7 @@ date: 2025-09-09
 tags: [falowen, german, learning, exams, app]
 categories: [Guides]
 excerpt: "Discover how Falowen bridges classroom learning and independent German practice with exam prep, instant feedback, and teacher integration."
-image: https://i.imgur.com/pqXoqSC.png
+image: https://source.unsplash.com/featured/?falowen%3A+your+german+conversation+partner+for+everyday+learning&sig=3
 ---
 
 <style>

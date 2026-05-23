@@ -5,7 +5,7 @@ date: 2026-04-27
 tags: [falowen, german, 30-day-blog, top-10-german-verbs-for-beginners]
 categories: [German Vocabulary]
 excerpt: "Learn 10 important German verbs every beginner needs for daily conversation."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-artempodrez-5726810.jpg
+image: https://source.unsplash.com/featured/?top+10+german+verbs+for+beginners&sig=43
 image_alt: "Top 10 German Verbs for Beginners"
 permalink: /top-10-german-verbs-for-beginners/
 seo:

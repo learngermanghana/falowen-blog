@@ -5,7 +5,7 @@ date: 2026-04-29
 tags: [falowen, german, 30-day-blog, german-words-for-the-classroom]
 categories: [German Vocabulary]
 excerpt: "Learn useful German classroom words that students can use every day in lessons."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-saeed-chembea-1063286943-32719717.jpg
+image: https://source.unsplash.com/featured/?german+words+for+the+classroom&sig=45
 image_alt: "German Words for the Classroom"
 permalink: /german-words-for-the-classroom/
 seo:

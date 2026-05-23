@@ -5,7 +5,7 @@ date: 2025-10-05
 tags: [falowen, german, grammar, connectors, writing, exams]
 categories: ["Product Update"]
 excerpt: "Meet Connector Trainer, a friendly practice space for linking ideas with und, aber, denn, weil, deshalb and more. Level aware AI suggestions, English explanations with German examples, and instant tips. No scores, only learning."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-artempodrez-5726810.jpg
+image: https://source.unsplash.com/featured/?new+in+falowen%3A+connector+trainer+%28write+clearer+german%2C+faster%29&sig=13
 image_alt: "Student practicing German grammar on a laptop"
 description: "Connector Trainer helps learners practice German connectors with level aware AI suggestions, English explanations, German examples, and instant feedback. Available now to all Falowen users."
 published: true
