@@ -5,7 +5,7 @@ date: 2025-10-25
 tags: [falowen, german, grammar, a1, a2, sentence structure]
 categories: [Guides]
 excerpt: "German word order looks confusing at first, but these five rules will help you keep the verb in the right place and sound more natural. Learn how Falowen’s Sentence Trainer helps you practice each rule step by step."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-prince-beguin-81839921-10334158.jpg
+image: https://source.unsplash.com/featured/?5+simple+rules+for+german+sentence+structure+%28verb+comes+second%29&sig=17
 image_alt: "German learner writing example sentences from a grammar lesson"
 permalink: /german-sentence-structure-verb-second/
 seo:

@@ -5,7 +5,7 @@ date: 2026-04-21
 tags: [falowen, german, 30-day-blog, german-numbers-1-to-20-made-easy]
 categories: [Beginner German]
 excerpt: "Learn German numbers from 1 to 20 in a simple and practical way for beginners."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-saeed-chembea-1063286943-32719717.jpg
+image: https://source.unsplash.com/featured/?german+numbers+1+to+20+made+easy&sig=37
 image_alt: "German Numbers 1 to 20 Made Easy"
 permalink: /german-numbers-1-to-20-made-easy/
 seo:

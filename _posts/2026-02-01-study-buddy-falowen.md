@@ -5,7 +5,7 @@ date: 2026-02-01
 tags: [falowen, study buddy, ai, productivity, learning, new feature]
 categories: [Updates]
 excerpt: "Study Buddy is a collapsible helper bar inside Falowen that gives you quick shortcuts, personalized study insights, and a fast Q&A assistant, so you always know what to do next."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-rdne-8499492.jpg
+image: https://source.unsplash.com/featured/?introducing+study+buddy+in+falowen%3A+your+quick-help+learning+companion&sig=23
 image_alt: "Student using a phone and laptop for studying"
 permalink: /study-buddy-falowen/
 seo:

@@ -5,7 +5,7 @@ date: 2026-05-09
 tags: [falowen, german, 30-day-blog, why-daily-practice-matters-in-learning-german]
 categories: [German Learning]
 excerpt: "Discover why daily practice is one of the best ways to improve your German faster."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-polina-kovaleva-8362564.jpg
+image: https://source.unsplash.com/featured/?why+daily+practice+matters+in+learning+german&sig=55
 image_alt: "Why Daily Practice Matters in Learning German"
 permalink: /why-daily-practice-matters-in-learning-german/
 seo:

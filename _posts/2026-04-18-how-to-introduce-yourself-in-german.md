@@ -5,7 +5,7 @@ date: 2026-04-18
 tags: [falowen, german, 30-day-blog, how-to-introduce-yourself-in-german]
 categories: [Speaking Practice]
 excerpt: "Learn simple sentences to introduce yourself in German with confidence as a beginner."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-prince-beguin-81839921-10334158.jpg
+image: https://source.unsplash.com/featured/?how+to+introduce+yourself+in+german&sig=34
 image_alt: "How to Introduce Yourself in German"
 permalink: /how-to-introduce-yourself-in-german/
 seo:

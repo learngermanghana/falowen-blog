@@ -5,7 +5,7 @@ date: 2026-03-09
 tags: [falowen, german, b1, writing, opinion]
 categories: [Guides]
 excerpt: "B1 opinion-writing guide with phrases, argument structure, and exam-focused practice."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-rdne-8499492.jpg
+image: https://source.unsplash.com/featured/?b1%3A+express+opinions+with+structure+%E2%80%93+phrases%2C+examples%2C+mistakes&sig=29
 image_alt: "Learner drafting a structured B1 German opinion text"
 permalink: /b1-opinion-writing-structure-guide/
 seo:

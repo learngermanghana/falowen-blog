@@ -5,7 +5,7 @@ date: 2026-04-16
 tags: [falowen, german, 30-day-blog, german-alphabet-for-complete-beginners]
 categories: [Beginner German]
 excerpt: "Learn the German alphabet in a simple way and build a strong foundation for speaking and reading."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-joshuamckn-1139317.jpg
+image: https://source.unsplash.com/featured/?german+alphabet+for+complete+beginners&sig=32
 image_alt: "German Alphabet for Complete Beginners"
 permalink: /german-alphabet-for-complete-beginners/
 seo:

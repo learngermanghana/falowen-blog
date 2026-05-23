@@ -5,7 +5,7 @@ date: 2026-04-24
 tags: [falowen, german, 30-day-blog, simple-german-sentences-you-can-start-using-today]
 categories: [Speaking Practice]
 excerpt: "Learn simple German sentence patterns you can start using right away as a beginner."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-joshuamckn-1139317.jpg
+image: https://source.unsplash.com/featured/?simple+german+sentences+you+can+start+using+today&sig=40
 image_alt: "Simple German Sentences You Can Start Using Today"
 permalink: /simple-german-sentences-you-can-start-using-today/
 seo:

@@ -6,7 +6,7 @@ tags: [falowen, german, sprechprüfung, grammar, exams, confidence]
 categories: [Tips]
 excerpt: "Falowen’s Chat • Grammar • Exams cycle transforms shy learners into confident speakers: daily chat prompts, instant grammar fixes, and exam-style practice make Sprechen feel natural before the Goethe exam."
 description: "How Falowen’s Chat, Grammar, and Exams features help students practice daily, get instant corrections, and prepare under exam conditions—building real confidence for Goethe Sprechen and Schreiben tasks."
-image: https://i.imgur.com/6QhVqDY.jpeg
+image: https://source.unsplash.com/featured/?chat+%E2%80%A2+grammar+%E2%80%A2+exams%3A+how+students+build+confidence+for+goethe+sprechen&sig=11
 image_alt: "Student confidently practicing German speaking with Falowen’s Chat, Grammar, and Exams tools"
 canonical_url: https://falowen.app
 ---

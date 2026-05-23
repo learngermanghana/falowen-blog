@@ -5,7 +5,7 @@ date: 2025-10-10
 tags: [falowen, german, learning, exams, a2, b1]
 categories: [Guides]
 excerpt: "The jump from A2 to B1 is where your German starts sounding real. Learn what changes, how to practice daily, and how Falowen helps you make the transition smoothly."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-ulfet-680828476-31703180.jpg
+image: https://source.unsplash.com/featured/?how+to+move+from+a2+to+b1+%28and+sound+natural%29&sig=14
 image_alt: "German learner studying with Falowen app on laptop and notebook"
 permalink: /how-to-move-from-a2-to-b1/
 seo:

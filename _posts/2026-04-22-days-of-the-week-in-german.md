@@ -5,7 +5,7 @@ date: 2026-04-22
 tags: [falowen, german, 30-day-blog, days-of-the-week-in-german]
 categories: [German Vocabulary]
 excerpt: "Learn the days of the week in German and how to use them in daily conversation."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-eden-34297765.jpg
+image: https://source.unsplash.com/featured/?days+of+the+week+in+german&sig=38
 image_alt: "Days of the Week in German"
 permalink: /days-of-the-week-in-german/
 seo:

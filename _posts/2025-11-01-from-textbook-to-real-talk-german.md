@@ -5,7 +5,7 @@ date: 2025-11-01
 tags: [falowen, german, speaking, conversation, practice, a1, a2, b1]
 categories: [Guides]
 excerpt: "Many learners stop at 'Wie geht’s?'. Here’s how to move beyond small talk, sound natural, and start real conversations in German. Insights from classroom experience and Falowen’s Topic Coach."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-eden-34297765.jpg
+image: https://source.unsplash.com/featured/?from+textbook+to+real+talk%3A+how+to+move+beyond+%27wie+geht%E2%80%99s%3F%27&sig=18
 image_alt: "German students practicing speaking with notebooks and laptops on a table"
 permalink: /from-textbook-to-real-talk-german/
 seo:

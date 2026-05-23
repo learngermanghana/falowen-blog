@@ -5,7 +5,7 @@ date: 2026-04-28
 tags: [falowen, german, 30-day-blog, how-to-talk-about-your-family-in-german]
 categories: [Speaking Practice]
 excerpt: "Learn family vocabulary and simple sentences to talk about your family in German."
-image: https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-ulfet-680828476-31703180.jpg
+image: https://source.unsplash.com/featured/?how+to+talk+about+your+family+in+german&sig=44
 image_alt: "How to Talk About Your Family in German"
 permalink: /how-to-talk-about-your-family-in-german/
 seo:
