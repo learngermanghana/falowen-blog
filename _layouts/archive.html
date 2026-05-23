@@ -1,0 +1,47 @@
+---
+layout: default
+---
+
+<section class="archive-hero">
+  <span class="eyebrow">Falowen learning library</span>
+  <h1>{{ page.title | default: 'German learning articles' }}</h1>
+  <p>{{ page.description | default: 'Browse practical German lessons, exam tips and study guides from Learn Language Education Academy.' }}</p>
+  <div class="archive-search-row">
+    <a class="btn-primary" href="https://www.learngermanghana.com/classes" target="_blank" rel="noopener">Join a class</a>
+    <a class="btn-secondary" href="{{ '/search/' | relative_url }}">Search all lessons</a>
+  </div>
+</section>
+
+<section class="topic-strip" aria-label="Popular blog topics">
+  <a href="{{ '/topics/a1-german/' | relative_url }}">A1 German</a>
+  <a href="{{ '/topics/a2-german/' | relative_url }}">A2 German</a>
+  <a href="{{ '/topics/exam-prep/' | relative_url }}">Exam Prep</a>
+  <a href="{{ '/topics/grammar/' | relative_url }}">Grammar</a>
+  <a href="{{ '/topics/speaking/' | relative_url }}">Speaking</a>
+  <a href="{{ '/topics/writing/' | relative_url }}">Writing</a>
+</section>
+
+<section class="archive-grid">
+  {% for post in site.posts %}
+    <article class="post-card group">
+      <a class="post-card-link" href="{{ post.url | relative_url }}">
+        {% if post.image %}
+          <img class="post-card-img" src="{{ post.image }}" alt="{{ post.title | escape }}" loading="lazy">
+        {% else %}
+          <div class="post-card-placeholder">Deutsch</div>
+        {% endif %}
+        <div class="post-card-body">
+          <div class="post-card-meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+            {% if post.categories and post.categories.size > 0 %}<span>{{ post.categories[0] }}</span>{% endif %}
+          </div>
+          <h2 class="post-card-title">{{ post.title }}</h2>
+          {% if post.excerpt %}<p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 135 }}</p>{% endif %}
+          <span class="post-card-read">Read article →</span>
+        </div>
+      </a>
+    </article>
+  {% endfor %}
+</section>
+
+{% include lead-capture.html %}

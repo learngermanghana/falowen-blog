@@ -1,0 +1,51 @@
+---
+layout: default
+---
+
+<section class="archive-hero topic-hero">
+  <span class="eyebrow">Topic guide</span>
+  <h1>{{ page.title }}</h1>
+  <p>{{ page.description }}</p>
+  <div class="archive-search-row">
+    <a class="btn-primary" href="{{ '/blogs/' | relative_url }}">All articles</a>
+    <a class="btn-secondary" href="{{ '/search/' | relative_url }}">Search lessons</a>
+  </div>
+</section>
+
+{% assign topic_posts = site.posts | where_exp: 'post', 'post.tags contains page.topic or post.categories contains page.topic or post.title contains page.topic' %}
+{% if topic_posts.size == 0 and page.alt_topic %}
+  {% assign topic_posts = site.posts | where_exp: 'post', 'post.tags contains page.alt_topic or post.categories contains page.alt_topic or post.title contains page.alt_topic' %}
+{% endif %}
+
+<section class="archive-grid topic-grid">
+  {% for post in topic_posts %}
+    <article class="post-card group">
+      <a class="post-card-link" href="{{ post.url | relative_url }}">
+        {% if post.image %}
+          <img class="post-card-img" src="{{ post.image }}" alt="{{ post.title | escape }}" loading="lazy">
+        {% else %}
+          <div class="post-card-placeholder">Deutsch</div>
+        {% endif %}
+        <div class="post-card-body">
+          <div class="post-card-meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+            {% if post.categories and post.categories.size > 0 %}<span>{{ post.categories[0] }}</span>{% endif %}
+          </div>
+          <h2 class="post-card-title">{{ post.title }}</h2>
+          {% if post.excerpt %}<p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 135 }}</p>{% endif %}
+          <span class="post-card-read">Read lesson →</span>
+        </div>
+      </a>
+    </article>
+  {% endfor %}
+</section>
+
+{% if topic_posts.size == 0 %}
+  <section class="empty-state">
+    <h2>More lessons are coming.</h2>
+    <p>Use the full blog archive or search page to find related German learning resources.</p>
+    <a class="btn-primary" href="{{ '/blogs/' | relative_url }}">Browse all articles</a>
+  </section>
+{% endif %}
+
+{% include lead-capture.html %}
