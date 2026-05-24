@@ -3,15 +3,14 @@ layout: default
 ---
 
 <article class="post h-entry py-8 md:py-12" itemscope itemtype="http://schema.org/BlogPosting">
+  {% assign title_key = page.title | downcase %}
   {% assign post_image = page.image %}
-  {% assign refresh_hero_images = page.refresh_hero_images | default: true %}
-  {% if refresh_hero_images %}
-    {% assign unsplash_query = page.hero_query | default: page.title | slugify | replace: "-", "," %}
-    {% assign refresh_sig = site.time | date: "%s" %}
-    {% assign post_image = "https://source.unsplash.com/featured/1200x700/?" | append: unsplash_query | append: "&sig=" | append: refresh_sig %}
-  {% elsif post_image and post_image contains "https://unsplash.com/s/photos/" %}
-    {% assign unsplash_query = post_image | remove: "https://unsplash.com/s/photos/" | replace: "-", "," %}
-    {% assign post_image = "https://source.unsplash.com/featured/1200x700/?" | append: unsplash_query %}
+  {% if title_key contains 'time' or title_key contains 'uhr' %}
+    {% assign post_image = '/assets/img/falowen-topic-time.svg' | relative_url %}
+  {% elsif title_key contains 'word' or title_key contains 'vocabulary' or title_key contains 'numbers' or title_key contains 'alphabet' or title_key contains 'days' %}
+    {% assign post_image = '/assets/img/falowen-topic-vocabulary.svg' | relative_url %}
+  {% elsif post_image == nil or post_image == '' or post_image contains 'source.unsplash.com' or post_image contains 'unsplash.com/s/photos' %}
+    {% assign post_image = '/assets/img/falowen-topic-general.svg' | relative_url %}
   {% endif %}
 
   <header class="post-hero">
@@ -31,11 +30,9 @@ layout: default
 
     {% if page.excerpt %}<p class="post-dek">{{ page.excerpt | strip_html }}</p>{% endif %}
 
-    {% if post_image %}
-      <figure class="post-figure">
-        <img src="{{ post_image }}" alt="{{ page.image_alt | default: page.title | escape }}" width="{{ page.image_width | default: 1200 }}" height="{{ page.image_height | default: 700 }}" loading="eager" class="post-img">
-      </figure>
-    {% endif %}
+    <figure class="post-figure">
+      <img src="{{ post_image }}" alt="{{ page.image_alt | default: page.title | escape }}" width="1200" height="700" loading="eager" class="post-img">
+    </figure>
   </header>
 
   <div class="post-layout">
@@ -89,8 +86,8 @@ layout: default
   "@type": "Article",
   "mainEntityOfPage": {"@type": "WebPage", "@id": "{{ page.url | absolute_url }}"},
   "headline": {{ page.title | jsonify }}{% if page.excerpt %},
-  "description": {{ page.excerpt | strip_html | strip_newlines | jsonify }}{% endif %}{% if post_image %},
-  "image": {{ post_image | absolute_url | jsonify }}{% endif %},
+  "description": {{ page.excerpt | strip_html | strip_newlines | jsonify }}{% endif %},
+  "image": {{ post_image | absolute_url | jsonify }},
   "datePublished": "{{ page.date | date_to_xmlschema }}",
   "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}"{% if page.author %},
   "author": {"@type": "Person", "name": {{ page.author | jsonify }}}{% else %},
