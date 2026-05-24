@@ -2,46 +2,111 @@
 layout: default
 ---
 
-<section class="archive-hero">
-  <span class="eyebrow">Falowen learning library</span>
-  <h1>{{ page.title | default: 'German learning articles' }}</h1>
-  <p>{{ page.description | default: 'Browse practical German lessons, exam tips and study guides from Learn Language Education Academy.' }}</p>
-  <div class="archive-search-row">
-    <a class="btn-primary" href="https://www.learngermanghana.com/classes" target="_blank" rel="noopener">Join a class</a>
-    <a class="btn-secondary" href="{{ '/search/' | relative_url }}">Search all lessons</a>
+{% assign featured_post = site.posts | first %}
+
+<section class="blog-library-hero">
+  <div class="blog-library-copy">
+    <span class="eyebrow">Falowen learning library</span>
+    <h1>{{ page.title | default: 'German Learning Blog' }}</h1>
+    <p>{{ page.description | default: 'Practical German lessons, exam tips, vocabulary and grammar guides for A1–C1 learners.' }}</p>
+    <div class="blog-library-actions">
+      <a class="btn-primary" href="https://www.learngermanghana.com/classes" target="_blank" rel="noopener">Start learning German</a>
+      <a class="btn-secondary" href="{{ '/search/' | relative_url }}">Search lessons</a>
+    </div>
+    <div class="blog-library-stats" aria-label="Blog learning highlights">
+      <div><strong>{{ site.posts | size }}+</strong><span>Lessons</span></div>
+      <div><strong>A1–C1</strong><span>Levels</span></div>
+      <div><strong>Exam</strong><span>Practice</span></div>
+    </div>
   </div>
-</section>
 
-<section class="topic-strip" aria-label="Popular blog topics">
-  <a href="{{ '/topics/a1-german/' | relative_url }}">A1 German</a>
-  <a href="{{ '/topics/a2-german/' | relative_url }}">A2 German</a>
-  <a href="{{ '/topics/exam-prep/' | relative_url }}">Exam Prep</a>
-  <a href="{{ '/topics/grammar/' | relative_url }}">Grammar</a>
-  <a href="{{ '/topics/speaking/' | relative_url }}">Speaking</a>
-  <a href="{{ '/topics/writing/' | relative_url }}">Writing</a>
-</section>
-
-<section class="archive-grid">
-  {% for post in site.posts %}
-    <article class="post-card group">
-      <a class="post-card-link" href="{{ post.url | relative_url }}">
-        {% if post.image %}
-          <img class="post-card-img" src="{{ post.image }}" alt="{{ post.title | escape }}" loading="lazy">
-        {% else %}
-          <div class="post-card-placeholder">Deutsch</div>
-        {% endif %}
-        <div class="post-card-body">
-          <div class="post-card-meta">
-            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
-            {% if post.categories and post.categories.size > 0 %}<span>{{ post.categories[0] }}</span>{% endif %}
-          </div>
-          <h2 class="post-card-title">{{ post.title }}</h2>
-          {% if post.excerpt %}<p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 135 }}</p>{% endif %}
-          <span class="post-card-read">Read article →</span>
+  {% if featured_post %}
+    {% assign featured_key = featured_post.title | downcase %}
+    {% assign featured_image = featured_post.image %}
+    {% if featured_key contains 'time' or featured_key contains 'uhr' %}
+      {% assign featured_image = '/assets/img/falowen-topic-time.svg' | relative_url %}
+    {% elsif featured_key contains 'word' or featured_key contains 'vocabulary' or featured_key contains 'numbers' or featured_key contains 'alphabet' or featured_key contains 'days' %}
+      {% assign featured_image = '/assets/img/falowen-topic-vocabulary.svg' | relative_url %}
+    {% elsif featured_image == nil or featured_image == '' or featured_image contains 'source.unsplash.com' or featured_image contains 'unsplash.com/s/photos' %}
+      {% assign featured_image = '/assets/img/falowen-topic-general.svg' | relative_url %}
+    {% endif %}
+    <article class="blog-featured-card">
+      <a href="{{ featured_post.url | relative_url }}">
+        <img src="{{ featured_image }}" alt="{{ featured_post.title | escape }}" loading="eager">
+        <div>
+          <span class="featured-badge">Featured lesson</span>
+          <h2>{{ featured_post.title }}</h2>
+          {% if featured_post.excerpt %}<p>{{ featured_post.excerpt | strip_html | truncate: 150 }}</p>{% endif %}
+          <strong>Read featured article →</strong>
         </div>
       </a>
     </article>
-  {% endfor %}
+  {% endif %}
 </section>
 
-{% include lead-capture.html %}
+<section class="blog-topic-panel" aria-label="Popular blog topics">
+  <div class="blog-section-head">
+    <span class="eyebrow">Browse by goal</span>
+    <h2>Choose what you want to improve today.</h2>
+    <p>Jump into lessons based on your level, exam goal, or skill area.</p>
+  </div>
+  <div class="blog-topic-grid">
+    <a href="{{ '/topics/a1-german/' | relative_url }}"><strong>A1 German</strong><span>Start with greetings, numbers and daily words.</span></a>
+    <a href="{{ '/topics/a2-german/' | relative_url }}"><strong>A2 German</strong><span>Build better grammar and everyday confidence.</span></a>
+    <a href="{{ '/topics/grammar/' | relative_url }}"><strong>Grammar</strong><span>Understand rules with simple explanations.</span></a>
+    <a href="{{ '/topics/speaking/' | relative_url }}"><strong>Speaking</strong><span>Practice useful phrases for real conversation.</span></a>
+    <a href="{{ '/topics/writing/' | relative_url }}"><strong>Writing</strong><span>Improve emails, notes and exam writing.</span></a>
+    <a href="{{ '/topics/exam-prep/' | relative_url }}"><strong>Exam Prep</strong><span>Prepare for Goethe-style tasks and confidence.</span></a>
+  </div>
+</section>
+
+<section class="blog-posts-section">
+  <div class="blog-section-head blog-section-row">
+    <div>
+      <span class="eyebrow">Latest guides</span>
+      <h2>All German learning articles</h2>
+      <p>Fresh lessons from the Falowen blog library.</p>
+    </div>
+    <a class="btn-secondary" href="{{ '/search/' | relative_url }}">Find a topic</a>
+  </div>
+
+  <div class="blog-card-grid">
+    {% for post in site.posts %}
+      {% assign card_key = post.title | downcase %}
+      {% assign card_image = post.image %}
+      {% if card_key contains 'time' or card_key contains 'uhr' %}
+        {% assign card_image = '/assets/img/falowen-topic-time.svg' | relative_url %}
+      {% elsif card_key contains 'word' or card_key contains 'vocabulary' or card_key contains 'numbers' or card_key contains 'alphabet' or card_key contains 'days' %}
+        {% assign card_image = '/assets/img/falowen-topic-vocabulary.svg' | relative_url %}
+      {% elsif card_image == nil or card_image == '' or card_image contains 'source.unsplash.com' or card_image contains 'unsplash.com/s/photos' %}
+        {% assign card_image = '/assets/img/falowen-topic-general.svg' | relative_url %}
+      {% endif %}
+      <article class="blog-article-card">
+        <a href="{{ post.url | relative_url }}">
+          <img src="{{ card_image }}" alt="{{ post.title | escape }}" loading="lazy">
+          <div class="blog-article-body">
+            <div class="blog-article-meta">
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+              {% if post.categories and post.categories.size > 0 %}<span>{{ post.categories[0] }}</span>{% endif %}
+            </div>
+            <h3>{{ post.title }}</h3>
+            {% if post.excerpt %}<p>{{ post.excerpt | strip_html | truncate: 125 }}</p>{% endif %}
+            <strong>Read lesson →</strong>
+          </div>
+        </a>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="blog-bottom-cta">
+  <div>
+    <span class="eyebrow">Need a clear study plan?</span>
+    <h2>Join Learn Language Education Academy and study German with guidance.</h2>
+    <p>Use the blog for free practice, then join our classes when you need structure, feedback and exam direction.</p>
+  </div>
+  <div class="blog-library-actions">
+    <a class="btn-primary" href="https://www.learngermanghana.com/classes" target="_blank" rel="noopener">View upcoming classes</a>
+    <a class="btn-secondary" href="https://wa.me/233541588913" target="_blank" rel="noopener">Chat on WhatsApp</a>
+  </div>
+</section>
