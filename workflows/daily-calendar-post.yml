@@ -1,4 +1,4 @@
-name: Daily Calendar Blog Post PR
+name: Biweekly Calendar Blog Post PR
 
 on:
   workflow_dispatch:
@@ -12,14 +12,14 @@ on:
         required: false
         type: string
   schedule:
-    - cron: "5 5 * * *" # Daily at 05:05 UTC
+    - cron: "5 5 * * 3" # Weekly check at 05:05 UTC; guarded to create a post every 2 weeks
 
 permissions:
   contents: write
   pull-requests: write
 
 jobs:
-  create-daily-post-pr:
+  create-biweekly-post-pr:
     runs-on: ubuntu-latest
 
     steps:
@@ -51,7 +51,31 @@ jobs:
           echo "run_date=$run_date" >> "$GITHUB_OUTPUT"
           echo "start_date=$INPUT_START_DATE" >> "$GITHUB_OUTPUT"
 
-      - name: Generate daily calendar post
+      - name: Check biweekly publishing window
+        id: cadence
+        shell: bash
+        run: |
+          anchor_date="2026-06-03"
+
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "should_generate=true" >> "$GITHUB_OUTPUT"
+            echo "Manual dispatch requested; generating immediately."
+            exit 0
+          fi
+
+          run_date="${{ steps.date.outputs.run_date }}"
+          days_since_anchor=$(( ( $(date -u -d "$run_date" +%s) - $(date -u -d "$anchor_date" +%s) ) / 86400 ))
+
+          if [ "$days_since_anchor" -ge 0 ] && [ $((days_since_anchor % 14)) -eq 0 ]; then
+            echo "should_generate=true" >> "$GITHUB_OUTPUT"
+            echo "Biweekly publishing window is open for $run_date."
+          else
+            echo "should_generate=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping $run_date; next AI blog post is on the two-week cadence from $anchor_date."
+          fi
+
+      - name: Generate biweekly calendar post
+        if: steps.cadence.outputs.should_generate == 'true'
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
@@ -63,20 +87,21 @@ jobs:
           python scripts/generate_daily_calendar_post.py "${args[@]}"
 
       - name: Create Pull Request
+        if: steps.cadence.outputs.should_generate == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
-          commit-message: "chore(blog): generate daily calendar post"
-          branch: "bot/daily-calendar-post"
+          commit-message: "chore(blog): generate biweekly calendar post"
+          branch: "bot/biweekly-calendar-post"
           delete-branch: true
-          title: "chore(blog): daily calendar auto-generated post"
+          title: "chore(blog): biweekly calendar auto-generated post"
           body: |
             ## Summary
-            - Generate the daily calendar post via `scripts/generate_daily_calendar_post.py`.
+            - Generate the biweekly calendar post via `scripts/generate_daily_calendar_post.py`.
             - Use `BLOG_TIMEZONE` repo variable (fallback: `Africa/Accra`) to determine the run date for scheduled executions.
             - Open a PR only when content changed.
 
             ## Notes
-            - Triggered daily (`5 5 * * *`) or via manual dispatch.
+            - Scheduled checks run weekly (`5 5 * * 3`), but generation is guarded to one post every 2 weeks, or via manual dispatch.
             - Manual dispatch can override `date` and `start_date`.
           labels: |
             auto-update

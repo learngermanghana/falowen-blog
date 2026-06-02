@@ -2,7 +2,7 @@ name: Auto Post Blog Updates to LinkedIn
 
 on:
   workflow_run:
-    workflows: ["30-Day Daily Blog Auto-Publish"]
+    workflows: ["30-Day Biweekly Blog Auto-Publish"]
     types: [completed]
   workflow_dispatch:
     inputs:
@@ -28,17 +28,43 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check biweekly publishing window
+        id: cadence
+        shell: bash
+        run: |
+          anchor_date="2026-06-03"
+
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "should_publish=true" >> "$GITHUB_OUTPUT"
+            echo "Manual dispatch requested; publishing immediately."
+            exit 0
+          fi
+
+          today=$(date -u +%F)
+          days_since_anchor=$(( ( $(date -u -d "$today" +%s) - $(date -u -d "$anchor_date" +%s) ) / 86400 ))
+
+          if [ "$days_since_anchor" -ge 0 ] && [ $((days_since_anchor % 14)) -eq 0 ]; then
+            echo "should_publish=true" >> "$GITHUB_OUTPUT"
+            echo "Biweekly LinkedIn publishing window is open for $today."
+          else
+            echo "should_publish=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping LinkedIn publish for $today; cadence starts at $anchor_date and repeats every 14 days."
+          fi
+
       - name: Checkout
+        if: steps.cadence.outputs.should_publish == 'true'
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Setup Python
+        if: steps.cadence.outputs.should_publish == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
       - name: Determine post path
+        if: steps.cadence.outputs.should_publish == 'true'
         id: resolve
         shell: bash
         run: |
@@ -59,7 +85,7 @@ jobs:
           echo "post_path=$target" >> "$GITHUB_OUTPUT"
 
       - name: Publish to LinkedIn
-        if: steps.resolve.outputs.skip != 'true'
+        if: steps.cadence.outputs.should_publish == 'true' && steps.resolve.outputs.skip != 'true'
         env:
           # These values are expected to be configured as GitHub Actions repository secrets.
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
