@@ -5,7 +5,7 @@ date: 2025-09-17
 tags: [falowen, motivation, certificates, leaderboard, transcript, attendance, rewrite, assessment, a1, a2, b1, b2]
 categories: [Features]
 excerpt: "Falowen keeps you moving with a 60% pass rule, personal leaderboards, clear transcripts, rewrite-overwrite scoring, attendance streaks, and smart next-assignment recommendations—plus private, automated alerts."
-image: https://source.unsplash.com/featured/?how+falowen+motivates+consistent+progress%3A+certificates%2C+personal+leaderboards%2C+transcripts+and+attendance&sig=10
+image: https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=1600&q=80
 ---
 
 <style>

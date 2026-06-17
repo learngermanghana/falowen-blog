@@ -5,7 +5,7 @@ date: 2025-09-15
 tags: [falowen, german, grammar, cases, a1, a2, b1, tips]
 categories: [Grammar]
 excerpt: "Every statement belongs to a case family—nominative, accusative, dative, or genitive. Falowen helps you spot the family fast, choose the right articles, and learn through guided discussion in Custom Chat."
-image: https://source.unsplash.com/featured/?german+cases+made+simple%3A+the+family+method+with+falowen&sig=8
+image: https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=1600&q=80
 ---
 
 <!-- Mobile-friendly hero image tweak (scoped to this post) -->

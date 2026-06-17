@@ -5,7 +5,7 @@ date: 2025-09-09
 tags: [falowen, german, speaking, ai, practice]
 categories: [Debate]
 excerpt: "Speaking partners used to be essential. With Falowen, you can practice anytime, anywhere, faster than the traditional way."
-image: https://source.unsplash.com/featured/?do+we+still+need+speaking+partners+to+learn+german%3F&sig=2
+image: https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1600&q=80
 ---
 ## The Traditional Way
 

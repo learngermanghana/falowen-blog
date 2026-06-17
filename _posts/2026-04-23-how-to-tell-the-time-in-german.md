@@ -5,7 +5,7 @@ date: 2026-04-23
 tags: [falowen, german, 30-day-blog, how-to-tell-the-time-in-german]
 categories: [Beginner German]
 excerpt: "Master basic time expressions in German and start using them in everyday conversations."
-image: https://source.unsplash.com/featured/?how+to+tell+the+time+in+german&sig=39
+image: https://images.unsplash.com/photo-1501139083538-0139583c060f?auto=format&fit=crop&w=1600&q=80
 image_alt: "How to Tell the Time in German"
 permalink: /how-to-tell-the-time-in-german/
 seo:

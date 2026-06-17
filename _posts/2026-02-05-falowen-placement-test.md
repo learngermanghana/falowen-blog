@@ -5,7 +5,7 @@ date: 2026-02-05
 tags: [falowen, placement test, cefr, a1, a2, b1, b2, c1, german, level test]
 categories: [Updates]
 excerpt: "Not sure if you’re A1, A2, B1, B2, or C1? Falowen now has a Placement Test page that helps you find your level and start learning with confidence."
-image: https://source.unsplash.com/featured/?new+on+falowen%3A+placement+test+for+learners+who+don%E2%80%99t+know+their+level&sig=24
+image: https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1600&q=80
 image_alt: "Person taking an online test on a laptop"
 permalink: /falowen-placement-test/
 seo:

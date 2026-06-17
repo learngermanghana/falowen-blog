@@ -5,7 +5,7 @@ date: 2026-05-11
 tags: [falowen, german, 30-day-blog, german-sentence-structure-for-beginners]
 categories: [German Grammar]
 excerpt: "Learn the basics of German sentence structure in a simple and beginner-friendly way."
-image: https://source.unsplash.com/featured/?chalkboard,grammar&sig=27
+image: https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=1600&q=80
 image_alt: "German Sentence Structure for Beginners"
 permalink: /german-sentence-structure-for-beginners/
 seo:

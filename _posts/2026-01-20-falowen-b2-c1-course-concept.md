@@ -5,7 +5,7 @@ date: 2026-01-20
 tags: [falowen, german, b2, c1, goethe, exam prep, self-learning]
 categories: [Guides]
 excerpt: "Discover the concept behind Falowen’s B2 and C1 courses: a daily, exam-aligned routine that trains speaking, writing, vocabulary, plus reading and listening—with score-gated progress for mastery."
-image: https://source.unsplash.com/featured/?falowen+b2+%26+c1+courses%3A+the+daily+self-learning+routine+behind+them&sig=21
+image: https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=1600&q=80
 image_alt: "Falowen B2 and C1 course promo image"
 permalink: /falowen-b2-c1-course-concept/
 seo:
