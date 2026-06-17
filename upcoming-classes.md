@@ -1,13 +1,7 @@
 ---
-layout: default
+layout: redirect
 title: Upcoming Classes
 permalink: /upcoming-classes/
+redirect_to: https://www.falowen.app/classes
+sitemap: false
 ---
-
-# Upcoming Classes
-
-For the latest class schedule, please visit:
-
-[https://www.learngermanghana.com/classes](https://www.learngermanghana.com/classes)
-
-This page has the current upcoming class information.
