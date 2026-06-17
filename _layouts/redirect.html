@@ -1,0 +1,16 @@
+---
+---
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="0; url={{ page.redirect_to }}">
+    <link rel="canonical" href="{{ page.redirect_to }}">
+    <title>Redirecting to {{ page.redirect_to }}</title>
+  </head>
+  <body>
+    <p>Redirecting to <a href="{{ page.redirect_to }}">{{ page.redirect_to }}</a>.</p>
+    <script>window.location.replace({{ page.redirect_to | jsonify }});</script>
+  </body>
+</html>
