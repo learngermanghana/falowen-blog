@@ -6,7 +6,7 @@ tags: [A1, Sprechen, Goethe, Exam, German, Falowen, Ghana]
 description: "Very simple A1 guide for Teil 1, Teil 2, and Teil 3. Short examples, 10-second rule, and a clear checklist."
 permalink: /blog/a1-speaking-exam-guide/
 # Official post image (hero/social). This is NOT a link and NOT repeated in the body.
-image: https://source.unsplash.com/featured/?a1+german+speaking+exam+%28teil+1%E2%80%933%29%3A+simple+guide+%2B+free+checklist&sig=12
+image: https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1600&q=80
 featured_image: https://i.imgur.com/GJyCJFY.jpeg
 og_image: https://i.imgur.com/GJyCJFY.jpeg
 social_image: https://i.imgur.com/GJyCJFY.jpeg

@@ -5,7 +5,7 @@ date: 2026-05-07
 tags: [falowen, german, 30-day-blog, german-vocabulary-for-travel]
 categories: [German Vocabulary]
 excerpt: "Learn useful German travel words and phrases for airports, hotels, and everyday travel situations."
-image: https://source.unsplash.com/featured/?german+vocabulary+for+travel&sig=53
+image: https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=1600&q=80
 image_alt: "German Vocabulary for Travel"
 permalink: /german-vocabulary-for-travel/
 seo:

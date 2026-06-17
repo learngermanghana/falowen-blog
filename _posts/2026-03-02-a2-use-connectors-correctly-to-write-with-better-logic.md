@@ -5,7 +5,7 @@ date: 2026-03-02
 tags: [falowen, german, a2, writing, connectors]
 categories: [Guides]
 excerpt: "Learn A2 connectors with deeper examples, common errors, and practical writing drills."
-image: https://source.unsplash.com/featured/?a2%3A+use+connectors+correctly+to+write+with+better+logic&sig=28
+image: https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1600&q=80
 image_alt: "German learner reviewing connector notes for A2 writing"
 permalink: /a2-german-connectors-writing-guide/
 seo:

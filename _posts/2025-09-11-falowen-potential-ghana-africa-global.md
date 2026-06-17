@@ -5,7 +5,7 @@ date: 2025-09-09
 tags: [falowen, german, africa, education, global, goethe-a1, goethe-a2]
 categories: [Vision]
 excerpt: "Born in Awoshie, Accra in 2023 and launched in 2025, Falowen builds on 500+ student exam passes with a hybrid model, AI support, and a course tested in real classrooms so anyone can learn from anywhere."
-image: https://source.unsplash.com/featured/?falowen%E2%80%99s+potential+in+ghana%2C+africa%2C+and+across+the+globe&sig=5
+image: https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80
 ---
 
 <style>

@@ -5,7 +5,7 @@ date: 2026-06-03
 tags: [falowen, german, 30-day-blog, how-to-describe-your-daily-routine-in-german]
 categories: [Speaking Practice]
 excerpt: "Learn useful verbs and sentence structures to describe your daily routine in German."
-image: https://source.unsplash.com/featured/?morning,routine,desk&sig=50
+image: https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=1600&q=80
 image_alt: "How to Describe Your Daily Routine in German"
 permalink: /how-to-describe-your-daily-routine-in-german/
 seo:

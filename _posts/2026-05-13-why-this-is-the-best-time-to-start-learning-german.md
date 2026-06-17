@@ -5,7 +5,7 @@ date: 2026-05-13
 tags: [falowen, german, 30-day-blog, why-this-is-the-best-time-to-start-learning-german]
 categories: [Academy]
 excerpt: "See why now is the best time to start learning German and take the first step toward your goals."
-image: https://source.unsplash.com/featured/?motivated,student,desk&sig=29
+image: https://images.unsplash.com/photo-1501139083538-0139583c060f?auto=format&fit=crop&w=1600&q=80
 image_alt: "Why This Is the Best Time to Start Learning German"
 permalink: /why-this-is-the-best-time-to-start-learning-german/
 seo:

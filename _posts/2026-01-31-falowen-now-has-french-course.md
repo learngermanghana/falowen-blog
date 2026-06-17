@@ -5,7 +5,7 @@ date: 2026-01-31
 tags: [falowen, french, language learning, new feature, course]
 categories: [Updates]
 excerpt: "Falowen is no longer only for German learners — we’ve added a French course. Here’s what it means, who it’s for, and how to start today."
-image: https://source.unsplash.com/featured/?falowen+now+has+a+french+course+%F0%9F%87%AB%F0%9F%87%B7&sig=22
+image: https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1600&q=80
 image_alt: "Student studying French with a notebook and phone"
 permalink: /falowen-french-course-announcement/
 seo:

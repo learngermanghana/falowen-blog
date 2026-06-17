@@ -5,7 +5,7 @@ date: 2026-05-12
 tags: [falowen, german, 30-day-blog, how-to-talk-about-your-hobbies-in-german]
 categories: [Speaking Practice]
 excerpt: "Learn how to talk about your hobbies in German using simple words and sentence examples."
-image: https://source.unsplash.com/featured/?hobby,reading,music,sports&sig=28
+image: https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1600&q=80
 image_alt: "How to Talk About Your Hobbies in German"
 permalink: /how-to-talk-about-your-hobbies-in-german/
 seo:

@@ -5,7 +5,7 @@ date: 2025-09-14
 tags: [falowen, german, writing, exams, features, tips]
 categories: [Features]
 excerpt: "Three tabs that make German writing clear: Practice Letters, Mark My Letter, and the Ideas Generator. Auto level tuning, instant scores with a pass mark above 17, live stats, and export options."
-image: https://source.unsplash.com/featured/?schreiben+trainer%3A+from+blank+page+to+confident+writing&sig=7
+image: https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1600&q=80
 ---
 
 <style>

@@ -5,7 +5,7 @@ date: 2026-05-15
 tags: [falowen, german, 30-day-blog, why-learning-german-in-ghana-is-a-smart-move]
 categories: [German Learning]
 excerpt: "Discover how learning German in Ghana can open doors to study, work, and international opportunities."
-image: https://source.unsplash.com/featured/?student,studying,laptop&sig=31
+image: https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80
 image_alt: "Why Learning German in Ghana Is a Smart Move"
 permalink: /why-learning-german-in-ghana-is-a-smart-move/
 seo:

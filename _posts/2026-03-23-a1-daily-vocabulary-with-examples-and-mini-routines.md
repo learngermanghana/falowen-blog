@@ -5,7 +5,7 @@ date: 2026-03-23
 tags: [falowen, german, a1, vocabulary, daily routines]
 categories: [Guides]
 excerpt: "A1 vocabulary with context, common mistakes, and practical routines for daily speaking."
-image: https://source.unsplash.com/featured/?a1%3A+daily+vocabulary+with+examples+and+mini+routines&sig=31
+image: https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1600&q=80
 image_alt: "Student writing a German daily routine plan at a study desk"
 permalink: /a1-daily-vocabulary-guide-2026-03-23/
 seo:

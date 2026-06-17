@@ -5,7 +5,7 @@ date: 2026-02-16
 tags: [falowen, german, b2, discussion, exam writing]
 categories: [Guides]
 excerpt: "B2 discussion-writing blueprint with advanced structures, balanced arguments, and exam practice."
-image: https://source.unsplash.com/featured/?b2%3A+write+discussions+about+ai+with+precise+arguments&sig=26
+image: https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=1600&q=80
 image_alt: "Student and laptop symbolizing advanced B2 discussion writing on AI"
 permalink: /b2-discussion-writing-ai-guide/
 seo:

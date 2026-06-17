@@ -5,7 +5,7 @@ date: 2026-03-15
 tags: [falowen, exams room, german exam prep, speaking, writing, lesen, hoeren, study planner]
 categories: [Product Updates]
 excerpt: "The Exams Room gives learners one clear space to practice every exam skill, keep their level settings, and continue from their last session."
-image: https://source.unsplash.com/featured/?exams+room%3A+one+place+for+simple%2C+focused+exam+practice&sig=30
+image: https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1600&q=80
 image_alt: "Falowen exam icon representing the Exams Room workspace"
 permalink: /exams-room-tab-based-workspace/
 seo:

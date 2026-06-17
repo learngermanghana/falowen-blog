@@ -5,7 +5,7 @@ date: 2025-11-08
 tags: [falowen, german, writing, a2, email, exam, grammar]
 categories: [Guides]
 excerpt: "A2 learners often struggle with writing short emails for exams. Learn a simple structure you can follow every time and how to practice it inside Falowen’s Schreiben Trainer."
-image: https://source.unsplash.com/featured/?a2+writing%3A+how+to+structure+short+emails+and+notes+correctly&sig=1
+image: https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1600&q=80
 image_alt: "German learner typing an email on a laptop during study practice"
 permalink: /a2-writing-structure-emails-notes/
 seo:
