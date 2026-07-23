@@ -5,12 +5,14 @@ layout: default
 <article class="post h-entry py-8 md:py-12" itemscope itemtype="http://schema.org/BlogPosting">
   {% assign title_key = page.title | downcase %}
   {% assign post_image = page.image %}
-  {% if title_key contains 'time' or title_key contains 'uhr' %}
-    {% assign post_image = '/assets/img/falowen-topic-time.svg' | relative_url %}
-  {% elsif title_key contains 'word' or title_key contains 'vocabulary' or title_key contains 'numbers' or title_key contains 'alphabet' or title_key contains 'days' %}
-    {% assign post_image = '/assets/img/falowen-topic-vocabulary.svg' | relative_url %}
-  {% elsif post_image == nil or post_image == '' or post_image contains 'source.unsplash.com' or post_image contains 'unsplash.com/s/photos' %}
-    {% assign post_image = '/assets/img/falowen-topic-general.svg' | relative_url %}
+  {% if post_image == nil or post_image == '' or post_image contains 'source.unsplash.com' or post_image contains 'unsplash.com/s/photos' %}
+    {% if title_key contains 'time' or title_key contains 'uhr' %}
+      {% assign post_image = '/assets/img/falowen-topic-time.svg' | relative_url %}
+    {% elsif title_key contains 'word' or title_key contains 'vocabulary' or title_key contains 'numbers' or title_key contains 'alphabet' or title_key contains 'days' %}
+      {% assign post_image = '/assets/img/falowen-topic-vocabulary.svg' | relative_url %}
+    {% else %}
+      {% assign post_image = '/assets/img/falowen-topic-general.svg' | relative_url %}
+    {% endif %}
   {% endif %}
 
   <header class="post-hero">
