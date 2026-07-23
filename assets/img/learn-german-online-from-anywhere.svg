@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Learn German Online from Anywhere</title>
+  <desc id="desc">Falowen illustration showing a laptop, globe and German learning cards for online study.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff7ed"/>
+      <stop offset="0.55" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#eff6ff"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#1e3a8a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="700" rx="36" fill="url(#bg)"/>
+  <circle cx="1050" cy="115" r="170" fill="#dbeafe" opacity=".7"/>
+  <circle cx="120" cy="620" r="190" fill="#ffedd5" opacity=".8"/>
+  <g transform="translate(70 92)">
+    <rect width="540" height="486" rx="34" fill="#ffffff" stroke="#e2e8f0" stroke-width="3"/>
+    <text x="42" y="74" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#ea580c" letter-spacing="3">FALOWEN • GERMAN</text>
+    <text x="42" y="142" font-family="Arial, sans-serif" font-size="52" font-weight="800" fill="#0f172a">Learn German</text>
+    <text x="42" y="200" font-family="Arial, sans-serif" font-size="52" font-weight="800" fill="#0f172a">online anywhere.</text>
+    <text x="42" y="248" font-family="Arial, sans-serif" font-size="23" fill="#475569">Flexible lessons • Guided practice • A1–C1</text>
+    <g transform="translate(42 298)">
+      <rect width="132" height="62" rx="18" fill="#ffedd5"/>
+      <text x="66" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="800" fill="#c2410c">A1</text>
+      <rect x="148" width="132" height="62" rx="18" fill="#dbeafe"/>
+      <text x="214" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="800" fill="#1d4ed8">A2–B1</text>
+      <rect x="296" width="132" height="62" rx="18" fill="#e2e8f0"/>
+      <text x="362" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="800" fill="#334155">B2–C1</text>
+    </g>
+    <text x="42" y="422" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#0f172a">blog.falowen.app</text>
+  </g>
+  <g transform="translate(660 142)">
+    <rect x="0" y="0" width="430" height="310" rx="28" fill="#0f172a" opacity=".12" transform="translate(10 18)"/>
+    <rect x="0" y="0" width="430" height="310" rx="28" fill="url(#screen)"/>
+    <rect x="28" y="28" width="374" height="220" rx="18" fill="#ffffff"/>
+    <circle cx="108" cy="112" r="52" fill="#ffedd5"/>
+    <path d="M82 116c19-22 37-30 63-38-9 26-23 49-47 63" fill="none" stroke="#ea580c" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="109" cy="111" r="31" fill="none" stroke="#ea580c" stroke-width="7"/>
+    <text x="182" y="89" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#64748b">TODAY'S LESSON</text>
+    <text x="182" y="130" font-family="Arial, sans-serif" font-size="29" font-weight="800" fill="#0f172a">Deutsch A1</text>
+    <text x="182" y="166" font-family="Arial, sans-serif" font-size="21" fill="#475569">Speaking + Grammar</text>
+    <rect x="182" y="188" width="155" height="34" rx="17" fill="#dbeafe"/>
+    <text x="260" y="212" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#1d4ed8">Start learning →</text>
+    <path d="M-54 310h538l-42 54H-12z" fill="#cbd5e1"/>
+    <rect x="166" y="326" width="98" height="12" rx="6" fill="#94a3b8"/>
+  </g>
+  <g transform="translate(1010 500)">
+    <circle r="78" fill="#ffffff" stroke="#dbeafe" stroke-width="6"/>
+    <path d="M-45 0h90M0-45v90M-39-28c24 16 54 16 78 0M-39 28c24-16 54-16 78 0" fill="none" stroke="#2563eb" stroke-width="7" stroke-linecap="round"/>
+    <ellipse rx="31" ry="58" fill="none" stroke="#2563eb" stroke-width="7"/>
+  </g>
+</svg>
