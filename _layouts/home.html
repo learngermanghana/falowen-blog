@@ -2,91 +2,135 @@
 <html lang="{{ site.lang | default: 'en' }}" data-theme="light">
 <head>
   <meta charset="utf-8">
-  <title>{{ site.title | escape }} | German learning articles, exam tips and study guides</title>
+  <title>{{ site.title | escape }} | Learn German from A1 to C1</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   {%- include head.html -%}
   {%- include head-custom.html -%}
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}?v=20260723">
 </head>
-<body class="min-h-screen overflow-x-hidden antialiased">
+<body class="home-page min-h-screen overflow-x-hidden antialiased">
   <div class="site-bg" aria-hidden="true"></div>
   {% include header.html %}
 
   {% assign featured_post = site.posts | first %}
 
   <main>
-    <section class="home-hero relative isolate overflow-hidden">
-      <div class="absolute inset-0 -z-10">
-        <div class="hero-orb hero-orb-one"></div>
-        <div class="hero-orb hero-orb-two"></div>
-        <div class="hero-grid"></div>
-      </div>
-
-      <div class="wrap grid items-center gap-10 py-14 md:grid-cols-[1.05fr_.95fr] md:py-20">
-        <div class="max-w-3xl">
-          <span class="eyebrow">Learn German in Ghana and online</span>
-          <h1 class="mt-5 max-w-4xl font-display text-4xl font-black tracking-tight text-slate-950 sm:text-5xl lg:text-7xl">German lessons that feel simple, practical and possible.</h1>
-          <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600">Read beginner-friendly German guides, A1–B2 exam tips, speaking practice ideas and study routines from Learn Language Education Academy.</p>
-
-          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a class="btn-primary" href="https://www.learngermanghana.com/classes" target="_blank" rel="noopener">See available classes</a>
-            <a class="btn-secondary" href="{{ '/search/' | relative_url }}">Search lessons</a>
-          </div>
-
-          <div class="mt-9 grid grid-cols-3 gap-3 text-center sm:max-w-xl">
-            <div class="stat-card"><strong>A1–C1</strong><span>Levels</span></div>
-            <div class="stat-card"><strong>Daily</strong><span>Guides</span></div>
-            <div class="stat-card"><strong>Exam</strong><span>Support</span></div>
+    <section class="home-hero-clean">
+      <div class="home-wrap">
+        <div class="home-hero-inner">
+          <span class="home-kicker">Learn German online and in Ghana</span>
+          <h1>Learn German from A1 to C1.</h1>
+          <p>Free German lessons, grammar explanations, exam preparation and structured classes for learners in Ghana and worldwide.</p>
+          <div class="hero-actions">
+            <a class="hero-primary" href="#start-learning">Start learning German</a>
+            <a class="hero-secondary" href="https://www.falowen.app/classes" target="_blank" rel="noopener">View German classes</a>
           </div>
         </div>
-
-        <aside class="hero-feature-card">
-          <div class="flex items-center justify-between gap-4">
-            <span class="rounded-full bg-orange-100 px-3 py-1 text-xs font-black uppercase tracking-[.24em] text-orange-700">Featured</span>
-            {% if featured_post %}<time class="text-sm font-semibold text-slate-500" datetime="{{ featured_post.date | date_to_xmlschema }}">{{ featured_post.date | date: "%b %d, %Y" }}</time>{% endif %}
-          </div>
-
-          {% if featured_post %}
-            {% if featured_post.image %}
-              <img class="mt-5 aspect-[16/10] w-full rounded-3xl object-cover shadow-soft" src="{{ featured_post.image }}" alt="{{ featured_post.title | escape }}" loading="eager">
-            {% else %}
-              <div class="mt-5 flex aspect-[16/10] items-center justify-center rounded-3xl bg-gradient-to-br from-orange-100 via-white to-blue-100 text-6xl font-black text-orange-500 shadow-soft">DE</div>
-            {% endif %}
-            <h2 class="mt-6 font-display text-2xl font-black leading-tight text-slate-950">{{ featured_post.title }}</h2>
-            {% if featured_post.excerpt %}<p class="mt-3 text-slate-600">{{ featured_post.excerpt | strip_html | truncate: 150 }}</p>{% endif %}
-            <a class="mt-6 inline-flex items-center font-black text-orange-600" href="{{ featured_post.url | relative_url }}">Read featured article <span aria-hidden="true" class="ml-2">→</span></a>
-          {% endif %}
-        </aside>
       </div>
     </section>
 
-    <section class="wrap section py-12 md:py-16">
-      <div class="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-        <div>
-          <span class="eyebrow">Study library</span>
-          <h2 class="mt-3 font-display text-3xl font-black tracking-tight text-slate-950 md:text-5xl">Latest German articles</h2>
-          <p class="mt-3 max-w-2xl text-slate-600">Quick lessons, examples and practical tips for students preparing for class, exams or relocation.</p>
-        </div>
-        <a class="btn-secondary w-fit" href="{{ '/blogs/' | relative_url }}">View all posts</a>
+    <section id="start-learning" class="home-wrap start-panel home-section">
+      <span class="home-section-label">Choose your path</span>
+      <h2>Where should you start?</h2>
+      <p>Pick the option that best matches what you need today. You can always move between lessons as your German improves.</p>
+
+      <div class="learning-path-grid">
+        <a class="learning-path-card" href="{{ '/german-alphabet-for-complete-beginners/' | relative_url }}">
+          <span class="path-number">01 · BEGINNER</span>
+          <h3>I am starting German</h3>
+          <p>Begin with A1 basics, pronunciation, vocabulary and simple sentence building.</p>
+          <span class="path-action">Start with German A1 →</span>
+        </a>
+
+        <a class="learning-path-card" href="{{ '/german-dative-vs-accusative-for-beginners/' | relative_url }}">
+          <span class="path-number">02 · GRAMMAR</span>
+          <h3>I need grammar help</h3>
+          <p>Understand cases, articles, verbs and sentence structure with clear examples.</p>
+          <span class="path-action">Explore German grammar →</span>
+        </a>
+
+        <a class="learning-path-card" href="{{ '/search/?q=exam' | relative_url }}">
+          <span class="path-number">03 · EXAMS</span>
+          <h3>I am preparing for an exam</h3>
+          <p>Find writing, speaking, reading and listening support for German exams.</p>
+          <span class="path-action">Find exam preparation →</span>
+        </a>
       </div>
 
-      <div class="latest grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {% for post in site.posts limit: 6 %}
-          <article class="post-card group">
-            <a class="post-card-link" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}">
+      <div class="search-panel">
+        <span class="home-section-label">Find a lesson</span>
+        <h2>What do you want to learn?</h2>
+        <p>Search the Falowen German library by grammar topic, level, exam skill or vocabulary theme.</p>
+        <form class="home-search-box" id="home-search-form" role="search">
+          <input id="home-search-input" type="search" autocomplete="off" placeholder="Try: Akkusativ, Dativ, Goethe A1, B1 Schreiben…" aria-label="Search German lessons">
+          <button type="submit">Search</button>
+        </form>
+        <div class="search-suggestions" aria-label="Popular searches">
+          <a href="{{ '/search/?q=A1' | relative_url }}">A1</a>
+          <a href="{{ '/search/?q=Akkusativ' | relative_url }}">Akkusativ</a>
+          <a href="{{ '/search/?q=Dativ' | relative_url }}">Dativ</a>
+          <a href="{{ '/search/?q=Goethe' | relative_url }}">Goethe</a>
+          <a href="{{ '/search/?q=Schreiben' | relative_url }}">Schreiben</a>
+        </div>
+        <ul id="home-search-results" class="home-search-results" aria-live="polite"></ul>
+      </div>
+    </section>
+
+    {% if featured_post %}
+    <section class="home-wrap home-section">
+      <div class="home-section-head">
+        <div>
+          <span class="home-section-label">Featured lesson</span>
+          <h2>Start with our newest guide.</h2>
+        </div>
+      </div>
+
+      <article class="featured-clean">
+        <div>
+          {% if featured_post.image %}
+            <img src="{{ featured_post.image }}" alt="{{ featured_post.image_alt | default: featured_post.title | escape }}" loading="eager">
+          {% else %}
+            <img src="{{ '/assets/img/falowen-blog-default.svg' | relative_url }}" alt="{{ featured_post.title | escape }}" loading="eager">
+          {% endif %}
+        </div>
+        <div class="featured-copy">
+          <time datetime="{{ featured_post.date | date_to_xmlschema }}">{{ featured_post.date | date: "%B %-d, %Y" }}</time>
+          <h2>{{ featured_post.title }}</h2>
+          {% if featured_post.excerpt %}<p>{{ featured_post.excerpt | strip_html | truncate: 180 }}</p>{% endif %}
+          <a href="{{ featured_post.url | relative_url }}">Read this lesson →</a>
+        </div>
+      </article>
+    </section>
+    {% endif %}
+
+    <section class="home-wrap home-section">
+      <div class="home-section-head">
+        <div>
+          <span class="home-section-label">Keep learning</span>
+          <h2>Latest German lessons</h2>
+          <p>Fresh explanations and practice for learners building their German step by step.</p>
+        </div>
+        <a class="section-link" href="{{ '/blogs/' | relative_url }}">View all lessons</a>
+      </div>
+
+      <div class="latest-clean-grid">
+        {% for post in site.posts offset: 1 limit: 3 %}
+          <article class="latest-clean-card">
+            <a href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}">
               {% if post.image %}
-                <img class="post-card-img" src="{{ post.image }}" alt="{{ post.title | escape }}" loading="lazy" />
+                <img src="{{ post.image }}" alt="{{ post.image_alt | default: post.title | escape }}" loading="lazy">
               {% else %}
-                <div class="post-card-placeholder">Deutsch</div>
+                <img src="{{ '/assets/img/falowen-blog-default.svg' | relative_url }}" alt="{{ post.title | escape }}" loading="lazy">
               {% endif %}
-              <div class="post-card-body">
-                <div class="post-card-meta">
+              <div class="latest-clean-card-body">
+                <div class="latest-clean-meta">
                   <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
                   {% if post.categories and post.categories.size > 0 %}<span>{{ post.categories[0] }}</span>{% endif %}
                 </div>
-                <h3 class="post-card-title">{{ post.title }}</h3>
-                {% if post.excerpt %}<p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 130 }}</p>{% endif %}
-                <span class="post-card-read">Read lesson →</span>
+                <h3>{{ post.title }}</h3>
+                {% if post.excerpt %}<p>{{ post.excerpt | strip_html | truncate: 110 }}</p>{% endif %}
+                <span class="latest-clean-read">Read lesson →</span>
               </div>
             </a>
           </article>
@@ -94,33 +138,76 @@
       </div>
     </section>
 
-    <section class="wrap pb-12 md:pb-16">
-      <div class="free-lessons-panel">
+    <section class="home-wrap home-section">
+      <div class="youtube-compact">
         <div>
-          <span class="eyebrow">Free lessons</span>
-          <h2 class="mt-3 font-display text-3xl font-black tracking-tight text-slate-950 md:text-4xl">Learn with our YouTube channel.</h2>
-          <p class="mt-3 text-slate-600">Watch free German lessons from Learn Language Education Academy, then subscribe for new practice videos.</p>
-          <a class="btn-primary mt-6" href="https://www.youtube.com/@LLEAGhana" target="_blank" rel="noopener">Visit YouTube channel</a>
+          <span class="home-section-label">Free video lessons</span>
+          <h2>Learn German with LLEA Ghana on YouTube.</h2>
+          <p>Watch free grammar explanations, pronunciation practice and exam preparation videos.</p>
         </div>
-        <div class="free-lessons-video">
-          <a href="https://www.youtube.com/@LLEAGhana" target="_blank" rel="noopener noreferrer" aria-label="Open the LLEA Ghana YouTube channel" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:2rem;text-align:center;color:#fff;text-decoration:none;font-size:1.25rem;font-weight:800;line-height:1.4;">Watch LLEA Ghana on YouTube →</a>
-        </div>
+        <a class="youtube-action" href="https://www.youtube.com/@LLEAGhana" target="_blank" rel="noopener noreferrer">
+          <span class="youtube-play" aria-hidden="true">▶</span>
+          Watch free lessons
+        </a>
       </div>
     </section>
 
-    <section id="testimonials" class="wrap section pb-16">
-      <div class="review-shell">
-        <div class="mb-6 max-w-2xl">
-          <span class="eyebrow">Student proof</span>
-          <h2 class="mt-3 font-display text-3xl font-black tracking-tight text-slate-950 md:text-4xl">What students say</h2>
-          <p class="mt-3 text-slate-600">Real feedback from learners using Falowen and Learn Language Education Academy.</p>
+    <section id="testimonials" class="home-wrap home-section">
+      <div class="home-section-head">
+        <div>
+          <span class="home-section-label">Student feedback</span>
+          <h2>What learners say</h2>
+          <p>Real feedback from students learning with Falowen and Learn Language Education Academy.</p>
         </div>
+      </div>
+      <div class="review-shell">
         <div class="reviews-container"><p>Loading testimonials...</p></div>
         <noscript>Please enable JavaScript to view testimonials.</noscript>
       </div>
     </section>
+
+    <section class="home-wrap">
+      <div class="final-cta">
+        <div>
+          <span class="home-section-label">Ready to continue?</span>
+          <h2>Make German your next skill.</h2>
+          <p>Use the free lessons at your own pace or join a structured class when you want teacher support.</p>
+        </div>
+        <div class="final-actions">
+          <a class="final-link" href="https://www.falowen.app" target="_blank" rel="noopener">Start on Falowen</a>
+          <a class="final-link secondary" href="https://www.falowen.app/classes" target="_blank" rel="noopener">View classes</a>
+        </div>
+      </div>
+    </section>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.11.1/dest/simple-jekyll-search.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var input = document.getElementById('home-search-input');
+      var results = document.getElementById('home-search-results');
+      var form = document.getElementById('home-search-form');
+      if (!input || !results || typeof SimpleJekyllSearch === 'undefined') return;
+
+      var search = SimpleJekyllSearch({
+        searchInput: input,
+        resultsContainer: results,
+        json: '{{ "/search.json" | relative_url }}',
+        searchResultTemplate: '<li><a href="{url}"><strong>{title}</strong><span>{date}</span></a></li>',
+        noResultsText: '<li>No matching lessons found.</li>',
+        limit: 6,
+        fuzzy: true
+      });
+
+      if (form) {
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+          var query = input.value.trim();
+          if (query) search.search(query);
+        });
+      }
+    });
+  </script>
   <script type="module" src="{{ '/assets/js/reviews.js' | relative_url }}"></script>
   <script src="{{ '/assets/js/theme-toggle.js' | relative_url }}"></script>
   {% include footer.html %}
