@@ -5,7 +5,10 @@
   function apply(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     if (toggle) {
-      toggle.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
+      const dark = theme === 'dark';
+      toggle.textContent = dark ? '☀' : '☾';
+      toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+      toggle.setAttribute('title', dark ? 'Switch to light mode' : 'Switch to dark mode');
     }
   }
 
