@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">German Alphabet for Complete Beginners</title>
+  <desc id="desc">Falowen A1 German alphabet illustration featuring A, Ä, B, ß, umlauts and beginner pronunciation.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff7ed"/>
+      <stop offset=".5" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#eff6ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="700" rx="36" fill="url(#bg)"/>
+  <circle cx="1060" cy="110" r="180" fill="#dbeafe" opacity=".65"/>
+  <circle cx="110" cy="625" r="185" fill="#ffedd5" opacity=".8"/>
+  <g transform="translate(70 88)">
+    <text x="0" y="32" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#ea580c" letter-spacing="3">FALOWEN • A1 GERMAN</text>
+    <text x="0" y="108" font-family="Arial, sans-serif" font-size="55" font-weight="800" fill="#0f172a">German Alphabet</text>
+    <text x="0" y="166" font-family="Arial, sans-serif" font-size="55" font-weight="800" fill="#0f172a">for Beginners</text>
+    <text x="0" y="215" font-family="Arial, sans-serif" font-size="24" fill="#475569">A–Z • Ä Ö Ü • ß • pronunciation basics</text>
+  </g>
+  <g transform="translate(70 355)">
+    <rect width="150" height="150" rx="30" fill="#ea580c"/>
+    <text x="75" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="88" font-weight="800" fill="#ffffff">A</text>
+    <rect x="170" width="150" height="150" rx="30" fill="#ffffff" stroke="#fed7aa" stroke-width="4"/>
+    <text x="245" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="88" font-weight="800" fill="#c2410c">Ä</text>
+    <rect x="340" width="150" height="150" rx="30" fill="#2563eb"/>
+    <text x="415" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="88" font-weight="800" fill="#ffffff">B</text>
+    <rect x="510" width="150" height="150" rx="30" fill="#0f172a"/>
+    <text x="585" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="88" font-weight="800" fill="#ffffff">ß</text>
+  </g>
+  <g transform="translate(785 240)">
+    <rect width="335" height="340" rx="34" fill="#ffffff" stroke="#e2e8f0" stroke-width="3"/>
+    <text x="38" y="64" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#64748b">SAY IT OUT LOUD</text>
+    <text x="38" y="118" font-family="Arial, sans-serif" font-size="30" font-weight="800" fill="#0f172a">A wie Apfel</text>
+    <text x="38" y="166" font-family="Arial, sans-serif" font-size="30" font-weight="800" fill="#0f172a">W wie Wasser</text>
+    <text x="38" y="214" font-family="Arial, sans-serif" font-size="30" font-weight="800" fill="#0f172a">Z wie Zug</text>
+    <rect x="38" y="252" width="220" height="48" rx="24" fill="#dbeafe"/>
+    <text x="148" y="284" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#1d4ed8">Build your A1 foundation</text>
+  </g>
+  <text x="70" y="642" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#0f172a">blog.falowen.app</text>
+</svg>
