@@ -2,11 +2,12 @@
 layout: post
 title: "German Alphabet for Complete Beginners"
 date: 2026-07-15
+last_modified_at: 2026-07-23
 tags: [falowen, german, 30-day-blog, german-alphabet-for-complete-beginners]
 categories: [Beginner German]
 excerpt: "Learn the German alphabet in a simple way and build a strong foundation for speaking and reading."
-image: https://source.unsplash.com/featured/?alphabet,letters&sig=92
-image_alt: "German Alphabet for Complete Beginners"
+image: /assets/img/german-alphabet-complete-beginners.svg
+image_alt: "German alphabet for complete beginners with A, Ä, B and ß"
 permalink: /german-alphabet-for-complete-beginners/
 seo:
   title: "German Alphabet for Beginners | Falowen"
@@ -36,20 +37,20 @@ The German alphabet has **26 letters**, just like English, plus some additional 
 | J      | yot                         | Junge         | boy                |
 | K      | kah                         | Katze         | cat                |
 | L      | ell                         | Lampe         | lamp               |
-| M      | emm                         | Mutter        | mother             |
-| N      | enn                         | Name          | name               |
-| O      | oh                          | Obst          | fruit              |
-| P      | peh                         | Papier        | paper              |
-| Q      | koo                         | Quelle        | source             |
-| R      | err (rolled or guttural)    | Rose          | rose               |
+| M      | emm                         | Mutter        | mother              |
+| N      | enn                         | Name          | name                |
+| O      | oh                          | Obst          | fruit               |
+| P      | peh                         | Papier        | paper               |
+| Q      | koo                         | Quelle        | source              |
+| R      | err (rolled or guttural)    | Rose          | rose                |
 | S      | ess (pronounced “z” before vowels) | Sonne  | sun                |
-| T      | teh                         | Tisch         | table              |
-| U      | oo                          | Uhr           | clock              |
-| V      | fau (pronounced like “f”)   | Vogel         | bird               |
-| W      | veh (pronounced like “v”)   | Wasser        | water              |
-| X      | iks                         | Taxi          | taxi               |
-| Y      | üpsilon (like English “ü”)  | Yoga          | yoga               |
-| Z      | tset                        | Zug           | train              |
+| T      | teh                         | Tisch         | table               |
+| U      | oo                          | Uhr           | clock               |
+| V      | fau (pronounced like “f”)   | Vogel         | bird                |
+| W      | veh (pronounced like “v”)   | Wasser        | water               |
+| X      | iks                         | Taxi          | taxi                |
+| Y      | üpsilon (like English “ü”)  | Yoga          | yoga                |
+| Z      | tset                        | Zug           | train               |
 
 ---
 
