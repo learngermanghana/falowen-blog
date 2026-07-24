@@ -33,31 +33,49 @@ class PublishLinkedInTests(unittest.TestCase):
         clear=True,
     )
     @patch("scripts.post_to_social.post_json")
-    def test_publish_linkedin_sends_publish_request(self, mock_post_json) -> None:
-        mock_post_json.return_value = (201, '{"id":"123"}')
+    def test_publish_linkedin_sends_current_posts_api_request(self, mock_post_json) -> None:
+        mock_post_json.return_value = (201, "")
 
         publish_linkedin("New post", "https://example.com/post", dry_run=False)
 
         mock_post_json.assert_called_once_with(
-            "https://api.linkedin.com/v2/ugcPosts",
+            "https://api.linkedin.com/rest/posts",
             {
                 "author": "urn:li:person:author",
-                "lifecycleState": "PUBLISHED",
-                "specificContent": {
-                    "com.linkedin.ugc.ShareContent": {
-                        "shareCommentary": {
-                            "text": "New post\n\nRead more: https://example.com/post"
-                        },
-                        "shareMediaCategory": "NONE",
-                    }
+                "commentary": "New post\n\nRead more: https://example.com/post",
+                "visibility": "PUBLIC",
+                "distribution": {
+                    "feedDistribution": "MAIN_FEED",
+                    "targetEntities": [],
+                    "thirdPartyDistributionChannels": [],
                 },
-                "visibility": {"com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC"},
+                "lifecycleState": "PUBLISHED",
+                "isReshareDisabledByAuthor": False,
             },
             {
                 "Authorization": "Bearer token",
                 "X-Restli-Protocol-Version": "2.0.0",
+                "Linkedin-Version": "202607",
             },
         )
+
+    @patch.dict(
+        "os.environ",
+        {
+            "LINKEDIN_ACCESS_TOKEN": "token",
+            "LINKEDIN_AUTHOR_URN": "urn:li:person:author",
+            "LINKEDIN_VERSION": "202606",
+        },
+        clear=True,
+    )
+    @patch("scripts.post_to_social.post_json")
+    def test_publish_linkedin_allows_version_override(self, mock_post_json) -> None:
+        mock_post_json.return_value = (201, "")
+
+        publish_linkedin("New post", "https://example.com/post", dry_run=False)
+
+        headers = mock_post_json.call_args.args[2]
+        self.assertEqual("202606", headers["Linkedin-Version"])
 
     @patch.dict(
         "os.environ",
