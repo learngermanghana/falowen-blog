@@ -5,7 +5,7 @@ import json
 import os
 import re
 from pathlib import Path
-from urllib import parse, request
+from urllib import error, parse, request
 
 
 def env_value(*names: str) -> str | None:
@@ -77,8 +77,15 @@ def post_json(url: str, payload: dict, headers: dict[str, str]) -> tuple[int, st
         req.add_header(k, v)
     req.add_header("Content-Type", "application/json")
 
-    with request.urlopen(req) as resp:  # noqa: S310 - trusted URLs from APIs
-        return resp.status, resp.read().decode("utf-8")
+    try:
+        with request.urlopen(req) as resp:  # noqa: S310 - trusted URLs from APIs
+            return resp.status, resp.read().decode("utf-8")
+    except error.HTTPError as exc:
+        response_body = exc.read().decode("utf-8", errors="replace")
+        details = response_body.strip() or exc.reason or "No response body"
+        raise RuntimeError(
+            f"HTTP {exc.code} from {url}: {details[:1200]}"
+        ) from exc
 
 
 def publish_linkedin(text: str, article_url: str, dry_run: bool) -> None:
@@ -91,25 +98,32 @@ def publish_linkedin(text: str, article_url: str, dry_run: bool) -> None:
         )
         return
 
+    linkedin_version = env_value("LINKEDIN_VERSION") or "202607"
+    commentary = f"{text}\n\nRead more: {article_url}"
     payload = {
         "author": author_urn,
-        "lifecycleState": "PUBLISHED",
-        "specificContent": {
-            "com.linkedin.ugc.ShareContent": {
-                "shareCommentary": {"text": f"{text}\n\nRead more: {article_url}"},
-                "shareMediaCategory": "NONE",
-            }
+        "commentary": commentary,
+        "visibility": "PUBLIC",
+        "distribution": {
+            "feedDistribution": "MAIN_FEED",
+            "targetEntities": [],
+            "thirdPartyDistributionChannels": [],
         },
-        "visibility": {"com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC"},
+        "lifecycleState": "PUBLISHED",
+        "isReshareDisabledByAuthor": False,
     }
     if dry_run:
         print("[linkedin] Dry run: would publish post")
         return
 
     status, body = post_json(
-        "https://api.linkedin.com/v2/ugcPosts",
+        "https://api.linkedin.com/rest/posts",
         payload,
-        {"Authorization": f"Bearer {token}", "X-Restli-Protocol-Version": "2.0.0"},
+        {
+            "Authorization": f"Bearer {token}",
+            "X-Restli-Protocol-Version": "2.0.0",
+            "Linkedin-Version": linkedin_version,
+        },
     )
     print(f"[linkedin] Published (status={status}): {body[:160]}")
 
