@@ -157,16 +157,18 @@ jobs:
           # normal repository change landed while LinkedIn was publishing.
           git pull --rebase origin main
 
-          mkdir -p .github/social-publish
-          printf '%s\n' "$POST_PATH" > .github/social-publish/last-linkedin-post.txt
+          marker=".github/social-publish/last-linkedin-post.txt"
+          mkdir -p "$(dirname "$marker")"
+          printf '%s\n' "$POST_PATH" > "$marker"
 
-          if git diff --quiet -- .github/social-publish/last-linkedin-post.txt; then
+          # status --porcelain sees both modifications and a first-time untracked marker.
+          if [ -z "$(git status --porcelain -- "$marker")" ]; then
             echo "Share marker already up to date."
             exit 0
           fi
 
           git config user.name "falowen-social-bot"
           git config user.email "falowen-social-bot@users.noreply.github.com"
-          git add .github/social-publish/last-linkedin-post.txt
+          git add "$marker"
           git commit -m "chore(social): record LinkedIn share"
           git push origin HEAD:main
