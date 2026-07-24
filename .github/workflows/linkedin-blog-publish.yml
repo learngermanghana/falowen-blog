@@ -8,12 +8,13 @@ on:
       - "_posts/*.md"
       - ".github/workflows/linkedin-blog-publish.yml"
       - "scripts/post_to_social.py"
+      - ".github/social-publish/linkedin-baseline.txt"
   workflow_run:
     workflows: ["30-Day Biweekly Blog Auto-Publish"]
     types: [completed]
   schedule:
     # Backstop for posts created through integrations whose push event does not
-    # start another Actions workflow. The marker below prevents reposts.
+    # start another Actions workflow. The shared-post ledger prevents reposts.
     - cron: "17 * * * *"
   workflow_dispatch:
     inputs:
@@ -56,61 +57,56 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Determine unshared post
+      - name: Determine unshared posts
         id: resolve
         shell: bash
         run: |
-          target=""
+          shared_file=".github/social-publish/linkedin-shared-posts.txt"
+          baseline_file=".github/social-publish/linkedin-baseline.txt"
+          posts=()
 
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "${{ github.event.inputs.post_path }}" ]; then
-            target="${{ github.event.inputs.post_path }}"
-          elif [ "${{ github.event_name }}" = "push" ]; then
-            before="${{ github.event.before }}"
-            after="${{ github.event.after }}"
-
-            if [ -n "$before" ] && [ "$before" != "0000000000000000000000000000000000000000" ] && [ -n "$after" ]; then
-              target=$(git diff --name-only "$before" "$after" -- '_posts/*.md' | sort | tail -n 1)
+            requested="${{ github.event.inputs.post_path }}"
+            if [ ! -f "$requested" ]; then
+              echo "Requested post does not exist: $requested"
+              exit 1
             fi
-
-            # A workflow/script repair push intentionally has no _posts change.
-            # Falling back to the newest post immediately recovers a missed share.
-            if [ -z "$target" ]; then
-              target=$(git ls-files -- '_posts/*.md' | sort | tail -n 1)
-            fi
+            posts+=("$requested")
           else
-            # workflow_run and the hourly backstop both inspect the newest post.
-            target=$(git ls-files -- '_posts/*.md' | sort | tail -n 1)
+            if [ ! -f "$baseline_file" ]; then
+              echo "LinkedIn baseline file is missing: $baseline_file"
+              exit 1
+            fi
+
+            baseline=$(tr -d '\r\n' < "$baseline_file")
+            if [ -z "$baseline" ] || ! git cat-file -e "$baseline^{commit}" 2>/dev/null; then
+              echo "LinkedIn baseline is not a valid commit: $baseline"
+              exit 1
+            fi
+
+            touch "$shared_file"
+            while IFS= read -r post; do
+              [ -z "$post" ] && continue
+              if ! grep -Fqx "$post" "$shared_file"; then
+                posts+=("$post")
+              fi
+            done < <(git diff --diff-filter=A --name-only "$baseline" HEAD -- '_posts/*.md' | sort)
           fi
 
-          if [ -z "$target" ]; then
-            echo "No blog post found. Skipping LinkedIn publish."
+          if [ "${#posts[@]}" -eq 0 ]; then
+            echo "No unshared LinkedIn blog posts found."
             echo "skip=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          if [ ! -f "$target" ]; then
-            echo "Post does not exist at $target. Skipping LinkedIn publish."
-            echo "skip=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          marker=".github/social-publish/last-linkedin-post.txt"
-          last_shared=""
-          if [ -f "$marker" ]; then
-            last_shared=$(tr -d '\r\n' < "$marker")
-          fi
-
-          # Manual dispatch is allowed to intentionally re-share a post. All
-          # automatic triggers are idempotent and skip the recorded post.
-          if [ "${{ github.event_name }}" != "workflow_dispatch" ] && [ "$target" = "$last_shared" ]; then
-            echo "Already shared to LinkedIn: $target"
-            echo "skip=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          echo "Using post: $target"
+          echo "Found ${#posts[@]} post(s) to publish:"
+          printf ' - %s\n' "${posts[@]}"
           echo "skip=false" >> "$GITHUB_OUTPUT"
-          echo "post_path=$target" >> "$GITHUB_OUTPUT"
+          {
+            echo "posts<<EOF"
+            printf '%s\n' "${posts[@]}"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Validate LinkedIn configuration
         if: steps.resolve.outputs.skip != 'true'
@@ -130,45 +126,52 @@ jobs:
             exit 1
           fi
 
-      - name: Publish to LinkedIn
+      - name: Publish pending posts to LinkedIn
         if: steps.resolve.outputs.skip != 'true'
         env:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
           LINKEDIN_AUTHOR_URN: ${{ secrets.LINKEDIN_AUTHOR_URN }}
           LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_PERSON_URN }}
           SITE_URL: https://blog.falowen.app
-        run: |
-          DRY=""
-          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
-            DRY="--dry-run"
-          fi
-
-          python scripts/post_to_social.py --post "${{ steps.resolve.outputs.post_path }}" $DRY
-
-      - name: Record successful LinkedIn share
-        if: >
-          steps.resolve.outputs.skip != 'true' &&
-          github.event.inputs.dry_run != 'true'
-        env:
-          POST_PATH: ${{ steps.resolve.outputs.post_path }}
+          POSTS: ${{ steps.resolve.outputs.posts }}
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
         shell: bash
         run: |
-          # Pull first so the marker commit stays a fast-forward even if another
-          # normal repository change landed while LinkedIn was publishing.
-          git pull --rebase origin main
+          set -euo pipefail
+          shared_file=".github/social-publish/linkedin-shared-posts.txt"
 
-          marker=".github/social-publish/last-linkedin-post.txt"
-          mkdir -p "$(dirname "$marker")"
-          printf '%s\n' "$POST_PATH" > "$marker"
+          while IFS= read -r post; do
+            [ -z "$post" ] && continue
+            echo "Publishing to LinkedIn: $post"
 
-          # status --porcelain sees both modifications and a first-time untracked marker.
-          if [ -z "$(git status --porcelain -- "$marker")" ]; then
-            echo "Share marker already up to date."
-            exit 0
-          fi
+            dry_arg=""
+            if [ "$DRY_RUN" = "true" ]; then
+              dry_arg="--dry-run"
+            fi
 
-          git config user.name "falowen-social-bot"
-          git config user.email "falowen-social-bot@users.noreply.github.com"
-          git add "$marker"
-          git commit -m "chore(social): record LinkedIn share"
-          git push origin HEAD:main
+            python scripts/post_to_social.py --post "$post" --linkedin-only $dry_arg
+
+            if [ "$DRY_RUN" = "true" ]; then
+              echo "Dry run: not recording $post as shared."
+              continue
+            fi
+
+            # Keep the local branch current before recording this successful post.
+            git pull --rebase origin main
+            mkdir -p "$(dirname "$shared_file")"
+            touch "$shared_file"
+
+            if grep -Fqx "$post" "$shared_file"; then
+              echo "Already recorded as shared: $post"
+              continue
+            fi
+
+            printf '%s\n' "$post" >> "$shared_file"
+            sort -u "$shared_file" -o "$shared_file"
+
+            git config user.name "falowen-social-bot"
+            git config user.email "falowen-social-bot@users.noreply.github.com"
+            git add "$shared_file"
+            git commit -m "chore(social): record LinkedIn share for $(basename "$post")"
+            git push origin HEAD:main
+          done <<< "$POSTS"

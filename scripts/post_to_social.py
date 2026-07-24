@@ -178,6 +178,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--post", required=True, help="Path to post markdown file in _posts/.")
     parser.add_argument("--site-url", default=os.getenv("SITE_URL", "https://falowen.com"))
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument(
+        "--linkedin-only",
+        action="store_true",
+        help="Publish only to LinkedIn. Useful for the dedicated LinkedIn workflow.",
+    )
     return parser.parse_args()
 
 
@@ -196,6 +201,9 @@ def main() -> int:
     url = post_url(args.site_url, post_path, fm)
 
     publish_linkedin(f"{title}\n\n{excerpt}", url, args.dry_run)
+    if args.linkedin_only:
+        return 0
+
     publish_instagram(f"{title}\n\n{excerpt}", url, image_url, args.dry_run)
     publish_medium(title, body, url, args.dry_run)
     return 0

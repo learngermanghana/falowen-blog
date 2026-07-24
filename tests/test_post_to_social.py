@@ -1,11 +1,11 @@
 import io
+import tempfile
 import unittest
 from contextlib import redirect_stdout
+from pathlib import Path
 from unittest.mock import patch
 
-from pathlib import Path
-
-from scripts.post_to_social import post_url, publish_linkedin
+from scripts.post_to_social import main, post_url, publish_linkedin
 
 
 class PublishLinkedInTests(unittest.TestCase):
@@ -59,6 +59,47 @@ class PublishLinkedInTests(unittest.TestCase):
             },
         )
 
+    @patch.dict(
+        "os.environ",
+        {
+            "LINKEDIN_ACCESS_TOKEN": "token",
+            "LINKEDIN_PERSON_URN": "urn:li:person:legacy",
+        },
+        clear=True,
+    )
+    def test_publish_linkedin_falls_back_to_legacy_person_urn(self) -> None:
+        output = io.StringIO()
+        with redirect_stdout(output):
+            publish_linkedin("Hello world", "https://example.com/post", dry_run=True)
+
+        self.assertIn("[linkedin] Dry run: would publish post", output.getvalue())
+
+    @patch("scripts.post_to_social.publish_medium")
+    @patch("scripts.post_to_social.publish_instagram")
+    @patch("scripts.post_to_social.publish_linkedin")
+    def test_linkedin_only_mode_does_not_call_other_socials(
+        self,
+        mock_linkedin,
+        mock_instagram,
+        mock_medium,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            post_path = Path(temp_dir) / "2026-07-24-test-post.md"
+            post_path.write_text(
+                "---\ntitle: Test Post\npermalink: /test-post/\n---\nUseful body text.",
+                encoding="utf-8",
+            )
+            with patch(
+                "sys.argv",
+                ["post_to_social.py", "--post", str(post_path), "--linkedin-only"],
+            ):
+                result = main()
+
+        self.assertEqual(0, result)
+        mock_linkedin.assert_called_once()
+        mock_instagram.assert_not_called()
+        mock_medium.assert_not_called()
+
 
 class PostUrlTests(unittest.TestCase):
     def test_post_url_uses_front_matter_permalink_when_available(self) -> None:
@@ -77,21 +118,6 @@ class PostUrlTests(unittest.TestCase):
         )
 
         self.assertEqual("https://falowen.com/german-alphabet-for-complete-beginners/", url)
-
-    @patch.dict(
-        "os.environ",
-        {
-            "LINKEDIN_ACCESS_TOKEN": "token",
-            "LINKEDIN_PERSON_URN": "urn:li:person:legacy",
-        },
-        clear=True,
-    )
-    def test_publish_linkedin_falls_back_to_legacy_person_urn(self) -> None:
-        output = io.StringIO()
-        with redirect_stdout(output):
-            publish_linkedin("Hello world", "https://example.com/post", dry_run=True)
-
-        self.assertIn("[linkedin] Dry run: would publish post", output.getvalue())
 
 
 if __name__ == "__main__":
