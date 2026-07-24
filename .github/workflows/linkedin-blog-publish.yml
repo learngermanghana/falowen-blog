@@ -6,9 +6,15 @@ on:
       - main
     paths:
       - "_posts/*.md"
+      - ".github/workflows/linkedin-blog-publish.yml"
+      - "scripts/post_to_social.py"
   workflow_run:
     workflows: ["30-Day Biweekly Blog Auto-Publish"]
     types: [completed]
+  schedule:
+    # Backstop for posts created through integrations whose push event does not
+    # start another Actions workflow. The marker below prevents reposts.
+    - cron: "17 * * * *"
   workflow_dispatch:
     inputs:
       post_path:
@@ -22,85 +28,82 @@ on:
         type: boolean
 
 permissions:
-  contents: read
+  contents: write
+
+concurrency:
+  group: linkedin-blog-publish
+  cancel-in-progress: false
 
 jobs:
   linkedin_publish:
     if: >
       github.event_name == 'push' ||
+      github.event_name == 'schedule' ||
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'workflow_run' &&
        github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check publishing window
-        id: cadence
-        shell: bash
-        run: |
-          # Direct pushes and manual runs should publish immediately. This covers
-          # posts created by ChatGPT, editors, and other non-GITHUB_TOKEN writers.
-          if [ "${{ github.event_name }}" = "push" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "should_publish=true" >> "$GITHUB_OUTPUT"
-            echo "Direct blog update detected; publishing immediately."
-            exit 0
-          fi
-
-          # The upstream biweekly workflow is scheduled weekly and can complete
-          # successfully on a no-op week. Keep the cadence guard here so a
-          # workflow_run does not repost the previous article on those weeks.
-          anchor_date="2026-06-03"
-          today=$(date -u +%F)
-          days_since_anchor=$(( ( $(date -u -d "$today" +%s) - $(date -u -d "$anchor_date" +%s) ) / 86400 ))
-
-          if [ "$days_since_anchor" -ge 0 ] && [ $((days_since_anchor % 14)) -eq 0 ]; then
-            echo "should_publish=true" >> "$GITHUB_OUTPUT"
-            echo "Biweekly LinkedIn publishing window is open for $today."
-          else
-            echo "should_publish=false" >> "$GITHUB_OUTPUT"
-            echo "Skipping LinkedIn publish for $today; upstream biweekly workflow made no scheduled post."
-          fi
-
       - name: Checkout
-        if: steps.cadence.outputs.should_publish == 'true'
         uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
 
       - name: Setup Python
-        if: steps.cadence.outputs.should_publish == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Determine post path
-        if: steps.cadence.outputs.should_publish == 'true'
+      - name: Determine unshared post
         id: resolve
         shell: bash
         run: |
+          target=""
+
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "${{ github.event.inputs.post_path }}" ]; then
             target="${{ github.event.inputs.post_path }}"
           elif [ "${{ github.event_name }}" = "push" ]; then
             before="${{ github.event.before }}"
-            after="${{ github.sha }}"
+            after="${{ github.event.after }}"
 
-            if [ -n "$before" ] && [ "$before" != "0000000000000000000000000000000000000000" ]; then
-              target=$(git diff --name-only "$before" "$after" -- '_posts/*.md' | tail -n 1)
-            else
-              target=$(git diff-tree --no-commit-id --name-only -r "$after" -- '_posts/*.md' | tail -n 1)
+            if [ -n "$before" ] && [ "$before" != "0000000000000000000000000000000000000000" ] && [ -n "$after" ]; then
+              target=$(git diff --name-only "$before" "$after" -- '_posts/*.md' | sort | tail -n 1)
+            fi
+
+            # A workflow/script repair push intentionally has no _posts change.
+            # Falling back to the newest post immediately recovers a missed share.
+            if [ -z "$target" ]; then
+              target=$(git ls-files -- '_posts/*.md' | sort | tail -n 1)
             fi
           else
-            target=$(git ls-files -- "_posts/*.md" | sort | tail -n 1)
+            # workflow_run and the hourly backstop both inspect the newest post.
+            target=$(git ls-files -- '_posts/*.md' | sort | tail -n 1)
           fi
 
           if [ -z "$target" ]; then
-            echo "No changed post file detected. Skipping publish."
+            echo "No blog post found. Skipping LinkedIn publish."
             echo "skip=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
           if [ ! -f "$target" ]; then
-            echo "Post does not exist at $target. Skipping publish."
+            echo "Post does not exist at $target. Skipping LinkedIn publish."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          marker=".github/social-publish/last-linkedin-post.txt"
+          last_shared=""
+          if [ -f "$marker" ]; then
+            last_shared=$(tr -d '\r\n' < "$marker")
+          fi
+
+          # Manual dispatch is allowed to intentionally re-share a post. All
+          # automatic triggers are idempotent and skip the recorded post.
+          if [ "${{ github.event_name }}" != "workflow_dispatch" ] && [ "$target" = "$last_shared" ]; then
+            echo "Already shared to LinkedIn: $target"
             echo "skip=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
@@ -109,11 +112,30 @@ jobs:
           echo "skip=false" >> "$GITHUB_OUTPUT"
           echo "post_path=$target" >> "$GITHUB_OUTPUT"
 
-      - name: Publish to LinkedIn
-        if: steps.cadence.outputs.should_publish == 'true' && steps.resolve.outputs.skip != 'true'
+      - name: Validate LinkedIn configuration
+        if: steps.resolve.outputs.skip != 'true'
         env:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
           LINKEDIN_AUTHOR_URN: ${{ secrets.LINKEDIN_AUTHOR_URN }}
+          LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_PERSON_URN }}
+        shell: bash
+        run: |
+          if [ -z "$LINKEDIN_ACCESS_TOKEN" ]; then
+            echo "LINKEDIN_ACCESS_TOKEN is missing."
+            exit 1
+          fi
+
+          if [ -z "$LINKEDIN_AUTHOR_URN" ] && [ -z "$LINKEDIN_PERSON_URN" ]; then
+            echo "LINKEDIN_AUTHOR_URN and LINKEDIN_PERSON_URN are both missing."
+            exit 1
+          fi
+
+      - name: Publish to LinkedIn
+        if: steps.resolve.outputs.skip != 'true'
+        env:
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_AUTHOR_URN: ${{ secrets.LINKEDIN_AUTHOR_URN }}
+          LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_PERSON_URN }}
           SITE_URL: https://blog.falowen.app
         run: |
           DRY=""
@@ -122,3 +144,29 @@ jobs:
           fi
 
           python scripts/post_to_social.py --post "${{ steps.resolve.outputs.post_path }}" $DRY
+
+      - name: Record successful LinkedIn share
+        if: >
+          steps.resolve.outputs.skip != 'true' &&
+          github.event.inputs.dry_run != 'true'
+        env:
+          POST_PATH: ${{ steps.resolve.outputs.post_path }}
+        shell: bash
+        run: |
+          # Pull first so the marker commit stays a fast-forward even if another
+          # normal repository change landed while LinkedIn was publishing.
+          git pull --rebase origin main
+
+          mkdir -p .github/social-publish
+          printf '%s\n' "$POST_PATH" > .github/social-publish/last-linkedin-post.txt
+
+          if git diff --quiet -- .github/social-publish/last-linkedin-post.txt; then
+            echo "Share marker already up to date."
+            exit 0
+          fi
+
+          git config user.name "falowen-social-bot"
+          git config user.email "falowen-social-bot@users.noreply.github.com"
+          git add .github/social-publish/last-linkedin-post.txt
+          git commit -m "chore(social): record LinkedIn share"
+          git push origin HEAD:main
