@@ -9,7 +9,7 @@ permalink: /contact/
 We're here to help with course registrations, class details, and general inquiries.
 
 - **Email:** [learngermanghana@gmail.com](mailto:learngermanghana@gmail.com)
-- **Phone:** [0205706589](tel:+233205706589)
+- **Phone:** [233205706589](tel:+233205706589)
 - **Mailing Address:** P.O. Box 2624, Kaneshie
 
 ## Hours of Operation
