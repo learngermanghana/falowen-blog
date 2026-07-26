@@ -8,6 +8,7 @@ on:
       - "_posts/*.md"
       - ".github/workflows/linkedin-blog-publish.yml"
       - "scripts/post_to_social.py"
+      - "tests/test_post_to_social.py"
       - ".github/social-publish/linkedin-baseline.txt"
   workflow_run:
     workflows: ["30-Day Biweekly Blog Auto-Publish"]
@@ -107,6 +108,14 @@ jobs:
             printf '%s\n' "${posts[@]}"
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
+
+      - name: Install LinkedIn image dependencies
+        if: steps.resolve.outputs.skip != 'true'
+        run: python -m pip install --disable-pip-version-check "cairosvg>=2.7,<3"
+
+      - name: Test social publisher
+        if: steps.resolve.outputs.skip != 'true'
+        run: python -m unittest tests.test_post_to_social
 
       - name: Validate LinkedIn configuration
         if: steps.resolve.outputs.skip != 'true'
