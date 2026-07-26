@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import mimetypes
 import os
 import re
 from pathlib import Path
@@ -88,7 +89,133 @@ def post_json(url: str, payload: dict, headers: dict[str, str]) -> tuple[int, st
         ) from exc
 
 
-def publish_linkedin(text: str, article_url: str, dry_run: bool) -> None:
+def get_bytes(url: str) -> tuple[bytes, str]:
+    req = request.Request(
+        url,
+        headers={
+            "User-Agent": "FalowenLinkedInPublisher/1.0",
+            "Accept": "image/jpeg,image/png,image/gif,image/svg+xml,*/*;q=0.5",
+        },
+    )
+    try:
+        with request.urlopen(req) as resp:  # noqa: S310 - image URL comes from post front matter
+            content_type = resp.headers.get_content_type() or "application/octet-stream"
+            return resp.read(), content_type
+    except error.HTTPError as exc:
+        details = exc.read().decode("utf-8", errors="replace").strip() or exc.reason
+        raise RuntimeError(
+            f"Could not download LinkedIn thumbnail from {url}: HTTP {exc.code} {details[:500]}"
+        ) from exc
+
+
+def put_bytes(url: str, data: bytes, headers: dict[str, str]) -> int:
+    req = request.Request(url, data=data, method="PUT")
+    for k, v in headers.items():
+        req.add_header(k, v)
+    try:
+        with request.urlopen(req) as resp:  # noqa: S310 - upload URL is issued by LinkedIn
+            return resp.status
+    except error.HTTPError as exc:
+        response_body = exc.read().decode("utf-8", errors="replace")
+        details = response_body.strip() or exc.reason or "No response body"
+        raise RuntimeError(
+            f"HTTP {exc.code} while uploading LinkedIn image: {details[:1200]}"
+        ) from exc
+
+
+def load_image_bytes(image_ref: str, site_url: str) -> tuple[bytes, str]:
+    if image_ref.startswith(("http://", "https://")):
+        data, content_type = get_bytes(image_ref)
+    else:
+        local_path = Path(image_ref.lstrip("/"))
+        if local_path.is_file():
+            data = local_path.read_bytes()
+            content_type = mimetypes.guess_type(local_path.name)[0] or "application/octet-stream"
+        else:
+            resolved = parse.urljoin(f"{site_url.rstrip('/')}/", image_ref)
+            data, content_type = get_bytes(resolved)
+
+    leading = data[:512].lstrip().lower()
+    is_svg = (
+        "svg" in content_type.lower()
+        or parse.urlparse(image_ref).path.lower().endswith(".svg")
+        or b"<svg" in leading
+    )
+    if is_svg:
+        try:
+            import cairosvg
+        except ImportError as exc:  # pragma: no cover - dependency is installed in GitHub Actions
+            raise RuntimeError(
+                "SVG LinkedIn thumbnails require CairoSVG. Install it with `pip install cairosvg`."
+            ) from exc
+        data = cairosvg.svg2png(bytestring=data)
+        content_type = "image/png"
+
+    allowed_types = {"image/jpeg", "image/png", "image/gif"}
+    if content_type.lower() not in allowed_types:
+        raise RuntimeError(
+            f"LinkedIn thumbnail format is unsupported: {content_type}. Use JPG, PNG, GIF, or SVG."
+        )
+
+    return data, content_type.lower()
+
+
+def linkedin_headers(token: str, linkedin_version: str) -> dict[str, str]:
+    return {
+        "Authorization": f"Bearer {token}",
+        "X-Restli-Protocol-Version": "2.0.0",
+        "Linkedin-Version": linkedin_version,
+    }
+
+
+def upload_linkedin_image(
+    image_ref: str,
+    site_url: str,
+    token: str,
+    author_urn: str,
+    linkedin_version: str,
+) -> str:
+    headers = linkedin_headers(token, linkedin_version)
+    status, body = post_json(
+        "https://api.linkedin.com/rest/images?action=initializeUpload",
+        {"initializeUploadRequest": {"owner": author_urn}},
+        headers,
+    )
+    if status != 200:
+        raise RuntimeError(f"LinkedIn image upload initialization failed with status {status}.")
+
+    try:
+        value = json.loads(body)["value"]
+        upload_url = value["uploadUrl"]
+        image_urn = value["image"]
+    except (KeyError, TypeError, json.JSONDecodeError) as exc:
+        raise RuntimeError(f"LinkedIn image upload returned an unexpected response: {body[:500]}") from exc
+
+    image_bytes, content_type = load_image_bytes(image_ref, site_url)
+    upload_status = put_bytes(
+        upload_url,
+        image_bytes,
+        {
+            "Authorization": f"Bearer {token}",
+            "Content-Type": content_type,
+        },
+    )
+    if upload_status not in {200, 201}:
+        raise RuntimeError(f"LinkedIn image upload failed with status {upload_status}.")
+
+    return image_urn
+
+
+def publish_linkedin(
+    text: str,
+    article_url: str,
+    dry_run: bool,
+    *,
+    title: str | None = None,
+    description: str | None = None,
+    image_url: str | None = None,
+    site_url: str = "https://blog.falowen.app",
+) -> None:
     token = env_value("LINKEDIN_ACCESS_TOKEN")
     author_urn = env_value("LINKEDIN_AUTHOR_URN", "LINKEDIN_PERSON_URN")
     if not token or not author_urn:
@@ -100,7 +227,7 @@ def publish_linkedin(text: str, article_url: str, dry_run: bool) -> None:
 
     linkedin_version = env_value("LINKEDIN_VERSION") or "202607"
     commentary = f"{text}\n\nRead more: {article_url}"
-    payload = {
+    payload: dict = {
         "author": author_urn,
         "commentary": commentary,
         "visibility": "PUBLIC",
@@ -112,6 +239,25 @@ def publish_linkedin(text: str, article_url: str, dry_run: bool) -> None:
         "lifecycleState": "PUBLISHED",
         "isReshareDisabledByAuthor": False,
     }
+
+    # LinkedIn's Posts API does not scrape URLs for article previews. We must
+    # explicitly send article metadata and upload the thumbnail image first.
+    if title or description or image_url:
+        article: dict[str, str] = {
+            "source": article_url,
+            "title": title or text.splitlines()[0][:200],
+            "description": description or "",
+        }
+        if image_url and not dry_run:
+            article["thumbnail"] = upload_linkedin_image(
+                image_url,
+                site_url,
+                token,
+                author_urn,
+                linkedin_version,
+            )
+        payload["content"] = {"article": article}
+
     if dry_run:
         print("[linkedin] Dry run: would publish post")
         return
@@ -119,11 +265,7 @@ def publish_linkedin(text: str, article_url: str, dry_run: bool) -> None:
     status, body = post_json(
         "https://api.linkedin.com/rest/posts",
         payload,
-        {
-            "Authorization": f"Bearer {token}",
-            "X-Restli-Protocol-Version": "2.0.0",
-            "Linkedin-Version": linkedin_version,
-        },
+        linkedin_headers(token, linkedin_version),
     )
     print(f"[linkedin] Published (status={status}): {body[:160]}")
 
@@ -214,7 +356,15 @@ def main() -> int:
 
     url = post_url(args.site_url, post_path, fm)
 
-    publish_linkedin(f"{title}\n\n{excerpt}", url, args.dry_run)
+    publish_linkedin(
+        f"{title}\n\n{excerpt}",
+        url,
+        args.dry_run,
+        title=title,
+        description=excerpt,
+        image_url=image_url,
+        site_url=args.site_url,
+    )
     if args.linkedin_only:
         return 0
 

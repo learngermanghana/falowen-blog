@@ -64,6 +64,54 @@ class PublishLinkedInTests(unittest.TestCase):
         {
             "LINKEDIN_ACCESS_TOKEN": "token",
             "LINKEDIN_AUTHOR_URN": "urn:li:person:author",
+        },
+        clear=True,
+    )
+    @patch("scripts.post_to_social.upload_linkedin_image")
+    @patch("scripts.post_to_social.post_json")
+    def test_publish_linkedin_adds_article_thumbnail(
+        self,
+        mock_post_json,
+        mock_upload_linkedin_image,
+    ) -> None:
+        mock_post_json.return_value = (201, "")
+        mock_upload_linkedin_image.return_value = "urn:li:image:thumbnail"
+
+        publish_linkedin(
+            "German lesson",
+            "https://blog.falowen.app/german-lesson/",
+            dry_run=False,
+            title="German Lesson",
+            description="Learn a useful German grammar topic.",
+            image_url="/assets/img/german-lesson.svg",
+            site_url="https://blog.falowen.app",
+        )
+
+        mock_upload_linkedin_image.assert_called_once_with(
+            "/assets/img/german-lesson.svg",
+            "https://blog.falowen.app",
+            "token",
+            "urn:li:person:author",
+            "202607",
+        )
+        payload = mock_post_json.call_args.args[1]
+        self.assertEqual(
+            {
+                "article": {
+                    "source": "https://blog.falowen.app/german-lesson/",
+                    "thumbnail": "urn:li:image:thumbnail",
+                    "title": "German Lesson",
+                    "description": "Learn a useful German grammar topic.",
+                }
+            },
+            payload["content"],
+        )
+
+    @patch.dict(
+        "os.environ",
+        {
+            "LINKEDIN_ACCESS_TOKEN": "token",
+            "LINKEDIN_AUTHOR_URN": "urn:li:person:author",
             "LINKEDIN_VERSION": "202606",
         },
         clear=True,
@@ -104,7 +152,13 @@ class PublishLinkedInTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             post_path = Path(temp_dir) / "2026-07-24-test-post.md"
             post_path.write_text(
-                "---\ntitle: Test Post\npermalink: /test-post/\n---\nUseful body text.",
+                "---\n"
+                "title: Test Post\n"
+                "excerpt: A useful test excerpt.\n"
+                "image: /assets/img/test.svg\n"
+                "permalink: /test-post/\n"
+                "---\n"
+                "Useful body text.",
                 encoding="utf-8",
             )
             with patch(
@@ -114,7 +168,15 @@ class PublishLinkedInTests(unittest.TestCase):
                 result = main()
 
         self.assertEqual(0, result)
-        mock_linkedin.assert_called_once()
+        mock_linkedin.assert_called_once_with(
+            "Test Post\n\nA useful test excerpt.",
+            "https://falowen.com/test-post/",
+            False,
+            title="Test Post",
+            description="A useful test excerpt.",
+            image_url="/assets/img/test.svg",
+            site_url="https://falowen.com",
+        )
         mock_instagram.assert_not_called()
         mock_medium.assert_not_called()
 
