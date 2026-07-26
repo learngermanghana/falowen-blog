@@ -10,6 +10,7 @@ on:
       - "scripts/post_to_social.py"
       - "tests/test_post_to_social.py"
       - ".github/social-publish/linkedin-baseline.txt"
+      - ".github/social-publish/linkedin-shared-posts.txt"
   workflow_run:
     workflows: ["30-Day Biweekly Blog Auto-Publish"]
     types: [completed]
