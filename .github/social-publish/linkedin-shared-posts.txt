@@ -2,3 +2,4 @@
 _posts/2026-07-24-german-adjective-endings-made-simple.md
 _posts/2026-07-24-german-connectors-weil-obwohl-deshalb-trotzdem-b1.md
 _posts/2026-07-24-german-separable-verbs-for-beginners.md
+_posts/2026-07-25-german-konjunktiv-ii-politeness-wishes-advice.md
