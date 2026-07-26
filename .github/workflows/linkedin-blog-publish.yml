@@ -110,11 +110,11 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Install LinkedIn image dependencies
-        if: steps.resolve.outputs.skip != 'true'
+        if: github.event_name == 'push' || steps.resolve.outputs.skip != 'true'
         run: python -m pip install --disable-pip-version-check "cairosvg>=2.7,<3"
 
       - name: Test social publisher
-        if: steps.resolve.outputs.skip != 'true'
+        if: github.event_name == 'push' || steps.resolve.outputs.skip != 'true'
         run: python -m unittest tests.test_post_to_social
 
       - name: Validate LinkedIn configuration
