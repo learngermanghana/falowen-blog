@@ -555,8 +555,11 @@ def resolve_image_url(day_number: int, day_config: dict) -> str:
     if not url.startswith(prefix):
         return url
 
-    query = url.removeprefix(prefix).replace("-", ",")
-    return f"https://source.unsplash.com/featured/?{query}&sig={day_number}"
+    # Unsplash search pages are useful editorial references, but the former
+    # source.unsplash.com endpoint is not a dependable image host. Use a local
+    # asset so generated posts and social publishing never depend on that
+    # transient service.
+    return "/assets/img/falowen-blog-default.svg"
 
 
 def generate_ai_body(day_number: int, day_config: dict) -> str | None:
