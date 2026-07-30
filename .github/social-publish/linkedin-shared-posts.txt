@@ -6,3 +6,4 @@ _posts/2026-07-25-german-konjunktiv-ii-politeness-wishes-advice.md
 _posts/2026-07-26-german-relative-clauses-relativsaetze-b1.md
 _posts/2026-07-27-german-two-way-prepositions-wechselpraepositionen.md
 _posts/2026-07-29-german-n-declension-weak-masculine-nouns.md
+_posts/2026-07-29-how-to-ask-simple-questions-in-german.md
