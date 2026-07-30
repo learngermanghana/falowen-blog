@@ -12,9 +12,15 @@ layout: default
   </div>
 </section>
 
-{% assign topic_posts = site.posts | where_exp: 'post', 'post.tags contains page.topic or post.categories contains page.topic or post.title contains page.topic' %}
+{% assign tagged_posts = site.posts | where_exp: 'post', 'post.tags contains page.topic' %}
+{% assign categorized_posts = site.posts | where_exp: 'post', 'post.categories contains page.topic' %}
+{% assign titled_posts = site.posts | where_exp: 'post', 'post.title contains page.topic' %}
+{% assign topic_posts = tagged_posts | concat: categorized_posts | concat: titled_posts | uniq %}
 {% if topic_posts.size == 0 and page.alt_topic %}
-  {% assign topic_posts = site.posts | where_exp: 'post', 'post.tags contains page.alt_topic or post.categories contains page.alt_topic or post.title contains page.alt_topic' %}
+  {% assign tagged_posts = site.posts | where_exp: 'post', 'post.tags contains page.alt_topic' %}
+  {% assign categorized_posts = site.posts | where_exp: 'post', 'post.categories contains page.alt_topic' %}
+  {% assign titled_posts = site.posts | where_exp: 'post', 'post.title contains page.alt_topic' %}
+  {% assign topic_posts = tagged_posts | concat: categorized_posts | concat: titled_posts | uniq %}
 {% endif %}
 
 <section class="archive-grid topic-grid">
