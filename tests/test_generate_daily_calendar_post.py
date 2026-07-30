@@ -47,11 +47,21 @@ class DailyCalendarPostTests(unittest.TestCase):
         self.assertIn("Day 21/180 CTA:", body_21)
         self.assertNotEqual(body_1, body_2)
 
-    def test_resolve_image_url_builds_source_unsplash_url_for_unsplash_search_pages(self) -> None:
+    def test_resolve_image_url_uses_local_fallback_for_unsplash_search_pages(self) -> None:
         day_2 = pick_day_config(2)
         assert day_2 is not None
         image_url = resolve_image_url(2, day_2)
-        self.assertEqual(image_url, "https://source.unsplash.com/featured/?alphabet,letters&sig=2")
+        self.assertEqual(image_url, "/assets/img/falowen-blog-default.svg")
+
+    def test_resolve_image_url_preserves_explicit_image_url(self) -> None:
+        image_url = resolve_image_url(
+            2,
+            {
+                "image_url": "/assets/img/german-alphabet-complete-beginners.svg",
+                "unsplash_link": "https://unsplash.com/s/photos/alphabet-letters",
+            },
+        )
+        self.assertEqual(image_url, "/assets/img/german-alphabet-complete-beginners.svg")
 
     def test_build_post_appends_level_test_and_standard_closing(self) -> None:
         day_1 = pick_day_config(1)
