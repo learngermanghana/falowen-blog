@@ -1,16 +1,16 @@
-name: Daily Blog Auto-Publish
+name: Weekly Blog Auto-Publish
 
 on:
   schedule:
-    # Run every day at 09:00 UTC (09:00 Ghana time).
-    - cron: "0 9 * * *"
+    # Run once a week on Wednesday at 09:00 UTC (09:00 Ghana time).
+    - cron: "0 9 * * 3"
   workflow_dispatch: {}
 
 permissions:
   contents: write
 
 concurrency:
-  group: daily-blog-publish
+  group: weekly-blog-publish
   cancel-in-progress: false
 
 jobs:
@@ -27,7 +27,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Generate daily calendar post
+      - name: Generate weekly calendar post
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
@@ -38,7 +38,7 @@ jobs:
         run: |
           git status --porcelain
           if [ -z "$(git status --porcelain)" ]; then
-            echo "No changes to commit. The post may already exist or no calendar topic is configured for today."
+            echo "No changes to commit."
             exit 0
           fi
 
@@ -46,5 +46,5 @@ jobs:
           git config user.email "falowen-bot@users.noreply.github.com"
 
           git add _posts
-          git commit -m "chore(blog): publish daily calendar post"
+          git commit -m "chore(blog): publish weekly calendar post"
           git push
