@@ -4,86 +4,71 @@ layout: default
 
 {% assign featured_post = site.posts | first %}
 
-<section class="blog-library-hero">
+<section class="blog-library-hero blog-library-hero-search">
   <div class="blog-library-copy">
-    <span class="eyebrow">Falowen learning library</span>
+    <span class="eyebrow">Falowen German Blog</span>
     <h1>{{ page.title | default: 'German Learning Blog' }}</h1>
-    <p>{{ page.description | default: 'Practical German lessons, exam tips, vocabulary and grammar guides for A1–C1 learners.' }}</p>
-    <div class="blog-library-actions">
-      <a class="btn-primary" href="https://www.learngermanghana.com/classes" target="_blank" rel="noopener">Start learning German</a>
-      <a class="btn-secondary" href="{{ '/search/' | relative_url }}">Search lessons</a>
+    <p>{{ page.description | default: 'Find practical German lessons, exam tips, vocabulary and grammar guides for A1–C1 learners.' }}</p>
+
+    <div class="article-search-shell" role="search">
+      <label for="article-library-search">Search all articles</label>
+      <div class="article-search-row">
+        <input id="article-library-search" type="search" autocomplete="off" placeholder="Search: Akkusativ, B1 Schreiben, Goethe, Wortschatz…" aria-describedby="article-search-status">
+        <button id="article-search-clear" type="button">Clear</button>
+      </div>
+      <p id="article-search-status" class="article-search-status" aria-live="polite">Showing all {{ site.posts | size }} articles</p>
     </div>
-    <div class="blog-library-stats" aria-label="Blog learning highlights">
-      <div><strong>{{ site.posts | size }}+</strong><span>Lessons</span></div>
-      <div><strong>A1–C1</strong><span>Levels</span></div>
-      <div><strong>Exam</strong><span>Practice</span></div>
+
+    <div class="article-quick-filters" aria-label="Quick article filters">
+      <button type="button" data-article-filter="A1">A1</button>
+      <button type="button" data-article-filter="A2">A2</button>
+      <button type="button" data-article-filter="B1">B1</button>
+      <button type="button" data-article-filter="B2">B2</button>
+      <button type="button" data-article-filter="Grammar">Grammar</button>
+      <button type="button" data-article-filter="Exam">Exam Prep</button>
+      <button type="button" data-article-filter="Speaking">Speaking</button>
+      <button type="button" data-article-filter="Writing">Writing</button>
+      <button type="button" data-article-filter="Vocabulary">Vocabulary</button>
     </div>
   </div>
 
   {% if featured_post %}
-    {% assign featured_key = featured_post.title | downcase %}
     {% assign featured_image = featured_post.image %}
-    {% if featured_key contains 'time' or featured_key contains 'uhr' %}
-      {% assign featured_image = '/assets/img/falowen-topic-time.svg' | relative_url %}
-    {% elsif featured_key contains 'word' or featured_key contains 'vocabulary' or featured_key contains 'numbers' or featured_key contains 'alphabet' or featured_key contains 'days' %}
-      {% assign featured_image = '/assets/img/falowen-topic-vocabulary.svg' | relative_url %}
-    {% elsif featured_image == nil or featured_image == '' or featured_image contains 'source.unsplash.com' or featured_image contains 'unsplash.com/s/photos' %}
+    {% if featured_image == nil or featured_image == '' or featured_image contains 'source.unsplash.com' or featured_image contains 'unsplash.com/s/photos' %}
       {% assign featured_image = '/assets/img/falowen-topic-general.svg' | relative_url %}
     {% endif %}
     <article class="blog-featured-card">
       <a href="{{ featured_post.url | relative_url }}">
-        <img src="{{ featured_image }}" alt="{{ featured_post.title | escape }}" loading="eager">
+        <img src="{{ featured_image }}" alt="{{ featured_post.image_alt | default: featured_post.title | escape }}" loading="eager">
         <div>
-          <span class="featured-badge">Featured lesson</span>
+          <span class="featured-badge">Newest article</span>
           <h2>{{ featured_post.title }}</h2>
           {% if featured_post.excerpt %}<p>{{ featured_post.excerpt | strip_html | truncate: 150 }}</p>{% endif %}
-          <strong>Read featured article →</strong>
+          <strong>Read article →</strong>
         </div>
       </a>
     </article>
   {% endif %}
 </section>
 
-<section class="blog-topic-panel" aria-label="Popular blog topics">
-  <div class="blog-section-head">
-    <span class="eyebrow">Browse by goal</span>
-    <h2>Choose what you want to improve today.</h2>
-    <p>Jump into lessons based on your level, exam goal, or skill area.</p>
-  </div>
-  <div class="blog-topic-grid">
-    <a href="{{ '/topics/a1-german/' | relative_url }}"><strong>A1 German</strong><span>Start with greetings, numbers and daily words.</span></a>
-    <a href="{{ '/topics/a2-german/' | relative_url }}"><strong>A2 German</strong><span>Build better grammar and everyday confidence.</span></a>
-    <a href="{{ '/topics/grammar/' | relative_url }}"><strong>Grammar</strong><span>Understand rules with simple explanations.</span></a>
-    <a href="{{ '/topics/speaking/' | relative_url }}"><strong>Speaking</strong><span>Practice useful phrases for real conversation.</span></a>
-    <a href="{{ '/topics/writing/' | relative_url }}"><strong>Writing</strong><span>Improve emails, notes and exam writing.</span></a>
-    <a href="{{ '/topics/exam-prep/' | relative_url }}"><strong>Exam Prep</strong><span>Prepare for Goethe-style tasks and confidence.</span></a>
-  </div>
-</section>
-
-<section class="blog-posts-section">
+<section class="blog-posts-section" id="all-articles">
   <div class="blog-section-head blog-section-row">
     <div>
-      <span class="eyebrow">Latest guides</span>
+      <span class="eyebrow">Article library</span>
       <h2>All German learning articles</h2>
-      <p>Fresh lessons from the Falowen blog library.</p>
+      <p>Newest articles appear first. Search above to narrow the list instantly.</p>
     </div>
-    <a class="btn-secondary" href="{{ '/search/' | relative_url }}">Find a topic</a>
   </div>
 
-  <div class="blog-card-grid">
+  <div class="blog-card-grid" id="article-library-grid">
     {% for post in site.posts %}
-      {% assign card_key = post.title | downcase %}
       {% assign card_image = post.image %}
-      {% if card_key contains 'time' or card_key contains 'uhr' %}
-        {% assign card_image = '/assets/img/falowen-topic-time.svg' | relative_url %}
-      {% elsif card_key contains 'word' or card_key contains 'vocabulary' or card_key contains 'numbers' or card_key contains 'alphabet' or card_key contains 'days' %}
-        {% assign card_image = '/assets/img/falowen-topic-vocabulary.svg' | relative_url %}
-      {% elsif card_image == nil or card_image == '' or card_image contains 'source.unsplash.com' or card_image contains 'unsplash.com/s/photos' %}
+      {% if card_image == nil or card_image == '' or card_image contains 'source.unsplash.com' or card_image contains 'unsplash.com/s/photos' %}
         {% assign card_image = '/assets/img/falowen-topic-general.svg' | relative_url %}
       {% endif %}
-      <article class="blog-article-card">
+      <article class="blog-article-card" data-article-card>
         <a href="{{ post.url | relative_url }}">
-          <img src="{{ card_image }}" alt="{{ post.title | escape }}" loading="lazy">
+          <img src="{{ card_image }}" alt="{{ post.image_alt | default: post.title | escape }}" loading="lazy">
           <div class="blog-article-body">
             <div class="blog-article-meta">
               <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
@@ -97,16 +82,80 @@ layout: default
       </article>
     {% endfor %}
   </div>
+
+  <div class="article-no-results" id="article-no-results" hidden>
+    <h3>No matching articles found</h3>
+    <p>Try a shorter keyword such as “B1”, “Dativ”, “exam” or “writing”.</p>
+  </div>
 </section>
 
 <section class="blog-bottom-cta">
   <div>
-    <span class="eyebrow">Need a clear study plan?</span>
-    <h2>Join Learn Language Education Academy and study German with guidance.</h2>
-    <p>Use the blog for free practice, then join our classes when you need structure, feedback and exam direction.</p>
+    <span class="eyebrow">Want structured learning?</span>
+    <h2>Use the articles freely, then join a class when you need guidance.</h2>
+    <p>Falowen articles stay easy to browse while structured German classes remain available when you want teacher support.</p>
   </div>
   <div class="blog-library-actions">
-    <a class="btn-primary" href="https://www.learngermanghana.com/classes" target="_blank" rel="noopener">View upcoming classes</a>
-    <a class="btn-secondary" href="https://wa.me/233541588913" target="_blank" rel="noopener">Chat on WhatsApp</a>
+    <a class="btn-primary" href="https://www.falowen.app/classes" target="_blank" rel="noopener">View classes</a>
+    <a class="btn-secondary" href="https://www.falowen.app" target="_blank" rel="noopener">Open Falowen</a>
   </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var input = document.getElementById('article-library-search');
+  var clear = document.getElementById('article-search-clear');
+  var status = document.getElementById('article-search-status');
+  var noResults = document.getElementById('article-no-results');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('[data-article-card]'));
+  var filterButtons = Array.prototype.slice.call(document.querySelectorAll('[data-article-filter]'));
+
+  if (!input || !cards.length) return;
+
+  function normalise(value) {
+    return (value || '').toLowerCase().trim();
+  }
+
+  function filterArticles() {
+    var query = normalise(input.value);
+    var visible = 0;
+
+    cards.forEach(function (card) {
+      var matches = !query || normalise(card.textContent).indexOf(query) !== -1;
+      card.hidden = !matches;
+      if (matches) visible += 1;
+    });
+
+    if (status) {
+      status.textContent = query
+        ? 'Showing ' + visible + ' of ' + cards.length + ' articles for “' + input.value.trim() + '”'
+        : 'Showing all ' + cards.length + ' articles';
+    }
+    if (noResults) noResults.hidden = visible !== 0;
+  }
+
+  input.addEventListener('input', filterArticles);
+
+  if (clear) {
+    clear.addEventListener('click', function () {
+      input.value = '';
+      filterArticles();
+      input.focus();
+    });
+  }
+
+  filterButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      input.value = button.getAttribute('data-article-filter') || '';
+      filterArticles();
+      document.getElementById('all-articles').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('q')) {
+    input.value = params.get('q');
+    filterArticles();
+  }
+});
+</script>
