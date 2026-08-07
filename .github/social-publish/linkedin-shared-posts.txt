@@ -8,3 +8,4 @@ _posts/2026-07-27-german-two-way-prepositions-wechselpraepositionen.md
 _posts/2026-07-29-german-n-declension-weak-masculine-nouns.md
 _posts/2026-07-29-how-to-ask-simple-questions-in-german.md
 _posts/2026-07-30-german-word-order-tekamolo-b1.md
+_posts/2026-08-07-german-konjunktiv-2-wuerde-haette-waere.md
