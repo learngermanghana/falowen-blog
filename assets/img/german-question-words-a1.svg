@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">German question words A1</title>
+  <desc id="desc">Falowen lesson artwork showing common German question words Wo, Was, Wer and Wann.</desc>
+  <rect width="1600" height="900" rx="48" fill="#0f172a"/>
+  <circle cx="1370" cy="155" r="260" fill="#ff6a00" opacity=".18"/>
+  <circle cx="180" cy="790" r="300" fill="#ffffff" opacity=".05"/>
+  <text x="105" y="125" fill="#ff6a00" font-family="Arial,Helvetica,sans-serif" font-size="34" font-weight="700" letter-spacing="5">GERMAN A1 · SPEAKING</text>
+  <text x="105" y="245" fill="#ffffff" font-family="Arial,Helvetica,sans-serif" font-size="76" font-weight="800">Ask simple questions</text>
+  <text x="105" y="315" fill="#cbd5e1" font-family="Arial,Helvetica,sans-serif" font-size="38">Question word + verb + subject</text>
+  <g font-family="Arial,Helvetica,sans-serif" font-weight="800" text-anchor="middle">
+    <rect x="105" y="400" width="310" height="245" rx="34" fill="#ffffff"/>
+    <text x="260" y="515" fill="#0f172a" font-size="72">WO?</text>
+    <text x="260" y="580" fill="#64748b" font-size="30" font-weight="600">where?</text>
+    <rect x="455" y="400" width="310" height="245" rx="34" fill="#ffffff"/>
+    <text x="610" y="515" fill="#0f172a" font-size="72">WAS?</text>
+    <text x="610" y="580" fill="#64748b" font-size="30" font-weight="600">what?</text>
+    <rect x="805" y="400" width="310" height="245" rx="34" fill="#ffffff"/>
+    <text x="960" y="515" fill="#0f172a" font-size="72">WER?</text>
+    <text x="960" y="580" fill="#64748b" font-size="30" font-weight="600">who?</text>
+    <rect x="1155" y="400" width="310" height="245" rx="34" fill="#ffffff"/>
+    <text x="1310" y="515" fill="#0f172a" font-size="68">WANN?</text>
+    <text x="1310" y="580" fill="#64748b" font-size="30" font-weight="600">when?</text>
+  </g>
+  <text x="105" y="765" fill="#ffffff" font-family="Arial,Helvetica,sans-serif" font-size="40" font-weight="700">Wo wohnst du? · Was machst du? · Wer ist das?</text>
+  <text x="105" y="830" fill="#94a3b8" font-family="Arial,Helvetica,sans-serif" font-size="28">Falowen German Blog</text>
+</svg>
