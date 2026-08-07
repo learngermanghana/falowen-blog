@@ -5,8 +5,8 @@ date: 2026-07-29
 tags: [falowen, german, 30-day-blog, how-to-ask-simple-questions-in-german]
 categories: [Speaking Practice]
 excerpt: "Learn how to ask simple questions in German using common question words."
-image: /assets/img/falowen-blog-default.svg
-image_alt: "How to Ask Simple Questions in German"
+image: /assets/img/german-question-words-a1.svg
+image_alt: "German A1 question words Wo, Was, Wer and Wann"
 permalink: /how-to-ask-simple-questions-in-german/
 seo:
   title: "How to Ask Questions in German"
