@@ -109,6 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var noResults = document.getElementById('article-no-results');
   var cards = Array.prototype.slice.call(document.querySelectorAll('[data-article-card]'));
   var filterButtons = Array.prototype.slice.call(document.querySelectorAll('[data-article-filter]'));
+  var searchIndex = {};
 
   if (!input || !cards.length) return;
 
@@ -116,12 +117,31 @@ document.addEventListener('DOMContentLoaded', function () {
     return (value || '').toLowerCase().trim();
   }
 
+  function cardUrl(card) {
+    var link = card.querySelector('a');
+    return link ? new URL(link.getAttribute('href'), window.location.origin).pathname : '';
+  }
+
+  function indexText(item) {
+    if (!item) return '';
+    return [
+      item.title,
+      item.excerpt,
+      Array.isArray(item.categories) ? item.categories.join(' ') : item.categories,
+      Array.isArray(item.tags) ? item.tags.join(' ') : item.tags,
+      item.content
+    ].filter(Boolean).join(' ');
+  }
+
   function filterArticles() {
     var query = normalise(input.value);
     var visible = 0;
 
     cards.forEach(function (card) {
-      var matches = !query || normalise(card.textContent).indexOf(query) !== -1;
+      var url = cardUrl(card);
+      var indexed = searchIndex[url];
+      var searchableText = indexed ? indexText(indexed) : card.textContent;
+      var matches = !query || normalise(searchableText).indexOf(query) !== -1;
       card.hidden = !matches;
       if (matches) visible += 1;
     });
@@ -133,6 +153,22 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     if (noResults) noResults.hidden = visible !== 0;
   }
+
+  fetch('{{ "/search.json" | relative_url }}')
+    .then(function (response) {
+      if (!response.ok) throw new Error('Search index unavailable');
+      return response.json();
+    })
+    .then(function (items) {
+      items.forEach(function (item) {
+        var url = new URL(item.url, window.location.origin).pathname;
+        searchIndex[url] = item;
+      });
+      filterArticles();
+    })
+    .catch(function () {
+      filterArticles();
+    });
 
   input.addEventListener('input', filterArticles);
 
