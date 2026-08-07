@@ -5,6 +5,8 @@ date: 2026-08-07
 tags: [german-grammar, german-b1, german-b2, konjunktiv-2, wuerde, haette, waere, learn-german]
 categories: [German Grammar]
 excerpt: "Learn German Konjunktiv II with würde, hätte and wäre. Understand polite requests, wishes, advice and unreal situations with practical examples for B1 and B2 learners."
+image: /assets/img/german-konjunktiv-ii-politeness-wishes-advice.svg
+image_alt: "German Konjunktiv II lesson graphic for würde, hätte and wäre"
 permalink: /german-konjunktiv-2-wuerde-haette-waere/
 seo:
   title: "German Konjunktiv II: würde, hätte & wäre | B1-B2 Guide"
