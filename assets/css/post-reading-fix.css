@@ -46,6 +46,7 @@
 [data-theme='dark'] .post-content{background:#111827!important;border-color:#263244!important;color:#e5e7eb!important}
 [data-theme='dark'] .post-content p,[data-theme='dark'] .post-content li,[data-theme='dark'] .post-content td{color:#e5e7eb!important}
 [data-theme='dark'] .post-content h2,[data-theme='dark'] .post-content h3,[data-theme='dark'] .post-content h4,[data-theme='dark'] .post-content strong,[data-theme='dark'] .post-content b,[data-theme='dark'] .post-content th{color:#f8fafc!important}
+[data-theme='dark'] .post-content a{color:#ea580c!important}
 [data-theme='dark'] .post-content th{background:#0f172a!important}
 [data-theme='dark'] .post-content table{background:#111827!important;border-color:#334155!important}
 [data-theme='dark'] .post-content th,[data-theme='dark'] .post-content td{border-color:#334155!important}
