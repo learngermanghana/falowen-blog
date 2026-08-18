@@ -17,3 +17,4 @@ _posts/2026-08-12-how-to-join-learn-language-education-academy-and-start-learnin
 _posts/2026-08-14-german-nominalisation-b2-c1.md
 _posts/2026-08-15-german-indirect-questions-ob-w-words-a2-b2.md
 _posts/2026-08-17-german-reflexive-verbs-pronouns-a2-b2.md
+_posts/2026-08-18-german-infinitive-zu-um-zu-ohne-zu-b1-b2.md
