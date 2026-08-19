@@ -18,4 +18,5 @@ _posts/2026-08-14-german-nominalisation-b2-c1.md
 _posts/2026-08-15-german-indirect-questions-ob-w-words-a2-b2.md
 _posts/2026-08-17-german-reflexive-verbs-pronouns-a2-b2.md
 _posts/2026-08-18-german-infinitive-zu-um-zu-ohne-zu-b1-b2.md
+_posts/2026-08-19-german-numbers-1-to-20-made-easy.md
 _posts/2026-08-19-german-two-way-prepositions-wechselpraepositionen.md
