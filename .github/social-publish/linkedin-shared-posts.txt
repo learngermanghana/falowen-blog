@@ -23,3 +23,4 @@ _posts/2026-08-19-german-two-way-prepositions-wechselpraepositionen.md
 _posts/2026-08-20-german-genitive-case-b1-c1.md
 _posts/2026-08-21-german-relative-clauses-relativpronomen-b1-c1.md
 _posts/2026-08-22-german-konjunktiv-1-reported-speech-b2-c1.md
+_posts/2026-08-23-german-pronominal-adverbs-da-wo-a2-c1.md
