@@ -5,8 +5,8 @@ date: 2026-08-25
 tags: [german-grammar, german-a2, german-b1, german-b2, perfekt, praeteritum, past-tense, learn-german]
 categories: [German Grammar]
 excerpt: "Learn when to use Perfekt and Präteritum in German, how the two past tenses differ, and which forms A2–B2 learners need for speaking and writing."
-image: https://raw.githubusercontent.com/learngermanghana/jonhrega-travel-site/main/public/images/894ad77a-2e20-4b2c-9c0f-81bc4f094a0c.jpeg
-image_alt: "German learner studying Perfekt and Präteritum past tenses"
+image: https://images.pexels.com/photos/4443182/pexels-photo-4443182.jpeg
+image_alt: "Student taking notes during an online German lesson while studying Perfekt and Präteritum"
 permalink: /german-perfekt-vs-praeteritum-past-tense-a2-b2/
 seo:
   title: "German Perfekt vs Präteritum: Past Tense Guide A2–B2"
