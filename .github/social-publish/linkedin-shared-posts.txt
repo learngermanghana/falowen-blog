@@ -27,3 +27,4 @@ _posts/2026-08-23-german-pronominal-adverbs-da-wo-a2-c1.md
 _posts/2026-08-24-german-konjunktiv-2-wuerde-haette-waere-b1-c1.md
 _posts/2026-08-25-german-past-tense-perfekt-vs-praeteritum-a2-b2.md
 _posts/2026-08-26-german-adjective-endings-adjektivdeklination-a2-c1.md
+_posts/2026-08-26-how-to-talk-about-your-family-in-german.md
