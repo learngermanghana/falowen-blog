@@ -32,3 +32,4 @@ _posts/2026-08-26-upcoming-german-classes-ghana-a1-a2.md
 _posts/2026-08-27-german-negation-nicht-vs-kein-word-order-a1-b2.md
 _posts/2026-08-28-german-word-order-nebensatz-weil-dass-obwohl.md
 _posts/2026-08-29-german-two-way-prepositions-accusative-dative.md
+_posts/2026-08-30-german-relative-clauses-relative-pronouns.md
