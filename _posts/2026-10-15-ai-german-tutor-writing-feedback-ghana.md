@@ -1,19 +1,15 @@
 ---
 layout: post
-title: "Smarter AI for German Learners: Study Buddy and Mark My Letter in Falowen"
+title: "AI German Tutor and Writing Feedback in Ghana | Falowen"
 date: 2026-10-15
 tags: [falowen, german, ai german tutor, study buddy, mark my letter, german grammar, goethe schreiben, ghana, nigeria, west africa]
 categories: [Updates]
-excerpt: "Explore how Falowen's upgraded AI Study Buddy and Mark My Letter help German learners in Ghana and West Africa understand grammar and improve their German writing."
+excerpt: "Learn German in Ghana and West Africa with Falowen's smarter Study Buddy and Mark My Letter AI tools for grammar help and German writing feedback."
+description: "Learn German in Ghana and West Africa with Falowen's smarter Study Buddy and Mark My Letter AI tools for grammar help and German writing feedback."
 image: https://blog.falowen.app/assets/images/falowen-study-buddy-ai-example.webp
 image_alt: "Real photo of Falowen Study Buddy on a mobile phone explaining the German verb abbauen"
 permalink: /ai-german-tutor-writing-feedback-ghana/
-seo:
-  title: "AI German Tutor and Writing Feedback in Ghana | Falowen"
-  description: "Learn German in Ghana and West Africa with Falowen's smarter Study Buddy and Mark My Letter AI tools for grammar help and German writing feedback."
 ---
-
-# Smarter AI for German Learners: Meet Falowen's Upgraded Study Buddy and Mark My Letter
 
 **Learning German does not stop when a lesson ends.** Sometimes you are studying at home, meet an unfamiliar word or finish a letter, and need to know what to improve before your next class.
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import io
 import json
 import mimetypes
 import os
@@ -151,13 +152,41 @@ def load_image_bytes(image_ref: str, site_url: str) -> tuple[bytes, str]:
         data = cairosvg.svg2png(bytestring=data)
         content_type = "image/png"
 
+    # Jekyll displays WebP correctly, but LinkedIn's image upload requires
+    # a supported raster format. Convert just the LinkedIn thumbnail: keep
+    # the optimized original image on the public blog.
+    is_webp = (
+        content_type.split(";", 1)[0].strip().lower() == "image/webp"
+        or (data[:4] == b"RIFF" and data[8:12] == b"WEBP")
+    )
+    if is_webp:
+        try:
+            from PIL import Image
+        except ImportError as exc:  # pragma: no cover - installed in GitHub Actions
+            raise RuntimeError(
+                "WebP LinkedIn thumbnails require Pillow. Install it with `pip install Pillow`."
+            ) from exc
+        try:
+            with Image.open(io.BytesIO(data)) as photo:
+                # White background avoids black/transparent JPEG thumbnails.
+                rgba = photo.convert("RGBA")
+                jpeg = Image.new("RGB", rgba.size, (255, 255, 255))
+                jpeg.paste(rgba, mask=rgba.getchannel("A"))
+                output = io.BytesIO()
+                jpeg.save(output, format="JPEG", quality=90, optimize=True)
+                data = output.getvalue()
+        except (OSError, ValueError) as exc:
+            raise RuntimeError("Could not convert WebP LinkedIn thumbnail to JPEG.") from exc
+        content_type = "image/jpeg"
+
+    normalized_type = content_type.split(";", 1)[0].strip().lower()
     allowed_types = {"image/jpeg", "image/png", "image/gif"}
-    if content_type.lower() not in allowed_types:
+    if normalized_type not in allowed_types:
         raise RuntimeError(
-            f"LinkedIn thumbnail format is unsupported: {content_type}. Use JPG, PNG, GIF, or SVG."
+            f"LinkedIn thumbnail format is unsupported: {content_type}. Use JPG, PNG, GIF, SVG or WebP."
         )
 
-    return data, content_type.lower()
+    return data, normalized_type
 
 
 def linkedin_headers(token: str, linkedin_version: str) -> dict[str, str]:

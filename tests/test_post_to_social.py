@@ -3,9 +3,11 @@ import tempfile
 import unittest
 from contextlib import redirect_stdout
 from pathlib import Path
+
+from PIL import Image
 from unittest.mock import patch
 
-from scripts.post_to_social import main, post_url, publish_linkedin
+from scripts.post_to_social import load_image_bytes, main, parse_front_matter, post_url, publish_linkedin
 
 
 class PublishLinkedInTests(unittest.TestCase):
@@ -179,6 +181,62 @@ class PublishLinkedInTests(unittest.TestCase):
         )
         mock_instagram.assert_not_called()
         mock_medium.assert_not_called()
+
+
+
+class ThumbnailFormatTests(unittest.TestCase):
+    @patch("scripts.post_to_social.get_bytes")
+    def test_webp_image_is_converted_to_jpeg_for_linkedin(self, mock_get_bytes) -> None:
+        photo = io.BytesIO()
+        Image.new("RGBA", (5, 6), (10, 90, 140, 110)).save(photo, "WEBP")
+        mock_get_bytes.return_value = (photo.getvalue(), "image/webp")
+
+        data, content_type = load_image_bytes(
+            "https://blog.falowen.app/assets/images/falowen-study-buddy-ai-example.webp",
+            "https://blog.falowen.app",
+        )
+
+        self.assertEqual("image/jpeg", content_type)
+        self.assertTrue(data.startswith(b"\xff\xd8"))
+        with Image.open(io.BytesIO(data)) as converted:
+            self.assertEqual("JPEG", converted.format)
+            self.assertEqual((5, 6), converted.size)
+
+    @patch("scripts.post_to_social.get_bytes")
+    def test_webp_magic_detected_when_server_returns_octet_stream(self, mock_get_bytes) -> None:
+        photo = io.BytesIO()
+        Image.new("RGB", (4, 4), (10, 20, 30)).save(photo, "WEBP")
+        mock_get_bytes.return_value = (photo.getvalue(), "application/octet-stream")
+
+        data, content_type = load_image_bytes("https://example.com/photo", "https://example.com")
+
+        self.assertEqual("image/jpeg", content_type)
+        self.assertTrue(data.startswith(b"\xff\xd8"))
+
+    @patch("scripts.post_to_social.get_bytes")
+    def test_existing_jpeg_stays_supported_without_reencoding(self, mock_get_bytes) -> None:
+        photo = io.BytesIO()
+        Image.new("RGB", (4, 4), (10, 20, 30)).save(photo, "JPEG")
+        mock_get_bytes.return_value = (photo.getvalue(), "image/jpeg")
+
+        data, content_type = load_image_bytes("https://example.com/thumbnail.jpg", "https://example.com")
+
+        self.assertEqual("image/jpeg", content_type)
+        self.assertEqual(photo.getvalue(), data)
+
+
+class PublishedPostMetadataTests(unittest.TestCase):
+    def test_ai_post_uses_head_consumed_fields_and_one_layout_h1(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        post = (root / "_posts/2026-10-15-ai-german-tutor-writing-feedback-ghana.md").read_text()
+        metadata = parse_front_matter(post)
+        self.assertIn("AI German Tutor", metadata["title"])
+        self.assertIn("Ghana", metadata["title"])
+        self.assertIn("West Africa", metadata["description"])
+        self.assertEqual(metadata["description"], metadata["excerpt"])
+        self.assertNotIn("\nseo:\n", post)
+        self.assertFalse(metadata["_body"].startswith("# "))
+        self.assertIn("<h1", (root / "_layouts/post.html").read_text())
 
 
 class PostUrlTests(unittest.TestCase):
