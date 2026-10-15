@@ -197,7 +197,7 @@ class ThumbnailFormatTests(unittest.TestCase):
         )
 
         self.assertEqual("image/jpeg", content_type)
-        self.assertTrue(data.startswith(b"\\xff\\xd8"))
+        self.assertTrue(data.startswith(b"\xff\xd8"))
         with Image.open(io.BytesIO(data)) as converted:
             self.assertEqual("JPEG", converted.format)
             self.assertEqual((5, 6), converted.size)
@@ -211,16 +211,15 @@ class ThumbnailFormatTests(unittest.TestCase):
         data, content_type = load_image_bytes("https://example.com/photo", "https://example.com")
 
         self.assertEqual("image/jpeg", content_type)
-        self.assertTrue(data.startswith(b"\\xff\\xd8"))
+        self.assertTrue(data.startswith(b"\xff\xd8"))
 
-    def test_existing_jpeg_stays_supported_without_reencoding(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
-            path = Path(temp) / "thumbnail.jpg"
-            photo = io.BytesIO()
-            Image.new("RGB", (4, 4), (10, 20, 30)).save(photo, "JPEG")
-            path.write_bytes(photo.getvalue())
+    @patch("scripts.post_to_social.get_bytes")
+    def test_existing_jpeg_stays_supported_without_reencoding(self, mock_get_bytes) -> None:
+        photo = io.BytesIO()
+        Image.new("RGB", (4, 4), (10, 20, 30)).save(photo, "JPEG")
+        mock_get_bytes.return_value = (photo.getvalue(), "image/jpeg")
 
-            data, content_type = load_image_bytes(str(path), "https://example.com")
+        data, content_type = load_image_bytes("https://example.com/thumbnail.jpg", "https://example.com")
 
         self.assertEqual("image/jpeg", content_type)
         self.assertEqual(photo.getvalue(), data)
@@ -235,7 +234,7 @@ class PublishedPostMetadataTests(unittest.TestCase):
         self.assertIn("Ghana", metadata["title"])
         self.assertIn("West Africa", metadata["description"])
         self.assertEqual(metadata["description"], metadata["excerpt"])
-        self.assertNotIn("\\nseo:\\n", post)
+        self.assertNotIn("\nseo:\n", post)
         self.assertFalse(metadata["_body"].startswith("# "))
         self.assertIn("<h1", (root / "_layouts/post.html").read_text())
 
