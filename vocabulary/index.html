@@ -2,17 +2,17 @@
 layout: default
 title: German Vocabulary Library | Falowen
 permalink: /vocabulary/
-description: Search German and English words from Falowen's published vocabulary database and access normal and slow recordings.
+description: Browse German words with English meanings, organised by level and alphabetically.
 ---
 <section class="fl-vocabulary">
   <div class="fl-vocabulary-hero">
     <span class="fl-kicker">FALOWEN / WORTSCHATZ</span>
     <h1>Words worth<br>remembering.</h1>
-    <p>Search real German vocabulary, choose your level and practise pronunciation using our existing recordings.</p>
+    <p>Browse German words and English meanings, organised by level for easy reading.</p>
   </div>
   <div class="fl-native-vocab" id="fl-native-vocab">
     <div class="fl-vocab-tools">
-      <label class="fl-vocab-search-label" for="fl-vocab-search">Find a word or translation</label>
+      <label class="fl-vocab-search-label" for="fl-vocab-search">Find a word or meaning</label>
       <input id="fl-vocab-search" type="search" placeholder="Search in German or English…" autocomplete="off">
       <div class="fl-levels" aria-label="Vocabulary levels">
         <button type="button" data-level="All" aria-pressed="true">All</button>
@@ -29,9 +29,9 @@ description: Search German and English words from Falowen's published vocabulary
     <button type="button" id="fl-load-more" hidden>Show more words</button>
     <div id="fl-vocab-fallback" hidden>
       <p>Unable to load the interactive cards right now. You can still use the original published library below.</p>
-      <iframe title="Falowen published vocabulary" loading="lazy" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRSRGvV3i6dtdnl-n3QBj0j0frbCooUlEGRG_l_6XsJlc_OU-DlivYaw2XESuhHNkIxkOiy-ivBdiYc/pubhtml?widget=true&amp;headers=false"></iframe>
+      
     </div>
     <p class="fl-vocab-open"><a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRSRGvV3i6dtdnl-n3QBj0j0frbCooUlEGRG_l_6XsJlc_OU-DlivYaw2XESuhHNkIxkOiy-ivBdiYc/pubhtml" target="_blank" rel="noopener noreferrer">Open the original vocabulary spreadsheet ↗</a></p>
   </div>
 </section>
-<script src="{{ '/assets/js/falowen-vocabulary.js' | relative_url }}?v=2" defer></script>
+<script src="{{ '/assets/js/falowen-vocabulary.js' | relative_url }}?v=3" defer></script>
