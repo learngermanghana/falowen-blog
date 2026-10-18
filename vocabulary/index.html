@@ -2,17 +2,36 @@
 layout: default
 title: German Vocabulary Library | Falowen
 permalink: /vocabulary/
-description: Browse Falowen's existing German vocabulary by level, with English translations and normal and slow pronunciation audio.
+description: Search German and English words from Falowen's published vocabulary database and access normal and slow recordings.
 ---
 <section class="fl-vocabulary">
   <div class="fl-vocabulary-hero">
     <span class="fl-kicker">FALOWEN / WORTSCHATZ</span>
     <h1>Words worth<br>remembering.</h1>
-    <p>Learn German with our existing vocabulary collection, organised by level with translations and normal or slow pronunciation audio.</p>
+    <p>Search real German vocabulary, choose your level and practise pronunciation using our existing recordings.</p>
   </div>
-  <div class="fl-vocab-frame">
-    <p class="fl-vocab-note">Select a level using the spreadsheet tabs below. Audio links are provided by the existing Falowen vocabulary library.</p>
-    <iframe title="Falowen German vocabulary by level with normal and slow audio" loading="lazy" referrerpolicy="no-referrer" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRSRGvV3i6dtdnl-n3QBj0j0frbCooUlEGRG_l_6XsJlc_OU-DlivYaw2XESuhHNkIxkOiy-ivBdiYc/pubhtml?widget=true&amp;headers=false"></iframe>
-    <p class="fl-vocab-open"><a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRSRGvV3i6dtdnl-n3QBj0j0frbCooUlEGRG_l_6XsJlc_OU-DlivYaw2XESuhHNkIxkOiy-ivBdiYc/pubhtml" target="_blank" rel="noopener noreferrer">Open the full vocabulary library ↗</a></p>
+  <div class="fl-native-vocab" id="fl-native-vocab">
+    <div class="fl-vocab-tools">
+      <label class="fl-vocab-search-label" for="fl-vocab-search">Find a word or translation</label>
+      <input id="fl-vocab-search" type="search" placeholder="Search in German or English…" autocomplete="off">
+      <div class="fl-levels" aria-label="Vocabulary levels">
+        <button type="button" data-level="All" aria-pressed="true">All</button>
+        <button type="button" data-level="A1" aria-pressed="false">A1</button>
+        <button type="button" data-level="A2" aria-pressed="false">A2</button>
+        <button type="button" data-level="B1" aria-pressed="false">B1</button>
+        <button type="button" data-level="B2" aria-pressed="false">B2</button>
+        <button type="button" data-level="C1" aria-pressed="false">C1</button>
+        <button type="button" data-level="C2" aria-pressed="false">C2</button>
+      </div>
+    </div>
+    <p id="fl-vocab-status" role="status" aria-live="polite">Loading vocabulary from Falowen's published collection…</p>
+    <div id="fl-vocab-grid" class="fl-word-grid"></div>
+    <button type="button" id="fl-load-more" hidden>Show more words</button>
+    <div id="fl-vocab-fallback" hidden>
+      <p>Unable to load the interactive cards right now. You can still use the original published library below.</p>
+      <iframe title="Falowen published vocabulary" loading="lazy" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRSRGvV3i6dtdnl-n3QBj0j0frbCooUlEGRG_l_6XsJlc_OU-DlivYaw2XESuhHNkIxkOiy-ivBdiYc/pubhtml?widget=true&amp;headers=false"></iframe>
+    </div>
+    <p class="fl-vocab-open"><a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRSRGvV3i6dtdnl-n3QBj0j0frbCooUlEGRG_l_6XsJlc_OU-DlivYaw2XESuhHNkIxkOiy-ivBdiYc/pubhtml" target="_blank" rel="noopener noreferrer">Open the original vocabulary spreadsheet ↗</a></p>
   </div>
 </section>
+<script src="{{ '/assets/js/falowen-vocabulary.js' | relative_url }}?v=2" defer></script>
