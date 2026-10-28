@@ -110,8 +110,17 @@ jobs:
             touch "$shared_file"
             while IFS= read -r post; do
               [ -z "$post" ] && continue
+              # Do not flood LinkedIn with older unshared archive posts
+              # after renewing an expired token. Historical posts can still
+              # be published individually through workflow_dispatch post_path.
+              if [[ "$post" < "_posts/2026-10-28-" ]]; then
+                continue
+              fi
               if ! grep -Fqx "$post" "$shared_file"; then
                 posts+=("$post")
+                # Scheduled / push backstop publishes at most one article
+                # per run; the ledger marks it as shared on success.
+                break
               fi
             done < <(git diff --diff-filter=A --name-only "$baseline" HEAD -- '_posts/*.md' | sort)
           fi
