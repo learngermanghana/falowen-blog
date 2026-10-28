@@ -5,8 +5,8 @@ date: 2026-09-23
 tags: [falowen, german, 30-day-blog, der-die-das-explained-simply]
 categories: [German Grammar]
 excerpt: "Learn how der, die, and das work in German with simple explanations for beginners."
-image: /assets/img/falowen-blog-default.svg
-image_alt: "Der, Die, Das Explained Simply"
+image: /assets/img/blog-library/12-articles.svg
+image_alt: "Illustration of colourful letter blocks to learn German articles"
 permalink: /der-die-das-explained-simply/
 seo:
   title: "Der Die Das Explained for Beginners"
