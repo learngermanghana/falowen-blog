@@ -5,8 +5,8 @@ date: 2026-09-16
 tags: [falowen, german, 30-day-blog, 20-basic-german-words-every-student-must-know]
 categories: [German Vocabulary]
 excerpt: "Build your vocabulary with 20 basic German words every beginner should know."
-image: /assets/img/falowen-blog-default.svg
-image_alt: "20 Basic German Words Every Student Must Know"
+image: /assets/img/blog-library/05-essential-vocabulary.svg
+image_alt: "Illustration of an open book for essential German vocabulary"
 permalink: /20-basic-german-words-every-student-must-know/
 seo:
   title: "20 Basic German Words for Beginners"
