@@ -8,7 +8,7 @@ layout: default
   <p>{{ page.description }}</p>
   <div class="archive-search-row">
     <a class="btn-primary" href="{{ '/blogs/' | relative_url }}">All articles</a>
-    <a class="btn-secondary" href="{{ '/search/' | relative_url }}">Search lessons</a>
+    <a class="btn-secondary" href="{{ '/blogs/' | relative_url }}">Search lessons</a>
   </div>
 </section>
 
@@ -49,7 +49,7 @@ layout: default
 {% if topic_posts.size == 0 %}
   <section class="empty-state">
     <h2>More lessons are coming.</h2>
-    <p>Use the full blog archive or search page to find related German learning resources.</p>
+    <p>Use the searchable blog archive to find related German learning resources.</p>
     <a class="btn-primary" href="{{ '/blogs/' | relative_url }}">Browse all articles</a>
   </section>
 {% endif %}
