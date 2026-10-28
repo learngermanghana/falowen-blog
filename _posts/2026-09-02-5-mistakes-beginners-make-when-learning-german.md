@@ -5,8 +5,8 @@ date: 2026-09-02
 tags: [falowen, german, 30-day-blog, 5-mistakes-beginners-make-when-learning-german]
 categories: [German Learning]
 excerpt: "Avoid the most common mistakes beginners make when learning German and improve faster."
-image: /assets/img/falowen-blog-default.svg
-image_alt: "5 Mistakes Beginners Make When Learning German"
+image: /assets/img/blog-library/21-mistakes.svg
+image_alt: "Illustration of checked corrections for common German-learning mistakes"
 permalink: /5-mistakes-beginners-make-when-learning-german/
 seo:
   title: "5 Common German Learning Mistakes"
