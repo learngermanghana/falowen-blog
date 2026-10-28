@@ -1,0 +1,157 @@
+/* Lightweight magazine-style blog refresh, Oct 2026.
+   Scoped to Falowen home/archive; other reading layouts remain unchanged. */
+
+/* Homepage: let recent articles lead without a giant billboard. */
+.home-page .latest-hero{
+  padding:clamp(28px,4vw,48px) 0 34px!important;
+  background:#faf9f6!important;
+}
+.home-page .latest-hero-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:22px;
+  margin-bottom:24px;
+}
+.home-page .latest-hero-head>div{max-width:640px}
+.home-page .latest-hero h1{
+  font-size:clamp(2.15rem,4.1vw,3.8rem)!important;
+  line-height:1.04!important;
+  letter-spacing:-.055em!important;
+  max-width:680px!important;
+  font-weight:850!important;
+}
+.home-page .latest-hero-head>p{max-width:340px;font-size:1rem;line-height:1.55}
+.home-page .latest-slider-track{min-height:330px}
+.home-page .latest-slide-link{min-height:320px;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);box-shadow:none!important}
+.home-page .latest-slide-media img{min-height:320px;max-height:350px;object-fit:cover}
+.home-page .latest-slide-copy{padding:clamp(22px,3vw,34px)}
+.home-page .latest-slide-copy h2{font-size:clamp(1.35rem,2.6vw,2.3rem)}
+.home-page .latest-slide-copy p{font-size:.95rem;line-height:1.6}
+.home-page .latest-hero-more{margin-top:16px;justify-content:flex-start}
+.home-page .view-more-posts{background:#183c36!important;box-shadow:none!important;border-radius:9px!important}
+.home-page .latest-hero-entry{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:16px}
+.home-page .latest-hero-entry a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#1b6156;font-weight:750;font-size:.88rem;border-bottom:1px solid #a0d0c3;padding-bottom:3px}
+.home-page .latest-hero-entry a:hover{border-bottom-color:#1b6156}
+
+/* All Blog Posts: airy intro instead of a full-width dark hero. */
+.fl-archive-welcome{
+  margin:0 auto 26px;
+  padding:clamp(24px,4vw,50px);
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);
+  gap:clamp(22px,5vw,54px);
+  align-items:center;
+  background:linear-gradient(116deg,#fffefb 0%,#f5f8f1 68%,#edf5ec 100%);
+  border:1px solid #e2e7dc;
+  border-radius:22px;
+}
+.fl-archive-kicker,.fl-archive-eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  color:#167765;font-weight:850;font-size:.71rem;letter-spacing:.13em;
+}
+.fl-archive-kicker:before{content:"";width:8px;height:8px;border-radius:50%;background:#f28b37}
+.fl-archive-intro h1{
+  margin:17px 0 14px;
+  max-width:670px;
+  color:#17282d;
+  font:850 clamp(2.2rem,4.1vw,3.85rem)/1.06 Inter,system-ui,sans-serif;
+  letter-spacing:-.06em;
+}
+.fl-archive-intro h1 span{color:#167c6e}
+.fl-archive-intro>p{max-width:550px;margin:0;color:#50616a;font-size:clamp(.97rem,1.2vw,1.08rem);line-height:1.65}
+.fl-archive-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
+.fl-archive-actions a{
+  display:inline-flex;align-items:center;justify-content:center;gap:12px;
+  min-height:43px;padding:10px 17px;border-radius:9px;
+  font-size:.9rem;font-weight:800;text-decoration:none;
+}
+.fl-archive-primary{background:#173d37;color:#fff!important}
+.fl-archive-secondary{background:#fff;color:#25574e!important;border:1px solid #cfddd4}
+.fl-archive-primary:hover{background:#245b50}
+.fl-archive-secondary:hover{background:#edf7f3}
+.fl-archive-explore{display:grid;gap:9px}
+.fl-explore-link{
+  display:grid;grid-template-columns:36px minmax(0,1fr) 17px;align-items:center;gap:13px;
+  padding:14px 16px;background:rgba(255,255,255,.94);border:1px solid #e3e8e2;
+  border-radius:12px;text-decoration:none!important;color:#152c33!important;
+  transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease;
+}
+.fl-explore-link:hover,.fl-explore-link:focus-visible{
+  transform:translateY(-2px);border-color:#91c6b6;box-shadow:0 6px 15px rgba(16,70,55,.07)
+}
+.fl-explore-number{
+  display:grid;place-items:center;width:36px;height:36px;
+  background:#eaf5ef;color:#16816e;border-radius:9px;
+  font-size:.79rem;font-weight:900;
+}
+.fl-explore-link strong,.fl-explore-link small{display:block}
+.fl-explore-link strong{font-size:.96rem;letter-spacing:-.02em;line-height:1.3}
+.fl-explore-link small{margin-top:3px;color:#6c7b81;font-size:.76rem;line-height:1.4}
+.fl-explore-arrow{font-size:1.16rem;color:#16816e}
+
+.fl-archive-discover{
+  background:#fff;border:1px solid #e6e9e5;
+  border-radius:18px;padding:clamp(20px,3.4vw,32px);
+}
+.fl-archive-search-head{
+  display:flex;align-items:end;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+.fl-archive-search-head h2{
+  font:850 clamp(1.35rem,2.7vw,2.05rem)/1.18 Inter,system-ui,sans-serif;
+  color:#182e33;letter-spacing:-.04em;margin:8px 0 0
+}
+.fl-archive-count{color:#45635c;background:#eef6ef;border-radius:999px;padding:7px 12px;font-weight:750;font-size:.8rem;white-space:nowrap}
+.fl-archive-discover .article-search-shell{margin:19px 0 0;box-shadow:none;background:#fbfcfa;border-color:#e2e7e3;padding:12px}
+.fl-archive-discover .article-search-row input{border-radius:8px;font-size:.96rem;padding:12px 14px}
+.fl-archive-discover .article-search-row button{border-radius:8px;background:#173d37;padding:10px 18px}
+.fl-archive-discover .article-quick-filters{margin-top:14px;gap:8px}
+.fl-archive-discover .article-quick-filters button{background:#f4f7f5;border:1px solid #e6ece8;padding:7px 12px;border-radius:8px;font-weight:700}
+.fl-archive-discover .article-quick-filters button:hover,.fl-archive-discover .article-quick-filters button:focus-visible{background:#e6f3eb;color:#185749}
+.fl-archive-discover .article-quick-filters button[aria-pressed="true"]{background:#173d37;color:#fff;border-color:#173d37}
+.blog-posts-section{margin-top:34px!important}
+.blog-section-head h2{font-size:clamp(1.65rem,3.5vw,2.5rem)}
+/* Restore dark-theme legibility without reverting to the oversized banner. */
+[data-theme=dark] .fl-archive-welcome{background:linear-gradient(120deg,#1b2c30,#223b36);border-color:#36514b}
+[data-theme=dark] .fl-archive-intro h1{color:#f9faf8}
+[data-theme=dark] .fl-archive-intro h1 span{color:#8ad4bd}
+[data-theme=dark] .fl-archive-intro>p{color:#d2e0dc}
+[data-theme=dark] .fl-explore-link,[data-theme=dark] .fl-archive-discover{background:#1b2d31;color:#f7f9f8!important;border-color:#39534b}
+[data-theme=dark] .fl-explore-link strong,[data-theme=dark] .fl-archive-search-head h2{color:#f7f9f8}
+[data-theme=dark] .fl-explore-link small{color:#c1d3cc}
+[data-theme=dark] .fl-archive-discover .article-search-shell{background:#23383b;border-color:#39534b}
+[data-theme=dark] .fl-archive-discover .article-quick-filters button{background:#304745;color:#edf8f3;border-color:#48635b}
+[data-theme=dark] .fl-archive-secondary{background:#284740;border-color:#477366;color:#f3faf7!important}
+@media(max-width:880px){
+  .fl-archive-welcome{grid-template-columns:1fr}
+  .fl-archive-explore{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fl-explore-link{grid-template-columns:32px minmax(0,1fr);gap:9px}
+  .fl-explore-arrow{display:none}
+  .home-page .latest-hero-head{align-items:flex-start}
+}
+@media(max-width:640px){
+  .fl-archive-welcome{padding:22px 17px;border-radius:14px;gap:25px}
+  .fl-archive-intro h1{font-size:clamp(2rem,8vw,2.8rem);margin:12px 0}
+  .fl-archive-explore{grid-template-columns:1fr}
+  .fl-explore-link{grid-template-columns:36px minmax(0,1fr) 17px}
+  .fl-explore-arrow{display:block}
+  .fl-archive-search-head{align-items:flex-start}
+  .fl-archive-discover{padding:18px 14px;border-radius:14px}
+  .fl-archive-discover .article-search-row{flex-direction:row}
+  .fl-archive-discover .article-search-row button{padding:9px 13px}
+  .fl-archive-discover .article-quick-filters{gap:6px}
+  .fl-archive-discover .article-quick-filters button{font-size:.76rem;padding:7px 10px}
+  .home-page .latest-hero-head{display:block}
+  .home-page .latest-hero-head>p{margin-top:12px}
+  .home-page .latest-slide-link{display:block;min-height:0}
+  .home-page .latest-slide-media img{min-height:0;height:205px}
+  .home-page .latest-slide-copy{padding:20px 18px}
+  .home-page .latest-slide-copy h2{font-size:1.55rem}
+  .home-page .latest-slide-copy p{font-size:.88rem}
+  .home-page .latest-slider-track{min-height:520px}
+  .home-page .latest-hero-entry{gap:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  .fl-explore-link{transition:none}
+  .fl-explore-link:hover{transform:none}
+}
