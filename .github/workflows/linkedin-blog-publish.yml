@@ -7,6 +7,13 @@ on:
       - ".github/workflows/linkedin-blog-publish.yml"
       - "scripts/post_to_social.py"
       - "tests/test_post_to_social.py"
+      - "scripts/generate_ecosystem_post.py"
+      - "tests/test_ecosystem_post.py"
+      - ".github/workflows/weekly_blog.yml"
+      - "_includes/topnav.html"
+      - "_layouts/home.html"
+      - "index.md"
+      - "blogs/index.md"
   push:
     branches:
       - main
@@ -57,7 +64,7 @@ jobs:
       - name: Install image dependencies
         run: python -m pip install --disable-pip-version-check "cairosvg>=2.7,<3" "Pillow>=10,<12"
       - name: Test LinkedIn thumbnail handling and blog metadata
-        run: python -m unittest tests.test_post_to_social
+        run: python -m unittest tests.test_post_to_social tests.test_ecosystem_post
 
   linkedin_publish:
     if: >
