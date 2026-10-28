@@ -15,10 +15,11 @@
 
   <nav class="topnav" aria-label="Main navigation">
     <ul class="topnav-list">
-      <li class="{% if page.url == '/blogs/' %}active{% endif %}"><a href="{{ '/blogs/' | relative_url }}">Learn German</a></li>
+      <li class="{% if page.url == '/blogs/' %}active{% endif %}"><a href="{{ '/blogs/' | relative_url }}">All Blog Posts</a></li>
       <li><a href="{{ '/search/?q=grammar' | relative_url }}">Grammar</a></li>
-      <li class="{% if page.url == '/vocabulary/' %}active{% endif %}"><a href="{{ '/vocabulary/' | relative_url }}">Vocabulary</a></li>
-      <li><a href="{{ '/search/?q=exam' | relative_url }}">Exam Prep</a></li>
+      <li><a href="https://music.falowen.app">Music</a></li>
+      <li><a href="https://exams.falowen.app">Exams</a></li>
+      <li><a href="https://www.falowen.app/books">Books</a></li>
       <li><a href="https://www.falowen.app/classes" target="_blank" rel="noopener">Classes</a></li>
       <li class="{% if page.url == '/search/' %}active{% endif %}"><a href="{{ '/search/' | relative_url }}">Search</a></li>
       <li><a class="nav-cta" href="https://www.falowen.app" target="_blank" rel="noopener">Start Learning</a></li>
