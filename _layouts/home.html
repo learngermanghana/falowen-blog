@@ -36,11 +36,15 @@
             <article class="latest-slide{% if forloop.first %} is-active{% endif %}" data-slide="{{ forloop.index0 }}" aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}">
               <a class="latest-slide-link" href="{{ post.url | relative_url }}">
                 <div class="latest-slide-media">
-                  {% if post.image %}
-                    <img src="{{ post.image }}" alt="{{ post.image_alt | default: post.title | escape }}" {% if forloop.first %}loading="eager"{% else %}loading="lazy"{% endif %}>
-                  {% else %}
-                    <img src="{{ '/assets/img/falowen-blog-default.svg' | relative_url }}" alt="{{ post.title | escape }}" {% if forloop.first %}loading="eager"{% else %}loading="lazy"{% endif %}>
+                  {% assign hero_cover = post.image %}
+                  {% if hero_cover == nil or hero_cover == '' or hero_cover contains 'source.unsplash.com' or hero_cover contains 'unsplash.com/s/photos' %}
+      {% assign cover_title_size = post.title | size %}
+      {% assign cover_date_number = post.date | date: "%j" | plus: 0 %}
+      {% assign cover_index = cover_title_size | plus: cover_date_number | modulo: site.data.blog_cover_catalogue.size %}
+      {% assign cover_url = site.data.blog_cover_catalogue[cover_index] | relative_url %}
+                    {% assign hero_cover = cover_url %}
                   {% endif %}
+                  <img src="{{ hero_cover }}" alt="{{ post.image_alt | default: post.title | escape }}" {% if forloop.first %}loading="eager"{% else %}loading="lazy"{% endif %}>
                 </div>
                 <div class="latest-slide-copy">
                   <div class="latest-slide-meta">

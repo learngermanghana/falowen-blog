@@ -5,8 +5,8 @@ date: 2026-08-12
 tags: [falowen, german, 30-day-blog, how-to-join-learn-language-education-academy-and-start-learning-german]
 categories: [Academy]
 excerpt: "Learn how to join Learn Language Education Academy and begin your German journey with Falowen."
-image: /assets/img/falowen-blog-default.svg
-image_alt: "How to Join Learn Language Education Academy and Start Learning German"
+image: /assets/img/blog-library/11-academy.svg
+image_alt: "Illustration of learners joining a German-language classroom"
 permalink: /how-to-join-learn-language-education-academy-and-start-learning-german/
 seo:
   title: "Join German Classes | Learn Language Education Academy"

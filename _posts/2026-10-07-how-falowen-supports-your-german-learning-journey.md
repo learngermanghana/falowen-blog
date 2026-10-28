@@ -5,8 +5,8 @@ date: 2026-10-07
 tags: [falowen, german, 30-day-blog, how-falowen-supports-your-german-learning-journey]
 categories: [Falowen]
 excerpt: "See how Falowen supports your progress with lessons, practice tools, and flexible learning."
-image: /assets/img/falowen-blog-default.svg
-image_alt: "How Falowen Supports Your German Learning Journey"
+image: /assets/img/blog-library/06-falowen-learning.svg
+image_alt: "Illustration of an online learning device for Falowen German study"
 permalink: /how-falowen-supports-your-german-learning-journey/
 seo:
   title: "Falowen for German Learning"

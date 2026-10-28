@@ -9,11 +9,11 @@ from typing import Any
 from urllib import error, request
 
 from scripts.generate_post import build_post, slugify
+from scripts.blog_image_library import choose_cover
 
 POSTS_DIR = Path("_posts")
 TARGET_REPO = "learngermanghana/falowenexamtrainer"
 COMMITS_API = f"https://api.github.com/repos/{TARGET_REPO}/commits"
-UNSPLASH_IMAGE_URL = "https://source.unsplash.com/1600x900/?education,technology,software"
 
 
 def parse_args() -> argparse.Namespace:
@@ -186,8 +186,8 @@ def main() -> int:
         excerpt="Auto-generated summary of the latest Falowen Exam Trainer GitHub updates.",
         category="Product Updates",
         tags=["falowen", "examtrainer", "github", "updates", "automation"],
-        image_url=UNSPLASH_IMAGE_URL,
-        image_alt="Unsplash photo symbolizing software updates and learning technology",
+        image_url=choose_cover(title, "Falowen", rotation=int(publish_date[-2:])),
+        image_alt="Falowen editorial illustration for software updates and German learning",
         permalink_slug=permalink_slug,
         seo_title=title,
         seo_description="Track latest Falowen Exam Trainer improvements from GitHub in an automated blog story.",

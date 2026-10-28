@@ -25,7 +25,7 @@ CALENDAR = {
         "brief": "Teach mit, bei and zu (each followed by dative), clear use cases and six accurate examples with English translations. Include a short practice quiz.",
         "target": "https://www.falowen.app",
         "cta": "Practise dative prepositions in structured lessons on Falowen.",
-        "image": "/photos/pexels-polina-kovaleva-8362564.jpg"
+        "image": "/assets/img/blog-library/27-dative.svg"
     },
     "2026-11-06": {
         "title": "How to Prepare for Goethe-Style German Exams Online",
@@ -34,7 +34,7 @@ CALENDAR = {
         "brief": "Give specific preparation tips for Lesen, Hören, Schreiben and Sprechen. Explain the difference between independent Goethe-style practice and an official Goethe exam; AI-assisted feedback is not an official score.",
         "target": "https://exams.falowen.app",
         "cta": "Explore Goethe-style practice on Falowen Exams.",
-        "image": "/photos/pexels-joshuamckn-1139317.jpg"
+        "image": "/assets/img/blog-library/23-exam-preparation.svg"
     },
     "2026-11-10": {
         "title": "10 Useful German Phrases for Everyday Conversations",
@@ -43,7 +43,7 @@ CALENDAR = {
         "brief": "Teach ten useful A1 and A2 expressions with accurate German, English meanings and situations. Clarify when to use formal Sie and informal du.",
         "target": "https://www.falowen.app",
         "cta": "Develop everyday German skills with Falowen.",
-        "image": "/photos/pexels-rdne-8499492.jpg"
+        "image": "/assets/img/blog-library/05-essential-vocabulary.svg"
     },
     "2026-11-13": {
         "title": "Learn German with Music: Listening and Vocabulary Exercises",
@@ -52,7 +52,7 @@ CALENDAR = {
         "brief": "Teach a simple 15-minute routine: listen, note new phrases, practise pronunciation, retell in original German sentences. Introduce Falowen Music without inventing songs, artists or commercial terms.",
         "target": "https://music.falowen.app",
         "cta": "Explore German-learning songs and listening practice on Falowen Music.",
-        "image": "/photos/pexels-prince-beguin-81839921-10334158.jpg"
+        "image": "/assets/img/blog-library/33-music.svg"
     },
     "2026-11-17": {
         "title": "German A2: Perfekt vs Praeteritum Made Simple",
@@ -61,7 +61,7 @@ CALENDAR = {
         "brief": "Compare Perfekt and Präteritum in speech and writing, with natural examples including war and hatte. Include six accurate German examples and a quick test.",
         "target": "https://www.falowen.app",
         "cta": "Practise A2 German grammar with Falowen.",
-        "image": "/photos/pexels-artempodrez-5726810.jpg"
+        "image": "/assets/img/blog-library/41-adjective-endings.svg"
     },
     "2026-11-20": {
         "title": "How to Study German Effectively with a Workbook",
@@ -70,7 +70,7 @@ CALENDAR = {
         "brief": "Provide a practical workbook routine covering explanation, exercises, error correction, and revision. Mention the Falowen book catalogue and only say digital and printed formats where available. Do not invent titles, stock or prices.",
         "target": "https://www.falowen.app/books",
         "cta": "Browse the current German book catalogue on Falowen.",
-        "image": "/photos/pexels-ulfet-680828476-31703180.jpg"
+        "image": "/assets/img/blog-library/48-german-books.svg"
     },
     "2026-11-24": {
         "title": "Goethe-Style Speaking Practice: Five Mistakes to Avoid",
@@ -79,7 +79,7 @@ CALENDAR = {
         "brief": "Explain five common A1/A2 speaking-practice mistakes and their solutions, with short realistic original German dialogues. Do not imply official examination affiliation or guaranteed pass results.",
         "target": "https://exams.falowen.app",
         "cta": "Explore speaking and other exam-style exercises at Falowen Exams.",
-        "image": "/photos/pexels-saeed-chembea-1063286943-32719717.jpg"
+        "image": "/assets/img/blog-library/28-speaking.svg"
     },
     "2026-11-27": {
         "title": "How to Choose Your Next German Class in Ghana or Online",
@@ -88,7 +88,7 @@ CALENDAR = {
         "brief": "Explain how to choose A1, A2 or B1 and compare guided live classes with self-study. Do not invent registration deadlines, places, fees or start dates; direct readers to the live schedule.",
         "target": "https://www.falowen.app/classes",
         "cta": "Check current class options and start dates on the Falowen Classes page.",
-        "image": "/photos/pexels-eden-34297765.jpg"
+        "image": "/assets/img/blog-library/36-classes.svg"
     },
 }
 

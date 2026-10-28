@@ -8,21 +8,12 @@ from pathlib import Path
 import re
 from urllib import error, request
 
+from scripts.blog_image_library import choose_cover
+
 POSTS_DIR = Path("_posts")
 DEFAULT_START_DATE = date(2026, 4, 15)
 OPENAI_API_URL = "https://api.openai.com/v1/chat/completions"
 DEFAULT_OPENAI_MODEL = "gpt-4.1-mini"
-
-REPO_IMAGE_POOL = [
-    "https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-polina-kovaleva-8362564.jpg",
-    "https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-joshuamckn-1139317.jpg",
-    "https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-rdne-8499492.jpg",
-    "https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-prince-beguin-81839921-10334158.jpg",
-    "https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-artempodrez-5726810.jpg",
-    "https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-ulfet-680828476-31703180.jpg",
-    "https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-saeed-chembea-1063286943-32719717.jpg",
-    "https://raw.githubusercontent.com/learngermanghana/falowen-blog/main/photos/pexels-eden-34297765.jpg",
-]
 
 GERMAN_CHAR_MAP = {
     "ä": "ae",
@@ -546,20 +537,14 @@ def append_standard_closing(body: str) -> str:
 
 
 def resolve_image_url(day_number: int, day_config: dict) -> str:
-    explicit_image_url = day_config.get("image_url")
-    if explicit_image_url:
-        return explicit_image_url
-
-    url = day_config["unsplash_link"]
-    prefix = "https://unsplash.com/s/photos/"
-    if not url.startswith(prefix):
-        return url
-
-    # Unsplash search pages are useful editorial references, but the former
-    # source.unsplash.com endpoint is not a dependable image host. Use a local
-    # asset so generated posts and social publishing never depend on that
-    # transient service.
-    return "/assets/img/falowen-blog-default.svg"
+    """Use stable repository-owned covers, rotating repeated calendar topics."""
+    explicit = (day_config.get("image_url") or "").strip()
+    if explicit.startswith("/") and not explicit.startswith("//"):
+        return explicit
+    # Remote search pages, transient Unsplash source links and missing images
+    # must never be used by the automatic publishing workflow.
+    rotation = max(0, (day_number - 1) // 30)
+    return choose_cover(day_config["title"], day_config.get("category", ""), rotation)
 
 
 def generate_ai_body(day_number: int, day_config: dict) -> str | None:

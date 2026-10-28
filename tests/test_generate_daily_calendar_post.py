@@ -47,11 +47,11 @@ class DailyCalendarPostTests(unittest.TestCase):
         self.assertIn("Day 21/180 CTA:", body_21)
         self.assertNotEqual(body_1, body_2)
 
-    def test_resolve_image_url_uses_local_fallback_for_unsplash_search_pages(self) -> None:
+    def test_resolve_image_url_selects_topic_specific_local_cover(self) -> None:
         day_2 = pick_day_config(2)
         assert day_2 is not None
         image_url = resolve_image_url(2, day_2)
-        self.assertEqual(image_url, "/assets/img/falowen-blog-default.svg")
+        self.assertEqual(image_url, "/assets/img/blog-library/02-alphabet.svg")
 
     def test_resolve_image_url_preserves_explicit_image_url(self) -> None:
         image_url = resolve_image_url(
@@ -63,13 +63,12 @@ class DailyCalendarPostTests(unittest.TestCase):
         )
         self.assertEqual(image_url, "/assets/img/german-alphabet-complete-beginners.svg")
 
-    def test_build_post_appends_level_test_and_standard_closing(self) -> None:
+    def test_build_post_includes_local_cover_and_standard_closing(self) -> None:
         day_1 = pick_day_config(1)
         assert day_1 is not None
         body = build_body(1, day_1)
         post_md = build_post(1, day_1, body, date(2026, 4, 15))
-        self.assertIn("## Level", post_md)
-        self.assertIn("## Quick Test", post_md)
+        self.assertIn("image: /assets/img/blog-library/", post_md)
         self.assertIn(
             "Are you interested learning german. check our available classes here https://www.learngermanghana.com/classes",
             post_md,

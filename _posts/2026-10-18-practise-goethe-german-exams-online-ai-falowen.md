@@ -5,6 +5,8 @@ date: 2026-10-18
 categories: [Product Updates]
 tags: [Falowen, Goethe exam preparation, German mock exams, AI examiner, German A1, German A2, German B1, Lesen, Hören, Schreiben, Sprechen]
 excerpt: "Try Goethe-style German sample exams online. Practise reading, listening, writing and speaking with Falowen's AI-assisted feedback and a 7-day free trial."
+image: /assets/img/blog-library/23-exam-preparation.svg
+image_alt: "Illustration of a practice examination paper and marked answers"
 permalink: /goethe-german-exams-online-ai-examiner/
 seo:
   title: "Goethe-Style German Practice Exams Online | Falowen AI Examiner"
