@@ -24,7 +24,7 @@ class PublishLinkedInTests(unittest.TestCase):
         with redirect_stdout(output):
             publish_linkedin("Hello world", "https://example.com/post", dry_run=True)
 
-        self.assertIn("[linkedin] Dry run: would publish post", output.getvalue())
+        self.assertIn("[linkedin] Dry run: verified", output.getvalue())
 
     @patch.dict(
         "os.environ",
@@ -34,8 +34,9 @@ class PublishLinkedInTests(unittest.TestCase):
         },
         clear=True,
     )
+    @patch("scripts.post_to_social.upload_linkedin_image", return_value="urn:li:image:test")
     @patch("scripts.post_to_social.post_json")
-    def test_publish_linkedin_sends_current_posts_api_request(self, mock_post_json) -> None:
+    def test_publish_linkedin_sends_current_posts_api_request(self, mock_post_json, mock_upload) -> None:
         mock_post_json.return_value = (201, "")
 
         publish_linkedin("New post", "https://example.com/post", dry_run=False)
@@ -53,6 +54,12 @@ class PublishLinkedInTests(unittest.TestCase):
                 },
                 "lifecycleState": "PUBLISHED",
                 "isReshareDisabledByAuthor": False,
+                "content": {
+                    "media": {
+                        "id": "urn:li:image:test",
+                        "altText": "New post",
+                    }
+                },
             },
             {
                 "Authorization": "Bearer token",
@@ -71,7 +78,7 @@ class PublishLinkedInTests(unittest.TestCase):
     )
     @patch("scripts.post_to_social.upload_linkedin_image")
     @patch("scripts.post_to_social.post_json")
-    def test_publish_linkedin_adds_article_thumbnail(
+    def test_publish_linkedin_adds_native_image_media(
         self,
         mock_post_json,
         mock_upload_linkedin_image,
@@ -98,14 +105,7 @@ class PublishLinkedInTests(unittest.TestCase):
         )
         payload = mock_post_json.call_args.args[1]
         self.assertEqual(
-            {
-                "article": {
-                    "source": "https://blog.falowen.app/german-lesson/",
-                    "thumbnail": "urn:li:image:thumbnail",
-                    "title": "German Lesson",
-                    "description": "Learn a useful German grammar topic.",
-                }
-            },
+            {"media": {"id": "urn:li:image:thumbnail", "altText": "German Lesson"}},
             payload["content"],
         )
 
@@ -118,8 +118,9 @@ class PublishLinkedInTests(unittest.TestCase):
         },
         clear=True,
     )
+    @patch("scripts.post_to_social.upload_linkedin_image", return_value="urn:li:image:test")
     @patch("scripts.post_to_social.post_json")
-    def test_publish_linkedin_allows_version_override(self, mock_post_json) -> None:
+    def test_publish_linkedin_allows_version_override(self, mock_post_json, mock_upload) -> None:
         mock_post_json.return_value = (201, "")
 
         publish_linkedin("New post", "https://example.com/post", dry_run=False)
@@ -140,7 +141,7 @@ class PublishLinkedInTests(unittest.TestCase):
         with redirect_stdout(output):
             publish_linkedin("Hello world", "https://example.com/post", dry_run=True)
 
-        self.assertIn("[linkedin] Dry run: would publish post", output.getvalue())
+        self.assertIn("[linkedin] Dry run: verified", output.getvalue())
 
     @patch("scripts.post_to_social.publish_medium")
     @patch("scripts.post_to_social.publish_instagram")

@@ -269,27 +269,31 @@ def publish_linkedin(
         "isReshareDisabledByAuthor": False,
     }
 
-    # LinkedIn's Posts API does not scrape URLs for article previews. We must
-    # explicitly send article metadata and upload the thumbnail image first.
-    if title or description or image_url:
-        article: dict[str, str] = {
-            "source": article_url,
-            "title": title or text.splitlines()[0][:200],
-            "description": description or "",
-        }
-        if image_url and not dry_run:
-            article["thumbnail"] = upload_linkedin_image(
-                image_url,
-                site_url,
-                token,
-                author_urn,
-                linkedin_version,
-            )
-        payload["content"] = {"article": article}
-
+    # Use an actual image post, not an article-preview thumbnail. LinkedIn
+    # image posts display the uploaded media prominently in the member feed.
+    # The article remains clickable via the "Read more" URL in commentary.
+    # Never silently send a text-only post when media is unavailable.
+    chosen_image = image_url or "/assets/img/falowen-blog-default.svg"
     if dry_run:
-        print("[linkedin] Dry run: would publish post")
+        # Even in dry-run, validate the local or remote image source and its
+        # raster conversion to catch failures before a scheduled publication.
+        image_bytes, image_type = load_image_bytes(chosen_image, site_url)
+        print(f"[linkedin] Dry run: verified {image_type} image ({len(image_bytes)} bytes); would publish post")
         return
+
+    image_urn = upload_linkedin_image(
+        chosen_image,
+        site_url,
+        token,
+        author_urn,
+        linkedin_version,
+    )
+    payload["content"] = {
+        "media": {
+            "id": image_urn,
+            "altText": (title or text.splitlines()[0])[:200],
+        }
+    }
 
     status, body = post_json(
         "https://api.linkedin.com/rest/posts",
