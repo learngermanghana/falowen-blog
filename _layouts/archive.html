@@ -2,53 +2,67 @@
 layout: default
 ---
 
-{% assign featured_post = site.posts | first %}
-
-<section class="blog-library-hero blog-library-hero-search">
-  <div class="blog-library-copy">
-    <span class="eyebrow">Falowen German Blog</span>
-    <h1>{{ page.title | default: 'German Learning Blog' }}</h1>
-    <p>{{ page.description | default: 'Find practical German lessons, exam tips, vocabulary and grammar guides for A1–C1 learners.' }}</p>
-
-    <div class="article-search-shell" role="search">
-      <label for="article-library-search">Search all articles</label>
-      <div class="article-search-row">
-        <input id="article-library-search" type="search" autocomplete="off" placeholder="Search: Akkusativ, B1 Schreiben, Goethe, Wortschatz…" aria-describedby="article-search-status">
-        <button id="article-search-clear" type="button">Clear</button>
-      </div>
-      <p id="article-search-status" class="article-search-status" aria-live="polite">Showing all {{ site.posts | size }} articles</p>
-    </div>
-
-    <div class="article-quick-filters" aria-label="Quick article filters">
-      <button type="button" data-article-filter="A1">A1</button>
-      <button type="button" data-article-filter="A2">A2</button>
-      <button type="button" data-article-filter="B1">B1</button>
-      <button type="button" data-article-filter="B2">B2</button>
-      <button type="button" data-article-filter="Grammar">Grammar</button>
-      <button type="button" data-article-filter="Exam">Exam Prep</button>
-      <button type="button" data-article-filter="Speaking">Speaking</button>
-      <button type="button" data-article-filter="Writing">Writing</button>
-      <button type="button" data-article-filter="Vocabulary">Vocabulary</button>
+<section class="fl-archive-welcome" aria-labelledby="fl-archive-title">
+  <div class="fl-archive-intro">
+    <span class="fl-archive-kicker">FALOWEN JOURNAL <span aria-hidden="true">·</span> GERMAN FOR REAL LIFE</span>
+    <h1 id="fl-archive-title">A little German, <span>a lot of progress.</span></h1>
+    <p>Explore practical grammar, everyday conversations and exam tips. Find a lesson, learn something useful, and keep moving forward.</p>
+    <div class="fl-archive-actions">
+      <a class="fl-archive-primary" href="#all-articles">Explore articles <span aria-hidden="true">↗</span></a>
+      <a class="fl-archive-secondary" href="https://www.falowen.app/classes">See upcoming classes <span aria-hidden="true">→</span></a>
     </div>
   </div>
 
-  {% if featured_post %}
-    {% assign featured_image = featured_post.image %}
-    {% if featured_image == nil or featured_image == '' or featured_image contains 'source.unsplash.com' or featured_image contains 'unsplash.com/s/photos' %}
-      {% assign featured_image = '/assets/img/falowen-topic-general.svg' | relative_url %}
-    {% endif %}
-    <article class="blog-featured-card">
-      <a href="{{ featured_post.url | relative_url }}">
-        <img src="{{ featured_image }}" alt="{{ featured_post.image_alt | default: featured_post.title | escape }}" loading="eager">
-        <div>
-          <span class="featured-badge">Newest article</span>
-          <h2>{{ featured_post.title }}</h2>
-          {% if featured_post.excerpt %}<p>{{ featured_post.excerpt | strip_html | truncate: 150 }}</p>{% endif %}
-          <strong>Read article →</strong>
-        </div>
-      </a>
-    </article>
-  {% endif %}
+  <nav class="fl-archive-explore" aria-label="Explore the Falowen learning ecosystem">
+    <a href="https://www.falowen.app" class="fl-explore-link">
+      <span class="fl-explore-number" aria-hidden="true">01</span>
+      <span><strong>Learn German</strong><small>Courses and practice</small></span>
+      <span class="fl-explore-arrow" aria-hidden="true">↗</span>
+    </a>
+    <a href="https://exams.falowen.app" class="fl-explore-link">
+      <span class="fl-explore-number" aria-hidden="true">02</span>
+      <span><strong>Prepare for exams</strong><small>Goethe-style practice</small></span>
+      <span class="fl-explore-arrow" aria-hidden="true">↗</span>
+    </a>
+    <a href="https://music.falowen.app" class="fl-explore-link">
+      <span class="fl-explore-number" aria-hidden="true">03</span>
+      <span><strong>Learn through music</strong><small>Listen and repeat</small></span>
+      <span class="fl-explore-arrow" aria-hidden="true">↗</span>
+    </a>
+    <a href="https://www.falowen.app/books" class="fl-explore-link">
+      <span class="fl-explore-number" aria-hidden="true">04</span>
+      <span><strong>Explore German books</strong><small>Learning guides</small></span>
+      <span class="fl-explore-arrow" aria-hidden="true">↗</span>
+    </a>
+  </nav>
+</section>
+
+<section class="fl-archive-discover" aria-label="Find German learning articles">
+  <div class="fl-archive-search-head">
+    <div>
+      <span class="fl-archive-eyebrow">YOUR ARTICLE LIBRARY</span>
+      <h2>What would you like to learn today?</h2>
+    </div>
+    <span class="fl-archive-count">{{ site.posts | size }} free articles</span>
+  </div>
+  <div class="article-search-shell" role="search">
+    <label for="article-library-search">Search lessons and topics</label>
+    <div class="article-search-row">
+      <input id="article-library-search" type="search" autocomplete="off" placeholder="Try Dativ, A2, Goethe or Schreiben…" aria-describedby="article-search-status">
+      <button id="article-search-clear" type="button">Clear</button>
+    </div>
+    <p id="article-search-status" class="article-search-status" aria-live="polite">Showing all {{ site.posts | size }} articles</p>
+  </div>
+  <div class="article-quick-filters" aria-label="Quick article filters">
+    <button type="button" data-article-filter="A1">A1</button>
+    <button type="button" data-article-filter="A2">A2</button>
+    <button type="button" data-article-filter="B1">B1</button>
+    <button type="button" data-article-filter="B2">B2</button>
+    <button type="button" data-article-filter="Grammar">Grammar</button>
+    <button type="button" data-article-filter="Exam">Exam Prep</button>
+    <button type="button" data-article-filter="Speaking">Speaking</button>
+    <button type="button" data-article-filter="Writing">Writing</button>
+  </div>
 </section>
 
 <section class="blog-posts-section" id="all-articles">
