@@ -25,13 +25,13 @@ class EcosystemCalendarTests(unittest.TestCase):
         for post_date, spec in campaign.CALENDAR.items():
             self.assertTrue(spec["target"].startswith(permitted_hosts))
             self.assertTrue(Path(spec["image"].lstrip("/")).is_file(), post_date)
-            self.assertIn(spec["image"].split(".")[-1].lower(), ("jpeg", "jpg", "png"))
+            self.assertIn(spec["image"].split(".")[-1].lower(), ("jpeg", "jpg", "png", "svg"))
             self.assertTrue(spec["cta"])
             slug = campaign.slugify(spec["title"])
             self.assertNotIn(slug, slugs)
             slugs.add(slug)
             metadata = campaign.render_front_matter(post_date, spec, slug)
-            self.assertIn("image: /photos/", metadata)
+            self.assertIn("image: /assets/img/blog-library/", metadata)
             self.assertIn("permalink: /" + slug + "/", metadata)
 
     def test_no_generated_post_outside_explicit_dates(self) -> None:
