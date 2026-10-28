@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}?v=20260807-2">
   <link rel="stylesheet" href="{{ '/assets/css/falowen-editorial-2026.css' | relative_url }}?v=3">
+  <link rel="stylesheet" href="{{ '/assets/css/blog-refresh-2026.css' | relative_url }}?v=1">
 </head>
 <body class="home-page min-h-screen overflow-x-hidden antialiased">
   <div class="site-bg" aria-hidden="true"></div>
@@ -20,9 +21,13 @@
         <div class="latest-hero-head">
           <div>
             <span class="home-section-label">Latest from Falowen</span>
-            <h1 id="latest-posts-title">Learn German with our newest lessons.</h1>
+            <h1 id="latest-posts-title">German made practical.</h1>
+            <div class="latest-hero-entry">
+              <a href="{{ '/blogs/' | relative_url }}">Browse all lessons <span aria-hidden="true">↗</span></a>
+              <a href="https://www.falowen.app/classes">Upcoming live classes <span aria-hidden="true">↗</span></a>
+            </div>
           </div>
-          <p>Fresh grammar guides, exam preparation, vocabulary and practical German for learners from A1 to C1.</p>
+          <p>Learn something useful today. Explore short grammar lessons, everyday German and exam preparation tips.</p>
         </div>
 
         <div class="latest-slider" id="latest-post-slider">
@@ -123,22 +128,6 @@
         </a>
       </div>
 
-      <div class="search-panel">
-        <span class="home-section-label">Search the library</span>
-        <h2>Find a specific lesson.</h2>
-        <form class="home-search-box" id="home-search-form" role="search">
-          <input id="home-search-input" type="search" autocomplete="off" placeholder="Try: Akkusativ, Dativ, Goethe A1, B1 Schreiben…" aria-label="Search German lessons">
-          <button type="submit">Search</button>
-        </form>
-        <div class="search-suggestions" aria-label="Popular searches">
-          <a href="{{ '/search/?q=A1' | relative_url }}">A1</a>
-          <a href="{{ '/search/?q=Akkusativ' | relative_url }}">Akkusativ</a>
-          <a href="{{ '/search/?q=Dativ' | relative_url }}">Dativ</a>
-          <a href="{{ '/search/?q=Goethe' | relative_url }}">Goethe</a>
-          <a href="{{ '/search/?q=Schreiben' | relative_url }}">Schreiben</a>
-        </div>
-        <ul id="home-search-results" class="home-search-results" aria-live="polite"></ul>
-      </div>
     </section>
 
     <section class="home-wrap home-section">
@@ -185,7 +174,6 @@
     </section>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.11.1/dest/simple-jekyll-search.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var slider = document.getElementById('latest-post-slider');
@@ -243,28 +231,6 @@
         restartTimer();
       }
 
-      var input = document.getElementById('home-search-input');
-      var results = document.getElementById('home-search-results');
-      var form = document.getElementById('home-search-form');
-      if (!input || !results || typeof SimpleJekyllSearch === 'undefined') return;
-
-      var search = SimpleJekyllSearch({
-        searchInput: input,
-        resultsContainer: results,
-        json: '{{ "/search.json" | relative_url }}',
-        searchResultTemplate: '<li><a href="{url}"><strong>{title}</strong><span>{date}</span></a></li>',
-        noResultsText: '<li>No matching lessons found.</li>',
-        limit: 6,
-        fuzzy: true
-      });
-
-      if (form) {
-        form.addEventListener('submit', function (event) {
-          event.preventDefault();
-          var query = input.value.trim();
-          if (query) search.search(query);
-        });
-      }
     });
   </script>
   <script type="module" src="{{ '/assets/js/reviews.js' | relative_url }}"></script>
