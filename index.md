@@ -1,5 +1,5 @@
 ---
-layout: redirect
-redirect_to: /blogs/
+layout: home
+title: Falowen German Blog
 permalink: /
 ---
