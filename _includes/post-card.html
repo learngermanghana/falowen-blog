@@ -1,14 +1,20 @@
 {% assign p = include.post %}
 <article class="post-card">
   <a class="post-card-link" href="{{ p.url | relative_url }}">
-    {% if p.image %}
+    {% assign card_cover = p.image %}
+    {% if card_cover == nil or card_cover == '' or card_cover contains 'source.unsplash.com' or card_cover contains 'unsplash.com/s/photos' %}
+      {% assign cover_title_size = p.title | size %}
+      {% assign cover_date_number = p.date | date: "%j" | plus: 0 %}
+      {% assign cover_index = cover_title_size | plus: cover_date_number | modulo: site.data.blog_cover_catalogue.size %}
+      {% assign cover_url = site.data.blog_cover_catalogue[cover_index] | relative_url %}
+      {% assign card_cover = cover_url %}
+    {% endif %}
     <img class="post-card-img"
-         src="{{ p.image }}"
-         alt="{{ p.title }}"
+         src="{{ card_cover }}"
+         alt="{{ p.image_alt | default: p.title | escape }}"
          loading="lazy"
          width="{{ p.image_width | default: 600 }}"
-         height="{{ p.image_height | default: 400 }}" />
-    {% endif %}
+         height="{{ p.image_height | default: 400 }}">
     <h3 class="post-card-title">{{ p.title }}</h3>
     {% if p.excerpt %}
       <p class="post-card-excerpt">{{ p.excerpt | strip_html | truncate: 110 }}</p>
