@@ -3,16 +3,13 @@ layout: default
 ---
 
 <article class="post h-entry py-8 md:py-12" itemscope itemtype="http://schema.org/BlogPosting">
-  {% assign title_key = page.title | downcase %}
   {% assign post_image = page.image %}
   {% if post_image == nil or post_image == '' or post_image contains 'source.unsplash.com' or post_image contains 'unsplash.com/s/photos' %}
-    {% if title_key contains 'time' or title_key contains 'uhr' %}
-      {% assign post_image = '/assets/img/falowen-topic-time.svg' | relative_url %}
-    {% elsif title_key contains 'word' or title_key contains 'vocabulary' or title_key contains 'numbers' or title_key contains 'alphabet' or title_key contains 'days' %}
-      {% assign post_image = '/assets/img/falowen-topic-vocabulary.svg' | relative_url %}
-    {% else %}
-      {% assign post_image = '/assets/img/falowen-topic-general.svg' | relative_url %}
-    {% endif %}
+      {% assign cover_title_size = page.title | size %}
+      {% assign cover_date_number = page.date | date: "%j" | plus: 0 %}
+      {% assign cover_index = cover_title_size | plus: cover_date_number | modulo: site.data.blog_cover_catalogue.size %}
+      {% assign cover_url = site.data.blog_cover_catalogue[cover_index] | relative_url %}
+    {% assign post_image = cover_url %}
   {% endif %}
 
   <header class="post-hero post-hero-new">
