@@ -1,28 +1,30 @@
 ---
-layout: page
-title: Search
+layout: null
+title: All Blog Posts
 permalink: /search/
+sitemap: false
 ---
-
-<input type="text" id="search-input" placeholder="Search German lessons, grammar, exams, vocabulary...">
-<ul id="results-container" class="search-results"></ul>
-
-<script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.11.1/dest/simple-jekyll-search.min.js"></script>
-<script>
-  var searchInput = document.getElementById('search-input');
-  var search = SimpleJekyllSearch({
-    searchInput: searchInput,
-    resultsContainer: document.getElementById('results-container'),
-    json: '/search.json',
-    searchResultTemplate: '<li><a href="{url}">{title}</a><span> — {date}</span></li>',
-    noResultsText: '<li>No matching lessons found.</li>',
-    limit: 20,
-    fuzzy: true
-  });
-
-  var initialQuery = new URLSearchParams(window.location.search).get('q');
-  if (initialQuery) {
-    searchInput.value = initialQuery;
-    search.search(initialQuery);
-  }
-</script>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex,follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="{{ '/blogs/' | absolute_url }}">
+  <meta http-equiv="refresh" content="1;url={{ '/blogs/' | relative_url }}">
+  <title>Redirecting to All Blog Posts · Falowen</title>
+  <script>
+    // The old standalone search was retired. Preserve an existing ?q= filter
+    // so indexed links and bookmarks still land on matching blog articles.
+    (function () {
+      var query = new URLSearchParams(window.location.search).get('q');
+      var destination = {{ '/blogs/' | relative_url | jsonify }};
+      if (query) destination += '?q=' + encodeURIComponent(query);
+      window.location.replace(destination);
+    })();
+  </script>
+</head>
+<body>
+  <p>Search has moved to <a href="{{ '/blogs/' | relative_url }}">All Blog Posts</a>.</p>
+</body>
+</html>

@@ -7,7 +7,6 @@ url: "https://blog.falowen.app" # your custom domain
 theme: minima
 header_pages:
   - about.md
-  - search.md
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
