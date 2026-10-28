@@ -27,11 +27,15 @@ layout: default
   {% for post in topic_posts %}
     <article class="post-card group">
       <a class="post-card-link" href="{{ post.url | relative_url }}">
-        {% if post.image %}
-          <img class="post-card-img" src="{{ post.image }}" alt="{{ post.title | escape }}" loading="lazy">
-        {% else %}
-          <div class="post-card-placeholder">Deutsch</div>
+        {% assign topic_cover = post.image %}
+        {% if topic_cover == nil or topic_cover == '' or topic_cover contains 'source.unsplash.com' or topic_cover contains 'unsplash.com/s/photos' %}
+      {% assign cover_title_size = post.title | size %}
+      {% assign cover_date_number = post.date | date: "%j" | plus: 0 %}
+      {% assign cover_index = cover_title_size | plus: cover_date_number | modulo: site.data.blog_cover_catalogue.size %}
+      {% assign cover_url = site.data.blog_cover_catalogue[cover_index] | relative_url %}
+          {% assign topic_cover = cover_url %}
         {% endif %}
+        <img class="post-card-img" src="{{ topic_cover }}" alt="{{ post.image_alt | default: post.title | escape }}" loading="lazy">
         <div class="post-card-body">
           <div class="post-card-meta">
             <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
