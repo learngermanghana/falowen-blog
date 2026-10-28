@@ -141,7 +141,7 @@ class PublishLinkedInTests(unittest.TestCase):
         with redirect_stdout(output):
             publish_linkedin("Hello world", "https://example.com/post", dry_run=True)
 
-        self.assertIn("[linkedin] Dry run: would publish post", output.getvalue())
+        self.assertIn("[linkedin] Dry run: verified", output.getvalue())
 
     @patch("scripts.post_to_social.publish_medium")
     @patch("scripts.post_to_social.publish_instagram")
