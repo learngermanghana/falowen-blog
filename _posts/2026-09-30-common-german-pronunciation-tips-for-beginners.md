@@ -5,8 +5,8 @@ date: 2026-09-30
 tags: [falowen, german, 30-day-blog, common-german-pronunciation-tips-for-beginners]
 categories: [Pronunciation]
 excerpt: "Improve your German speaking with easy pronunciation tips for common sounds."
-image: /assets/img/falowen-blog-default.svg
-image_alt: "Common German Pronunciation Tips for Beginners"
+image: /assets/img/blog-library/19-pronunciation.svg
+image_alt: "Illustration of an audio waveform for German pronunciation practice"
 permalink: /common-german-pronunciation-tips-for-beginners/
 seo:
   title: "German Pronunciation Tips for Beginners"
