@@ -78,7 +78,11 @@ layout: default
     {% for post in site.posts %}
       {% assign card_image = post.image %}
       {% if card_image == nil or card_image == '' or card_image contains 'source.unsplash.com' or card_image contains 'unsplash.com/s/photos' %}
-        {% assign card_image = '/assets/img/falowen-topic-general.svg' | relative_url %}
+        {% assign cover_title_size = post.title | size %}
+      {% assign cover_date_number = post.date | date: "%j" | plus: 0 %}
+      {% assign cover_index = cover_title_size | plus: cover_date_number | modulo: site.data.blog_cover_catalogue.size %}
+      {% assign cover_url = site.data.blog_cover_catalogue[cover_index] | relative_url %}
+        {% assign card_image = cover_url %}
       {% endif %}
       <article class="blog-article-card" data-article-card>
         <a href="{{ post.url | relative_url }}">
