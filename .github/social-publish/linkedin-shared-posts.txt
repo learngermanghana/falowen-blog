@@ -50,3 +50,4 @@ _posts/2026-11-13-learn-german-with-music-listening-and-vocabulary-exercises.md
 _posts/2026-11-15-falowen-now-offers-swahili-online-course.md
 _posts/2026-11-15-how-to-use-chatgpt-with-falowen-to-learn-german.md
 _posts/2026-11-17-german-a2-perfekt-vs-praeteritum-made-simple.md
+_posts/2026-11-20-how-to-study-german-effectively-with-a-workbook.md
