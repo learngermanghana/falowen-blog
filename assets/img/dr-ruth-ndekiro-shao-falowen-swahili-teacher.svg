@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Meet Dr. Ruth Ndekiro Shao — Falowen Kiswahili Teacher</title>
+  <desc id="desc">Falowen announcement graphic in deep blue, turquoise and gold, introducing Dr. Ruth Ndekiro Shao as a Kiswahili language instructor and researcher.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#102e56"/><stop offset="1" stop-color="#05162e"/>
+    </linearGradient>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#3ed2c1"/><stop offset="1" stop-color="#1d9cbe"/>
+    </linearGradient>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="2" fill="#ffffff" opacity=".09"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="700" fill="url(#bg)"/>
+  <path d="M715 0H1200V700H1003Q1137 514 1067 353T715 0Z" fill="#123c64" opacity=".7"/>
+  <circle cx="1011" cy="332" r="276" fill="none" stroke="#4fd7c0" stroke-width="2" opacity=".23"/>
+  <circle cx="1011" cy="332" r="220" fill="url(#dots)"/>
+  <circle cx="1011" cy="332" r="180" fill="url(#g)" opacity=".13"/>
+  <path d="M914 300q0-50 50-50h86q50 0 50 50v73q0 50-50 50h-35l-45 39 8-39h-14q-50 0-50-50Z" fill="none" stroke="#6be2d4" stroke-width="8"/>
+  <text x="1005" y="350" font-family="Arial,Helvetica,sans-serif" font-size="53" font-weight="700" fill="#ffffff" text-anchor="middle">Jambo!</text>
+  <path d="M80 85h66v9H80Z" fill="#e3b865"/>
+  <text x="80" y="143" font-family="Arial,Helvetica,sans-serif" font-size="26" font-weight="800" letter-spacing="4" fill="#6be2d4">FALOWEN · KISWAHILI</text>
+  <text x="80" y="224" font-family="Arial,Helvetica,sans-serif" font-size="37" font-weight="600" fill="#dcebf4">Meet your new Swahili teacher</text>
+  <text x="80" y="322" font-family="Arial,Helvetica,sans-serif" font-size="77" font-weight="800" fill="#ffffff">Dr. Ruth</text>
+  <text x="80" y="405" font-family="Arial,Helvetica,sans-serif" font-size="77" font-weight="800" fill="#ffffff">Ndekiro Shao</text>
+  <text x="83" y="465" font-family="Arial,Helvetica,sans-serif" font-size="26" fill="#b6d3e6">Kiswahili Language Instructor &amp; Researcher</text>
+  <rect x="80" y="511" width="574" height="3" fill="#bfe1ec" opacity=".32"/>
+  <text x="80" y="564" font-family="Arial,Helvetica,sans-serif" font-size="23" font-weight="700" fill="#e6c07d">PhD in Kiswahili  ·  8+ years teaching</text>
+  <text x="80" y="608" font-family="Arial,Helvetica,sans-serif" font-size="22" fill="#d5e5ee">Learn Swahili online in Africa and beyond</text>
+  <rect x="80" y="642" width="185" height="42" rx="21" fill="#3ed2c1"/>
+  <text x="172" y="670" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="800" fill="#0d2749">falowen.app</text>
+</svg>
